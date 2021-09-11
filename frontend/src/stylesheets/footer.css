@@ -28,4 +28,18 @@ a:hover {
 
 footer {
   background: #ebf4fa;
+  position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background-color: #ebf4fa;
+}
+
+h5{
+
+  margin-left: 50px;
+}
+
+p{
+  text-align: center;
 }
