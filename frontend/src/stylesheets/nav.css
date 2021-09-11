@@ -17,23 +17,26 @@ body {
     position: fixed;
     line-height: 65px;
     text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
-.nav div.logo {
+.nav div.logo-placeholder {
     float: left;
     width: auto;
     height: auto;
     padding-left: 3rem;
 }
 
-.nav div.logo a {
+.nav div.logo-placeholder a {
     text-decoration: none;
-    color: #fff;
-    font-size: 2.5rem;
 }
 
-.nav div.logo a:hover {
-    color: #00E676;
+.logo {
+  width: 65px;
+  height: 65px;
 }
 
 .nav div.main-list {
@@ -59,35 +62,20 @@ body {
 
 .nav div.main-list ul li a {
     text-decoration: none;
-    color: #fff;
+    color: black;
     line-height: 65px;
     font-size: 2.4rem;
 }
 
 .nav div.main-list ul li a:hover {
-    color: #00E676;
+    color: red;
 }
 
 
 /* Home section */
 
-.home {
-    width: 100%;
-    height: 100vh;
-    background-image: url(https://images.unsplash.com/photo-1498550744921-75f79806b8a7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0f6908fa5e81286213c7211276e6b3d&auto=format&fit=crop&w=1500&q=80);
-    background-position: center top;
-	background-size:cover;
-}
-
 .navTrigger {
     display: none;
-}
-
-.nav {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
 }
 
 
@@ -103,18 +91,22 @@ body {
     .navTrigger {
         display: block;
     }
+
     .nav div.logo {
         margin-left: 15px;
     }
+
     .nav div.main-list {
         width: 100%;
         height: 0;
         overflow: hidden;
     }
-    .nav div.show_list {
+
+    .nav div.show-list {
         height: auto;
         display: none;
     }
+
     .nav div.main-list ul {
         flex-direction: column;
         width: 100%;
@@ -122,20 +114,23 @@ body {
         right: 0;
         left: 0;
         bottom: 0;
-        background-color: #111;
+        background-color: #F5E8C7;
         /*same background color of navbar*/
         background-position: center top;
     }
+
     .nav div.main-list ul li {
         width: 100%;
         text-align: right;
     }
+
     .nav div.main-list ul li a {
         text-align: center;
         width: 100%;
         font-size: 3rem;
         padding: 20px;
     }
+
     .nav div.media_button {
         display: block;
     }
@@ -157,7 +152,7 @@ body {
 }
 
 .navTrigger i {
-    background-color: #fff;
+    background-color: black;
     border-radius: 2px;
     content: '';
     display: block;
@@ -336,5 +331,5 @@ body {
 
 .affix {
     padding: 0;
-    background-color: #111;
+    background-color: #F5E8C7;
 }
