@@ -57,7 +57,7 @@
             </div>
 
             <div class="col-md-3 col-sm-6 col-6 p-0 mb-3 float-left">
-              <h5 class="mb-4 font-weight-bold text-uppercase"></h5>
+              <h5 class="mb-4 font-weight-bold text-uppercase">&nbsp;</h5>
             <ul class="list-group">
               <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="">About Us</a></li>
               <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="">Terms & condition</a></li>
