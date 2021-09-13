@@ -12,7 +12,7 @@
       <div class="container pt-5 border-bottom">
         <div class="row">
           <div class="col-md-3 col-sm-12 mb-3 text-center">
-            
+
                     <desc></desc>
                     <defs>
                       <linearGradient x1="46.3528198%" y1="45.7301342%" x2="92.3528198%" y2="93.7383901%" id="linearGradient-1">
@@ -44,18 +44,18 @@
                         </g>
                       </g>
                     </g>
-                  
+
           </div>
           <div class="col-md-9 col-sm-12">
-    
+
             <div class="col-md-3 col-sm-6 col-6 p-0 float-left mb-3">
               <h5 class="mb-4 font-weight-bold text-uppercase">Contact Us</h5>
             <ul class="list-group">
               <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../sales/sales-performance-market-pipeline.html">xxx@example.com</a></li>
-              <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="href="../project-management/project-management.html"">+6012-345 6789</a></li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../project-management/project-management.html"">+6012-345 6789</a></li>
             </ul>
             </div>
-    
+
             <div class="col-md-3 col-sm-6 col-6 p-0 mb-3 float-left">
               <h5 class="mb-4 font-weight-bold text-uppercase"></h5>
             <ul class="list-group">
@@ -63,21 +63,21 @@
               <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://stackshare.io/naologic">Terms & condition</a></li>
             </ul>
             </div>
-    
+
             <div class="col-md-3 col-sm-6 col-6 mb-3 p-0 float-left">
 
-            
+
             </div>
-    
+
             <div class="col-md-3 col-sm-6 col-6 mb-3 p-0 float-left">
- 
-            
+
+
             </div>
-    
+
           </div>
             <div class="col-md-12">
               <div class="py-4 d-flex justify-content-center align-items-center">
-                <p>(C) Copyright 2021 EPM</p>
+                <p>	&copy; Copyright 2021 EPM</p>
               </div>
             </div>
         </div>
