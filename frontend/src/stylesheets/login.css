@@ -48,6 +48,7 @@ form {
     position: relative; /* needed for stacking */
     height: 100px;
     width: 100%;
+    border : 1px;
 }
 .content {
     position: relative; /* needed for stacking */
