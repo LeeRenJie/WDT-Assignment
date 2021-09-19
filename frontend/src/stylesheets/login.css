@@ -1,6 +1,6 @@
 html,
-form {
-    height: 100%;
+body {
+    background-color: none;
 }
 .form-login {
     display: -ms-flexbox;
@@ -39,14 +39,14 @@ form {
 }
 
 /* Temp styles */
-.header, .sidebar, .content, .footer { border: 5px solid black; }
+.header, .sidebar, .content, .footer { border: none; }
 .content, .sidebar, .footer { border-top: none; }
 .sidebar.right { border-right: none; }
 .sidebar.left { border-left: none; }
 /* Core styles */
 .header {
     position: relative; /* needed for stacking */
-    height: 100px;
+    height: 100%;
     width: 100%;
     border : 1px;
 }
