@@ -10,6 +10,7 @@
         </head>
         <body class="text-center">
             <?php include '../shared/navbar.php';?>
+            <div class="container-fluid">
             <form class="form-login">
                 <h1 class="h3 mb-3 font-weight-normal">Log in to Exclusive Pet Store</h1>
                 <label for="inputEmail" class="sr-only">Email or Username</label>
@@ -19,9 +20,10 @@
                 <br>
                 <button class="btn btn-md btn-primary btn-block" type="submit">Log in</button>
                 <br>
-                <a href = "signup.html">Don't have an account? Sign up here</a>
-                <p>Admin Press <a href = "../admin/login.html">here</a></p>
+                <p>Don't have an account? <a href = "signup.html"> Sign up HERE</a></p>
+                <p>Admin Press <a href = "../admin/login.html">HERE </a></p>
             </form>
+            </div>
             <?php include '../shared/footer.php';?>
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
