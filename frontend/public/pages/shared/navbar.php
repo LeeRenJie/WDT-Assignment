@@ -19,22 +19,22 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto margin-right">
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../customer/product.php">
                 <i class="fas fa-shopping-bag"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../customer/search.php">
                 <i class="fas fa-search"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../customer/cart.php">
               <i class="fas fa-shopping-cart"></i>
               </a>
             </li>
             <li class="nav-item">
-              <button class="login-btn" href="../customer/login.php">Login</button>
+              <a class="login-btn" href="../customer/login.php">Login</a>
             </li>
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
