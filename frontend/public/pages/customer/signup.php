@@ -16,42 +16,42 @@
   </head>
   <body class="text-center">
     <div class="header">
-        <div class="header-inner"><?php include '../shared/navbar.php';?></div>       
+      <div class="header-inner"><?php include '../shared/navbar.php';?></div>       
     </div>
 
     <div class="p-3 mb-2 bg-dark" class="container">
-            <div class="row">
-                <div class="col-">
-                </div>
-                <div class="col-md">
-    <form class="form-signin">
-      <h1 class="h3 mb-3 font-weight-normal">Sign Up to Exclusive Pet Mart</h1>
-      <label for="inputEmail" class="sr-only">Username</label>
-      <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-      <label for="inputEmail" class="sr-only">Name</label>
-      <input type="text" id="inputEmail" class="form-control" placeholder="Name" required autofocus>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <label for="inputEmail" class="sr-only">Address</label>
-      <input type="text" id="inputEmail" class="form-control" placeholder="Address" required autofocus>
-      <label for="inputEmail" class="sr-only">Phone Number</label>
-      <input type="number" id="inputEmail" class="form-control" placeholder="Phone Number" required autofocus>
-
-      <button class="btn btn-lg btn-primary btn-md" type="submit">Sign up</button>
-      <p class="mt-5 mb-3 text-muted">Already have an account? <a href="login.html">Log in here</a></p>
-      <p class="mt-5 mb-3 text-muted">Admin Press <a href="admin/login.html">Here</a></p>
-    </form>
-    </div>
-      <div class="col-">
-                </div>
-            </div>
-        </div>       
-        
-        <div class="footer">
-            <div class="footer-inner"><?php include '../shared/footer.php';?></div>
+      <div class="row">
+        <div class="col-">
         </div>
+          <div class="col-md">
+            <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal">Sign Up to Exclusive Pet Mart</h1>
+            <label for="inputEmail" class="sr-only">Username</label>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+            <label for="inputEmail" class="sr-only">Name</label>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Name" required autofocus>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <label for="inputEmail" class="sr-only">Address</label>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Address" required autofocus>
+            <label for="inputEmail" class="sr-only">Phone Number</label>
+            <input type="number" id="inputEmail" class="form-control" placeholder="Phone Number" required autofocus>
+
+            <button class="btn btn-lg btn-primary btn-md" type="submit">Sign up</button>
+            <p class="mt-5 mb-3 text-muted">Already have an account? <a href="login.html">Log in here</a></p>
+            <p class="mt-5 mb-3 text-muted">Admin Press <a href="admin/login.html">Here</a></p>
+            </form>
+          </div>
+        <div class="col-">
+        </div>
+      </div>
+    </div>       
+        
+    <div class="footer">
+        <div class="footer-inner"><?php include '../shared/footer.php';?></div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
