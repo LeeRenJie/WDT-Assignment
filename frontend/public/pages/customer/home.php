@@ -17,7 +17,7 @@
     </div>
     <div class="row one img_two">
       <div class="col col-2">
-        <p>Cats</p>
+        Cats <br>
         <input type="button" value="View">
       </div>
       <div class="col-10">
@@ -29,17 +29,17 @@
         1 of 2
       </div>
       <div class="col col-lg-2">
-      <p>Dogs</p>
+      Dogs <br>
       <input type="button" value="View">
       </div>
     </div>
     <div class="row row-cols-3 one img_four">
-      <div class="col">Column</div>
-      <div class="col"> <img src="../../images/food.jpg" alt=""> <br> Food</div>
-      <div class="col"> <img src="../../images/toys.jpg" alt=""> <br> Toys</div>
+      <div class="col"> <p> <span class="category">Categories </span></p> </div>
+      <div class="col"> <img src="../../images/food.jpg" alt=""> <br> <p>Food</p></div>
+      <div class="col"> <img src="../../images/toys.jpg" alt=""> <br> <p> Toys </p></div>
       <div class="col"></div>
-      <div class="col"> <img src="../../images/healthcare.jpg" alt=""> <br> Healthcare</div>
-      <div class="col"> <img src="../../images/gear.jfif" alt=""> <br> Gear</div>
+      <div class="col"> <img src="../../images/healthcare.jpg" alt=""> <br> <p> Healthcare </p> </div>
+      <div class="col"> <img src="../../images/gear.jfif" alt=""> <br> <p> Gear </p> </div>
     </div>
   </div>
   <?php include '../shared/footer.php';?>

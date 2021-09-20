@@ -10,6 +10,10 @@ img {
     max-height: 300px;
 }
 
+.category{
+    text-align: center;
+    padding-top: 10%;
+}
 button {
     width: 200px;
     height: 150px;
