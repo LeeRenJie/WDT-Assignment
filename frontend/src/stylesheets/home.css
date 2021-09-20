@@ -1,4 +1,46 @@
 .one {
     padding-top: 50px;
     padding-bottom: 50px;
+    width: ;
+    height: ;
 }
+
+img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+button {
+    width: 200px;
+    height: 150px;
+}
+
+.img_two {
+    background-image: url(../../../frontend/public/images/img_two.jpg);
+
+}
+
+.img_three {
+    background-image: url(../../../frontend/public/images/img_three.jpg);
+
+}
+
+.img_four {
+    background-image: url(../../../frontend/public/images/);
+
+}
+
+.img_one {
+    background-image: url(../../../frontend/public/images/img_one_final.jpg);
+}
+/*
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    height: 300px;
+    width: 450px;
+
+    width: 100%;
+    height: 0;
+    padding-top: 70.37%; /* (img-height / img-width * container-width) */
+                /* (853 / 1280 * 100) */
