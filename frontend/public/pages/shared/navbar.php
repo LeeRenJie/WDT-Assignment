@@ -17,7 +17,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto margin-right">
+          <ul class="navbar-nav ml-auto ">
             <li class="nav-item">
               <a class="nav-link" href="../customer/product.php">
                 <i class="fas fa-shopping-bag"></i>
@@ -34,7 +34,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="login-btn" href="../customer/login.php">Login</a>
+              <a class="nav-link login-btn" href="../customer/login.php">Login</a>
             </li>
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
