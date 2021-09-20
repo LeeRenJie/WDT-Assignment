@@ -1,0 +1,36 @@
+.about-container {
+  overflow: hidden;
+}
+
+.wave {
+  position: relative;
+  bottom: 120px;
+  z-index: -1;
+}
+
+#mission-container {
+  position: relative;
+  bottom: 220px;
+}
+
+.coloured-section {
+  background-color: #DEBA9D;
+}
+
+.box {
+  padding: 5%;
+}
+
+.box-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.icon {
+  color: #9E7777;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: #F5E8C7;
+}
