@@ -37,3 +37,42 @@
 button{
   margin-top: 20px;
 }
+
+
+
+/* Temp styles */
+.header, .sidebar, .content, .footer { border: none; }
+.content, .sidebar, .footer { border-top: none; }
+.sidebar.right { border-right: none; }
+.sidebar.left { border-left: none; }
+/* Core styles */
+.header {
+    position: relative; /* needed for stacking */
+    height: 100%;
+    width: 100%;
+}
+.content {
+    position: relative; /* needed for stacking */
+    width: 100%;
+    height: 500px;
+}
+.sidebar {
+    position: relative; /* needed for stacking */
+    width: 20%;
+    height: 100%;
+    border-top: none;
+}
+.sidebar.left { float: left; }
+.sidebar.left:after,
+.sidebar.right:after {
+    clear: both;
+    content: "\0020";
+    display: block;
+    overflow: hidden;
+}
+.sidebar.right { float: right; }
+.footer {
+    position: relative; /* needed for stacking */
+    width: 100%;
+    height: 100px;
+}
