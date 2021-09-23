@@ -21,8 +21,8 @@
                             <label for="inputPassword" class="sr-only">Password</label>
                             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                             <button class="btn btn-md btn-primary mt-2" type="submit">Log in</button>
-                            <p class="mt-2 text-muted">Don't have an account? Sign up <a href = "signup.html">here</a></p>
-                            <p class="text-muted">Admin Press <a href = "../admin/login.html">here</a></p>
+                            <p class="mt-2 text-muted">Don't have an account? Sign up <a href = "signup.php">here</a></p>
+                            <p class="text-muted">Admin Press <a href = "../admin/login.php">here</a></p>
                         </form>
                     </div>
                 </div>

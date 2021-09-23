@@ -34,7 +34,7 @@
 
         <button class="btn btn-primary btn-md mt-3" type="submit">Sign up</button>
         <p class="mt-2 mb-3 text-muted">Already have an account? Log in <a href="login.php">here</a></p>
-        <p class="text-muted">Admin Press <a href="admin/login.php">Here</a></p>
+        <p class="text-muted">Admin Press <a href="../admin/login.php">Here</a></p>
       </form>
     </div>
     <?php include '../shared/footer.php';?>
