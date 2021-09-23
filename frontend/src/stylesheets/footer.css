@@ -5,3 +5,7 @@
 #footer {
   background-color: #DEBA9D;
 }
+
+.nav-link:hover {
+  cursor: pointer
+}

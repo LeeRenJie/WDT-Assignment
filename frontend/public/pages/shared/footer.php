@@ -21,7 +21,7 @@
                 </li>
                 <li class="nav-item mb-2">
                   <a class="nav-link p-0 text-muted">
-                    <i class="fab fa-whatsapp"></i> xxx@example.com
+                    <i class="fab fa-whatsapp"></i> +6012-3456789
                   </a>
                 </li>
               </ul>
