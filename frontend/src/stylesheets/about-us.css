@@ -1,19 +1,25 @@
-.about-container {
-  overflow: hidden;
+.desc {
+  line-height: 1.8em;
 }
 
 .wave {
   position: relative;
   bottom: 120px;
-  z-index: -1;
+  z-index: 0;
 }
 
 #mission-container {
   position: relative;
   bottom: 220px;
+  display: block;
 }
 
-.coloured-section {
+.light-coloured-section {
+  background-color: #F5E8C7;
+  z-index: -1;
+}
+
+.dark-coloured-section {
   background-color: #DEBA9D;
 }
 
@@ -33,4 +39,23 @@
 
 .icon:hover {
   color: #F5E8C7;
+}
+
+.header-img {
+  z-index:2;
+  position: relative;
+}
+
+@media only screen and (max-width: 768px) {
+  .wave {
+    bottom: 30px;
+  }
+
+  .header-img {
+    display: none;
+  }
+
+  #mission-container {
+    bottom: 40px;
+  }
 }

@@ -10,43 +10,43 @@
 </head>
 <body>
   <?php include '../shared/navbar.php';?>
-  <div class="about-container">
-    <div class="container-fluid">
+  <div class="about-container dark-coloured-section">
+    <div class="container-fluid px-5">
       <div class="container pt-4">
         <div class="row">
-          <div class="col-6">
-            <h1 class="mb-4">About Exclusive Pet Mart</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse suscipit, ligula et pharetra bibendum, orci diam condimentum nisl, at convallis massa neque ac neque. Proin vel ullamcorper lorem. Nullam feugiat consectetur nisl, quis rhoncus nibh dignissim non. Proin scelerisque augue pulvinar venenatis fringilla. Aenean posuere consequat rutrum. Maecenas placerat eros rutrum hendrerit auctor. Fusce quam ex, ornare et ex vitae, semper commodo nulla.</p>
+          <div class="col-6 title">
+            <h1 class="mt-4 mb-4">About Exclusive Pet Mart</h1>
+            <p class="mt-4 text-justify desc">In our online pet supply store, Exclusive Pet Mart (EPM), we sell all kinds of necessities for pets including dogs and cats such as toys, treats, food, bed, and anything else related to the pet's health and wellness.  We ensure our customers' pets could get the best nutrition and best gear from our store to improve their quality of life.</p>
           </div>
           <div class="col-6">
-            <img class="rounded float-right mr-4" src="../../images/logo-png.png" alt="" style="width:250px;height:250px;z-index:1;">
+            <img class="rounded float-right mr-5 header-img" src="../../images/cat&dog.svg" alt="cat and dog picture">
           </div>
         </div>
       </div>
     </div>
 
-    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#DEBA9D" fill-opacity="1" d="M0,192L80,197.3C160,203,320,213,480,192C640,171,800,117,960,85.3C1120,53,1280,43,1360,37.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#F5E8C7" fill-opacity="1" d="M0,192L80,197.3C160,203,320,213,480,192C640,171,800,117,960,85.3C1120,53,1280,43,1360,37.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
 
     <!--mission, vision and values-->
     <section id="mission-container">
-      <div class="container-fluid coloured-section text-center ">
+      <div class="container-fluid light-coloured-section text-center ">
         <div class="row">
           <div class="col-lg-4 box">
             <i class="fas fa-check-circle icon fa-4x"></i>
             <h3 class="box-title">Mission</h3>
-            <p>So easy to use, even your dog could do it.</p>
+            <p>Fulfill the needs of every pet parent for their furry child around the globe.</p>
           </div>
 
           <div class="col-lg-4 box">
             <i class="fas fa-eye icon fa-4x"></i>
             <h3 class="box-title">Vision</h3>
-            <p>We have all the dogs, the greatest dogs.</p>
+            <p>A world where all pets can remain happy, healthy, and receive the best quality of products in their entire life.</p>
           </div>
 
           <div class="col-lg-4 box">
             <i class="fas fa-heart icon fa-4x"></i>
             <h3 class="box-title">Values</h3>
-            <p>Find the love of your dog's life or your money back.</p>
+            <p>All products are safe for furry kids.</p>
           </div>
         </div>
       </div>
@@ -56,5 +56,6 @@
 
 
   <?php include '../shared/footer.php';?>
+  <script src="about-us.js"></script>
 </body>
 </html>

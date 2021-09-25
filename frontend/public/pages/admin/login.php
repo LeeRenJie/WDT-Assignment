@@ -19,7 +19,7 @@
             <br>
             <button class="btn btn-md btn-primary btn-block" type="submit">Log in</button>
             <br>
-            <p>Customer Press <a href = "../customer/login.html">here</a></p>
+            <p>Customer Press <a href = "../customer/login.php">here</a></p>
         </form>
         <?php include '../shared/footer.php';?>
 

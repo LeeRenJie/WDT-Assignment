@@ -10,7 +10,7 @@
   <section id="navbar">
     <div class="container-fluid nav-color">
       <nav class="navbar navbar-expand-lg navbar-light nav-color">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="../customer/home.php">
           <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
