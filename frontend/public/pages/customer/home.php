@@ -35,11 +35,11 @@
     </div>
     <div class="row row-cols-3 one img_four">
       <div class="col"> <p> <span class="category">Categories </span></p> </div>
-      <div class="col"> <img src="../../images/food.jpg" alt=""> <br> <p>Food</p></div>
-      <div class="col"> <img src="../../images/toys.jpg" alt=""> <br> <p> Toys </p></div>
+      <div class="col"> <img src="../../images/food.jpg" class="img-thumbnail" alt=""> <br> <p>Food</p></div>
+      <div class="col"> <img src="../../images/toys.jpg" class="img-thumbnail" alt=""> <br> <p> Toys </p></div>
       <div class="col"></div>
-      <div class="col"> <img src="../../images/healthcare.jpg" alt=""> <br> <p> Healthcare </p> </div>
-      <div class="col"> <img src="../../images/gear.jfif" alt=""> <br> <p> Gear </p> </div>
+      <div class="col"> <img src="../../images/healthcare.jpg" class="img-thumbnail" alt=""> <br> <p> Healthcare </p> </div>
+      <div class="col"> <img src="../../images/gear.jfif" class="img-thumbnail" alt=""> <br> <p> Gear </p> </div>
     </div>
   </div>
   <?php include '../shared/footer.php';?>
