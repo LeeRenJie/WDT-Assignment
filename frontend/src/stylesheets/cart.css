@@ -19,11 +19,25 @@ img{
     margin-bottom: 10px;
 }
 
-.products , .units , .quantity , .prices , .actions, .final{
+.units , .quantity , .prices , .actions, .final{
+    height: 180px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.products{
     height: 180px;
     padding-top: 10px;
 }
 
 .last-row{
     border-bottom:1px solid black;
+}
+
+.productlabel{
+    padding-top: 50px;
+}
+
+p, .productlabel {
+    font-size: 24px;
 }

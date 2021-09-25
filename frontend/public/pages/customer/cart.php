@@ -17,10 +17,10 @@
           <h5>Product</h5>
         </div>
         <div class="row products">
-          <input type="checkbox" class="checkboxs" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail"> <label for="DogFood200g">Dog Food 200g</label> 
+          <input type="checkbox" class="checkboxs" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogFood200g">Dog Food 200g</label> </p>
         </div>
         <div class="row products last-row">
-          <input type="checkbox" class="checkboxs" name="DogToyssmall"> <img src="..." alt="..." class="img-thumbnail"> <label for="DogToyssmall">Dog Toys small </label>
+          <input type="checkbox" class="checkboxs" name="DogToyssmall"> <img src="..." alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogToyssmall">Dog Toys small </label></p>
         </div>
       </div>
       <div class="col"> 
@@ -40,8 +40,8 @@
         </div>
         <div class="row quantity">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            2
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            1
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button class="dropdown-item" type="button">Add</button>
@@ -51,7 +51,7 @@
         </div>
         <div class="row quantity last-row">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle buttons" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             1
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
