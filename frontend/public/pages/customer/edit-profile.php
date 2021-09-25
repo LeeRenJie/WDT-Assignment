@@ -40,7 +40,7 @@
             <div class="form-group row">
                 <label for="changenumber" class="col-sm-2 col-form-label">Phone Number</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="changenumber" value="+60156632" placeholder="+601" required>
+                  <input type="tel" class="form-control" id="changenumber" value="+60156632798" placeholder="+60" pattern="+60[0-9]{2}-[0-9]{3}-[0-9]{4}" required>
                 </div>
             </div>
             <div class="form-group row">
