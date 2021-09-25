@@ -39,7 +39,7 @@
       <div class="col"> <img src="../../images/toys.jpg" class="img-thumbnail" alt=""> <br> <p> Toys </p></div>
       <div class="col"></div>
       <div class="col"> <img src="../../images/healthcare.jpg" class="img-thumbnail" alt=""> <br> <p> Healthcare </p> </div>
-      <div class="col"> <img src="../../images/gear.jfif" class="img-thumbnail" alt=""> <br> <p> Gear </p> </div>
+      <div class="col"> <img src="../../images/gear.jpg" class="img-thumbnail" alt=""> <br> <p> Gear </p> </div>
     </div>
   </div>
   <?php include '../shared/footer.php';?>
