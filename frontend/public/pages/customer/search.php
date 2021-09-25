@@ -13,8 +13,11 @@
   <div class="container-fluid">
     <div class= "container">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit">Search</button>
+      <!--not yet include action to which page-->
+      <form action="" method="post">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">Search</button>
+      </form>
     </div>
     <div class="container">
       <div class="row">
@@ -62,8 +65,24 @@
               </li>
             </ul>
         </div>
-        <div class="col-3">
-
+        <div class="col-1">
+          <ul>
+            <li>
+              <lable for="minprice">Min </lable>
+              <input type="number" id="minprice" name="minprice" min="0" max="100" placeholder="RM">
+            </li>
+          </ul>
+        </div>
+        <div class="col-1">
+          <hr class=hori>
+        </div>
+        <div class="col-1">
+          <ul>
+            <li>
+              <lable for="maxprice">Max </lable>
+              <input type="number" id="maxprice" name="maxprice" min="1" max="101" placeholder="RM">
+            </li>
+          </ul>
         </div>
       </div>
     </div>
