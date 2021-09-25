@@ -139,3 +139,9 @@ ul li {
   margin: 16px 0;
   position: relative;
 }
+
+hr.hori{
+    border : 1px solid black;
+    margin-top: 54px;
+    width : 100px;
+  }
