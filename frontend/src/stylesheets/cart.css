@@ -1,0 +1,29 @@
+.checkboxs{
+    align-self: center;
+}
+
+.headerrow{
+    text-align: center;
+    margin-top: 10px;
+    border-bottom:1px solid black;
+}
+
+.buttons {
+    height: 33px;
+    text-align: top;
+}
+
+img{
+    height: 180px;
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.products , .units , .quantity , .prices , .actions, .final{
+    height: 180px;
+    padding-top: 10px;
+}
+
+.last-row{
+    border-bottom:1px solid black;
+}
