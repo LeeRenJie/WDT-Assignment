@@ -1,0 +1,53 @@
+.checkboxs{
+    align-self: center;
+}
+
+.headerrow{
+    text-align: center;
+    margin-top: 10px;
+    border-bottom:1px solid black;
+}
+
+.buttons {
+    height: 33px;
+    text-align: top;
+}
+
+img{
+    height: 180px;
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.units , .quantity , .total_price , .status, .final{
+    height: 180px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.products{
+    height: 180px;
+    padding-top: 10px;
+}
+
+.last-row{
+    border-bottom:1px solid black;
+}
+
+.productlabel{
+    padding-top: 50px;
+}
+
+p, .productlabel {
+    font-size: 24px;
+}
+
+.order_date {
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    h5,p , .productlabel {
+        font-size: 18px;
+      }    
+  }
