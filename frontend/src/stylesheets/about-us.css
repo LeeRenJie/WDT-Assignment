@@ -61,6 +61,10 @@
     display: none;
   }
 
+  .wave {
+    display: none;
+  }
+
   #mission-container {
     bottom: 80px;
   }

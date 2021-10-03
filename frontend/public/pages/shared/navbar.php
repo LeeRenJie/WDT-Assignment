@@ -10,7 +10,7 @@
   <body>
     <section id="navbar">
       <div class="container-fluid nav-color">
-        <nav class="navbar navbar-expand-lg navbar-light nav-color">
+        <nav class="navbar navbar-expand-lg navbar-light nav-color text-center">
           <a class="navbar-brand" href="../customer/home.php">
             <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
           </a>
@@ -21,17 +21,17 @@
             <ul class="navbar-nav ml-auto ">
               <li class="nav-item">
                 <a class="nav-link" href="../customer/product.php">
-                  <i class="fas fa-shopping-bag"></i>
+                  <i class="fas fa-shopping-bag"></i> Shop
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../customer/search.php">
-                  <i class="fas fa-search"></i>
+                  <i class="fas fa-search"></i> Search
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../customer/cart.php">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart"></i> Cart
                 </a>
               </li>
               <li class="nav-item">
