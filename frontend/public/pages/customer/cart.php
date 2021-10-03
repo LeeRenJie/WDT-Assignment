@@ -12,8 +12,8 @@
   <?php include '../shared/navbar.php';?>
   <div class="container-fluid px-5">
     <div class="row">
-      <div class="col-5"> 
-        <div class="row headerrow"> 
+      <div class="col-5">
+        <div class="row headerrow">
           <h5>Product</h5>
         </div>
         <div class="row products">
@@ -23,18 +23,18 @@
           <input type="checkbox" class="checkboxs" name="DogToyssmall"> <img src="..." alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogToyssmall">Dog Toys small </label></p>
         </div>
       </div>
-      <div class="col"> 
+      <div class="col">
         <div class="row headerrow">
-           <h5>Unit Price</h5>
+          <h5>Unit Price</h5>
         </div>
         <div class="row units">
-          <p>RM 50</p> 
+          <p>RM 50</p>
         </div>
         <div class="row units last-row">
-          <p>RM 133</p> 
+          <p>RM 133</p>
         </div>
       </div>
-      <div class="col"> 
+      <div class="col">
         <div class="row headerrow">
           <h5> Quantity </h5>
         </div>
@@ -61,18 +61,18 @@
         </div>
         </div>
       </div>
-      <div class="col"> 
+      <div class="col">
         <div class="row headerrow">
-           <h5>Total price</h5>
+          <h5>Total price</h5>
         </div>
         <div class="row prices">
-           <p>RM 100</p>
+          <p>RM 100</p>
         </div>
         <div class="row prices last-row">
-           <p>RM 133 </p>
+          <p>RM 133 </p>
         </div>
         <div class="row final">
-           <p>RM 233 </p>
+          <p>RM 233 </p>
         </div>
       </div>
       <div class="col">
@@ -86,7 +86,7 @@
           <button type="button" class="btn btn-outline-dark buttons">Remove</button>
         </div>
         <div class="row final">
-          <button type="button" class="btn btn-outline-dark buttons">Checkout</button>
+          <a href="checkout.php" type="button" class="btn btn-outline-dark buttons">Checkout</a>
         </div>
       </div>
     </div>
