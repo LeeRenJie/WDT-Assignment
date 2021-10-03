@@ -10,16 +10,15 @@
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid">
-      <div class= "container">
-        <i class="fas fa-search"></i>
-        <!--not yet include action to which page-->
+    <div class="container-fluid bg-color" id="search">
+      <div class= "container pt-4">
         <form action="" method="post">
+          <i class="fas fa-search"></i>
           <input type="text" placeholder="Search.." name="search">
           <button type="submit">Search</button>
         </form>
       </div>
-      <div class="container">
+      <div class="container pt-3 pb-5">
         <div class="row">
           <div class="col-2">
             <ul>
@@ -55,34 +54,26 @@
           </div>
           <div class="col-2">
             <ul>
-                <li>
-                  <input id="c7" type="checkbox">
-                  <label for="c7">Least Expensive</label>
-                </li>
-                <li>
-                  <input id="c8" type="checkbox">
-                  <label for="c8">Most Expensive</label>
-                </li>
-              </ul>
-          </div>
-          <div class="col-1">
-            <ul>
               <li>
-                <lable for="minprice">Min </lable>
-                <input type="number" id="minprice" name="minprice" min="0" max="100" placeholder="RM">
+                <input id="c7" type="checkbox">
+                <label for="c7">Least Expensive</label>
+              </li>
+              <li>
+                <input id="c8" type="checkbox">
+                <label for="c8">Most Expensive</label>
               </li>
             </ul>
           </div>
-          <div class="col-1">
-            <hr class=hori>
+          <div class="col-1 minprice">
+            <lable for="minprice">Min </lable>
+            <input type="number" id="minprice" name="minprice" min="0" max="100" placeholder="RM">
           </div>
-          <div class="col-1">
-            <ul>
-              <li>
-                <lable for="maxprice">Max </lable>
-                <input type="number" id="maxprice" name="maxprice" min="1" max="101" placeholder="RM">
-              </li>
-            </ul>
+          <div class="col-1 dash-div">
+            <hr class=dash></hr>
+          </div>
+          <div class="col-1 maxprice">
+            <lable for="maxprice">Max </lable>
+            <input type="number" id="maxprice" name="maxprice" min="1" max="101" placeholder="RM">
           </div>
         </div>
       </div>

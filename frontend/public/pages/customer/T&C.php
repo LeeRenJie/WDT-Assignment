@@ -9,16 +9,14 @@
     <link href="../../../src/stylesheets/T&C.css" rel="stylesheet" />
   </head>
   <body>
-  <?php include '../shared/navbar.php';?>
-    <div class="container">
-      <div class="text-center mt-5">
+    <?php include '../shared/navbar.php';?>
+    <div class="container-fluid bg-color pb-5">
+      <div class="text-center pt-3">
         <h1>Terms and Conditions</h1>
-        <p class="lead">Exclusive Pet Mart</p>
+        <p>Exclusive Pet Mart</p>
       </div>
-    </div>
-    <div class="container">
       <div class="paragraph">
-        <p>
+        <p class="text-justify">
           The Exclusive Pet Mart consists of a desktop and mobile web application that provides a hybrid peer-to-peer marketplace for pet-related services and products.
           With one exception (stated in the following paragraph), Petstore.com is not a Service Provider or Product Seller. Petstore.com is a peer-to-peer marketplace for persons seeking pet products and services (“Purchaser”), persons offering pet services (“Service Provider”), and persons selling pet products (“Product Seller”) to communicate and arrange for the purchase and provision of pet goods and services. We make no representations or warranties about the quality or legality of pet products or services offered on the marketplace by Service Providers or Product Sellers. Petstore.com does not employ, recommend, or endorse any Product Sellers or Service Providers, nor will Petstore.com be responsible or liable for the conduct, quality, performance, or safety of any Service Provider, Product Seller, or the products and services they sell. While Petstore.com may perform a background check or offer guidance to Service Providers or Product Sellers, We make no claims or guarantees about the products and services offered, or of those who offer them. You are solely responsible for your personal safety and the safety of your pet(s).
           As a Hybrid peer-to-peer marketplace, Petstore.com does offer some commercial products for sale under the user account name Petstore with the email sales@petstore.com. For these products only, Petstore.com is a Product Seller. For these products only, Petstore.com offers a return for refund or exchange on new and unused products within 60 days of the date your order shipped. Beyond 60 days, Purchasers must contact the manufacturer directly for warranty service. For all products not sold under the user account name Petstore, you must contact the Product Seller regarding any product issues.
