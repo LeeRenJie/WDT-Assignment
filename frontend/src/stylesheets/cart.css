@@ -1,49 +1,92 @@
-.checkboxs{
-    align-self: center;
-}
-
-.headerrow{
-    text-align: center;
-    margin-top: 10px;
-    border-bottom:1px solid black;
-}
-
-.buttons {
-    height: 33px;
-    text-align: top;
-}
-
-img{
-    height: 180px;
-    width: 180px;
-    margin-bottom: 10px;
-}
-
-.units , .quantity , .prices , .actions, .final{
-    height: 180px;
-    padding-top: 50px;
-    text-align: center;
-}
-
 .products{
     height: 180px;
     padding-top: 10px;
 }
 
-.last-row{
-    border-bottom:1px solid black;
+img{
+    height: 180px;
+    width: 180px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    float: left;
 }
 
-.productlabel{
-    padding-top: 50px;
+.checkboxs{
+    margin-top: 80px;
+    float: left;
 }
 
-p, .productlabel {
-    font-size: 24px;
+.productlabel , p{
+    float: left;
+    margin-top: 60px;
+}
+
+.select_all {
+    float: left;
+    margin-top: 20px;
+}
+
+.header {
+    margin-left: 10px;
+}
+
+button{
+    margin-top: 30px;
+}
+
+.header_text {
+    margin-top: 10px;
+}
+
+.text_margin, .buttons {
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.text_deco {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.empty_box {
+    display: none;
+}
+
+.header_row{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 20px;
+}
+
+.first_row{
+    margin-bottom: 1px;
+}
+
+.last_row{
+    margin-bottom: 1px;
+}
+
+.header_row, .first_row, .last_row{
+    background-color: #ffffff;
+    border:1px solid #e8e8e8;
+}
+
+.whole_page {
+    background-color: #f5f5f5;
 }
 
 @media only screen and (max-width: 768px) {
-    h5,p , .productlabel {
-        font-size: 18px;
-      }    
+    img{
+        height: auto;
+        width: auto;
+        margin-top: -50px;
+    }
+    .checkboxs{
+        margin-left: -5px;
+    }
+    .productlabel{
+        margin-top: -10px;
+        margin-left: 10px;
+    }
   }
