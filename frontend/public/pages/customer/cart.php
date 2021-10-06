@@ -13,52 +13,60 @@
     <div class="container-fluid whole_page">
       <div class="row header_row">
         <div class="col-4 .col-md-4">
-          <input type="checkbox" class="select_all" name="select_all"> <p class="header text_deco header_text">Product</p>
+          <input type="checkbox" class="select_all_checkbox" name="select_all_checkbox"> <p class="header text_design header_text pl-3">Product</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_deco header_text">Unit Price</p>
+          <p class="text_design header_text text-center">Unit Price</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_deco header_text">Quantity</p>
+          <p class="text_design header_text text-center">Quantity</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_deco header_text">Total price</p>
+          <p class="text_design header_text text-center">Total price</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_deco header_text">Actions</p>
+          <p class="text_design header_text text-center">Actions</p>
         </div>
       </div>
       <div class="row first_row">
         <div class="col-4 .col-md-4">
-          <input type="checkbox" class="checkboxs" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail"> <p class="productlabel text_deco text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
+          <input type="checkbox" class="checkboxes" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_margin text_deco">RM50</p>
+          <p class="text_margin text_design text-center">RM50</p>
+        </div>
+        <div class="col-2 .col-md-4 text-center">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </button>
+            <div class="dropdown-menu" aria-labelledby="quantity_dropdown">
+              <button class="dropdown-item" type="button"> <p>Add</p> </button>
+              <button class="dropdown-item" type="button"> <p>Decrease</p> </button>
+            </div>
+          </div>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_margin text_deco">3</p>
+          <p class="text_margin text_design text-center">RM150</p>
         </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_margin text_deco">RM150</p>
-        </div>
-        <div class="col-2 .col-md-4">
+        <div class="col-2 .col-md-4 text-center">
           <button type="button" class="btn btn-outline-dark buttons">Remove</button>
         </div>
       </div>
       <div class="row last_row">
         <div class="col-4 .col-md-4">
-          <p class="text_margin text_deco empty_box">test</p>
+          <p class="text_margin text_design empty_box">test</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_margin text_deco empty_box">test</p>
+          <p class="text_margin text_design empty_box">test</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_margin text_deco empty_box">test</p>
+          <p class="text_margin text_design empty_box">test</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_margin text_deco">RM150</p>
+          <p class="text_margin text_design text-center">RM150</p>
         </div>
-        <div class="col-2 .col-md-4">
+        <div class="col-2 .col-md-4 text-center">
           <button type="button" class="btn btn-outline-dark buttons">Checkout</button>
         </div>
       </div>

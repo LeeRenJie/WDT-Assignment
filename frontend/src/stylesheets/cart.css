@@ -1,8 +1,3 @@
-.products{
-    height: 180px;
-    padding-top: 10px;
-}
-
 img{
     height: 180px;
     width: 180px;
@@ -12,17 +7,17 @@ img{
     float: left;
 }
 
-.checkboxs{
+.checkboxes{
     margin-top: 80px;
     float: left;
 }
 
-.productlabel , p{
+.product_label{
     float: left;
     margin-top: 60px;
 }
 
-.select_all {
+.select_all_checkbox {
     float: left;
     margin-top: 20px;
 }
@@ -44,7 +39,7 @@ button{
     margin-bottom: 50px;
 }
 
-.text_deco {
+.text_design {
     font-weight: 300;
     font-size: 18px;
 }
