@@ -17,75 +17,75 @@
         </div>
       </div>
       <div class="row">
-          <div class="col-5">
-            <div class="row headerrow">
-              <h5>Product</h5>
-            </div>
-            <div class="row products">
-              <input type="checkbox" class="checkboxs" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogFood200g">Dog Food 200g</label> </p>
-            </div>
-            <div class="row products last-row">
-              <input type="checkbox" class="checkboxs" name="DogToyssmall"> <img src="..." alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogToyssmall">Dog Toys small </label></p>
-            </div>
+        <div class="col-5">
+          <div class="row headerrow">
+            <h5>Product</h5>
           </div>
-          <div class="col">
-            <div class="row headerrow">
-              <h5>Unit Price</h5>
-            </div>
-            <div class="row units">
-              <p>RM 50</p>
-            </div>
-            <div class="row units last-row">
-              <p>RM 133</p>
-            </div>
+          <div class="row products">
+            <input type="checkbox" class="checkboxs" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogFood200g">Dog Food 200g</label> </p>
           </div>
-          <div class="col">
-            <div class="row headerrow">
-              <h5>Quantity</h5>
-            </div>
-            <div class="row quantity">
-              <p>2</p>
-            </div>
-            <div class="row quantity last-row">
-              <p>1 </p>
-            </div>
-            <div class="row final">
-              <p>3 </p>
-            </div>
+          <div class="row products last-row">
+            <input type="checkbox" class="checkboxs" name="DogToyssmall"> <img src="..." alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogToyssmall">Dog Toys small </label></p>
           </div>
-          <div class="col">
-            <div class="row headerrow">
-              <h5>Total Price</h5>
-            </div>
-            <div class="row total_price">
-              <p>RM 152</p>
-            </div>
-            <div class="row total_price last-row">
-              <p>RM 167</p>
-            </div>
-            <div class="row final">
-              <p>Sub Total:</p>
-            </div>
+        </div>
+        <div class="col">
+          <div class="row headerrow">
+            <h5>Unit Price</h5>
           </div>
-          <div class="col">
-            <div class="row headerrow">
-              <h5>State of Delivery</h5>
-            </div>
-            <div class="row status">
-              <p>Yes</p>
-            </div>
-            <div class="row status last-row">
-              <p>No</p>
-            </div>
-            <div class="row final">
-              <p>RM 319</p>
-            </div>
-            <div class="row final">
-                <button type="button" class="btn btn-outline-secondary buttons btn-lg">
-                  comfirm
-                </button>
-            </div>
+          <div class="row units">
+            <p>RM 50</p>
           </div>
+          <div class="row units last-row">
+            <p>RM 133</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row headerrow">
+            <h5>Quantity</h5>
+          </div>
+          <div class="row quantity">
+            <p>2</p>
+          </div>
+          <div class="row quantity last-row">
+            <p>1 </p>
+          </div>
+          <div class="row final">
+            <p>3 </p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row headerrow">
+            <h5>Total Price</h5>
+          </div>
+          <div class="row total_price">
+            <p>RM 152</p>
+          </div>
+          <div class="row total_price last-row">
+            <p>RM 167</p>
+          </div>
+          <div class="row final">
+            <p>Sub Total:</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row headerrow">
+            <h5>State of Delivery</h5>
+          </div>
+          <div class="row status">
+            <p>Yes</p>
+          </div>
+          <div class="row status last-row">
+            <p>No</p>
+          </div>
+          <div class="row final">
+            <p>RM 319</p>
+          </div>
+          <div class="row final">
+            <button type="button" class="btn btn-outline-secondary buttons btn-lg">
+              comfirm
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <?php include '../shared/footer.php';?>
