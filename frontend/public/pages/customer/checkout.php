@@ -4,91 +4,96 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link href="../../../src/stylesheets/checkout.css" rel="stylesheet" >
-    <title>checkout Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../src/stylesheets/checkout.css">
+    <title>Checkout Page</title>
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid">
-      <div class="row order_date">
-        <div>
-          <h5>Order Date:</h5>
+    <div class="container-fluid whole_page">
+      <div class="row header_row">
+        <div class="col-4 .col-md-4">
+          <p class="text-center pt-3">Name :</p>
+          <br>
+          <p class="text-center ">Delivery Address :</p>
+        </div>
+        <div class="col-4 .col-md-4">
+          <p class="text-center font-weight-bold pt-3">Lee Ren Jie 0123456789</p>
+          <br>
+          <p class="text-center font-weight-light">65,Jalan Halo, Bye bye, bla bla bla, 58200</p>
+        </div>
+        <div class="col-4 .col-md-4 text-center">
+          <button type="button" class="btn btn-outline-dark buttons">Change</button>
         </div>
       </div>
-      <div class="row">
-        <div class="col-5">
-          <div class="row headerrow">
-            <h5>Product</h5>
-          </div>
-          <div class="row products">
-            <input type="checkbox" class="checkboxs" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogFood200g">Dog Food 200g</label> </p>
-          </div>
-          <div class="row products last-row">
-            <input type="checkbox" class="checkboxs" name="DogToyssmall"> <img src="..." alt="..." class="img-thumbnail"> <p class="productlabel"><label for="DogToyssmall">Dog Toys small </label></p>
+      <div class="row header_row">
+        <div class="col-4 .col-md-4">
+          <p class="header text_design header_text pl-3">Products Ordered</p>
+        </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_design header_text text-center">Unit Price</p>
+        </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_design header_text text-center">Amount</p>
+        </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_design header_text text-center">Total Price</p>
+        </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_design header_text text-center">Status of delivery</p>
+        </div>
+      </div>
+      <div class="row first_row">
+        <div class="col-4 .col-md-4">
+          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
+        </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_margin text_design text-center">RM50</p>
+        </div>
+        <div class="col-2 .col-md-4 text-center">
+          <p class="text_margin text_design text-center">3</p>
+        </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_margin text_design text-center">RM150</p>
+        </div>
+        <div class="col-2 .col-md-4 text-center">
+          <p class="text_margin text_design text-center">Yes</p>
+        </div>
+      </div>
+      <div class="row footer_row">
+        <div class="col-6 .col-md-4">
+          <div class="form-group row text_margin text_design">
+            <label for="credit_card_num" class="col-sm-4 col-form-label">Credit Card Number :</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="credit_card_num" value="5468135649758" required>
+            </div>
           </div>
         </div>
-        <div class="col">
-          <div class="row headerrow">
-            <h5>Unit Price</h5>
-          </div>
-          <div class="row units">
-            <p>RM 50</p>
-          </div>
-          <div class="row units last-row">
-            <p>RM 133</p>
-          </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_margin text_design text-center">3</p>
         </div>
-        <div class="col">
-          <div class="row headerrow">
-            <h5>Quantity</h5>
-          </div>
-          <div class="row quantity">
-            <p>2</p>
-          </div>
-          <div class="row quantity last-row">
-            <p>1 </p>
-          </div>
-          <div class="row final">
-            <p>3 </p>
-          </div>
+        <div class="col-2 .col-md-4">
+          <p class="text_margin text_design text-center">Subtotal :</p>
         </div>
-        <div class="col">
-          <div class="row headerrow">
-            <h5>Total Price</h5>
-          </div>
-          <div class="row total_price">
-            <p>RM 152</p>
-          </div>
-          <div class="row total_price last-row">
-            <p>RM 167</p>
-          </div>
-          <div class="row final">
-            <p>Sub Total:</p>
-          </div>
+        <div class="col-2 .col-md-4 text-center">
+          <p class="text_margin text_design text-center">RM150</p>
         </div>
-        <div class="col">
-          <div class="row headerrow">
-            <h5>State of Delivery</h5>
-          </div>
-          <div class="row status">
-            <p>Yes</p>
-          </div>
-          <div class="row status last-row">
-            <p>No</p>
-          </div>
-          <div class="row final">
-            <p>RM 319</p>
-          </div>
-          <div class="row final">
-            <button type="button" class="btn btn-outline-secondary buttons btn-lg">
-              comfirm
-            </button>
-          </div>
+      </div>
+      <div class="row footer_row">
+        <div class="col-4 .col-md-4">
+          <p class="text_margin text_design empty_box">test</p>
+        </div>
+        <div class="col-4 .col-md-4">
+          <p class="text_margin text_design empty_box">test</p>
+        </div>
+        <div class="col-4 .col-md-4 text-center">
+          <button type="button" class="btn btn-outline-dark buttons">Comfirm</button>
         </div>
       </div>
     </div>
-    <?php include '../shared/footer.php';?>
-  </script>
-  </body>
+  <?php include '../shared/footer.php';?>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="checkout.js"></script>
+</body>
 </html>
