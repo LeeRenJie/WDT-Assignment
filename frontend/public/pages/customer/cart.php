@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../src/stylesheets/cart.css">
-    <title>About Us Page</title>
+    <title>Cart Page</title>
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
       <div class="row header_row">
         <div class="col-4 .col-md-4">
-          <input type="checkbox" class="select_all_checkbox" name="select_all_checkbox"> <p class="header text_design header_text pl-3">Product</p>
+          <input type="checkbox" class="select_all_checkbox" name="select_all_checkbox"> <p class="header text_design header_text product_label">Product</p>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_design header_text text-center">Unit Price</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_design header_text text-center">Quantity</p>
+          <p class="text_design header_text text-center">Amount</p>
         </div>
         <div class="col-2 .col-md-4">
-          <p class="text_design header_text text-center">Total price</p>
+          <p class="text_design header_text text-center">Item Subtotal</p>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_design header_text text-center">Actions</p>
@@ -30,7 +30,7 @@
       </div>
       <div class="row first_row">
         <div class="col-4 .col-md-4">
-          <input type="checkbox" class="checkboxes" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
+          <input type="checkbox" class="checkboxes" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> <p class="product_label text_design pt-3"><label for="DogFood200g">Dog Food 200g</label> </p>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_margin text_design text-center">RM50</p>
@@ -53,7 +53,7 @@
           <button type="button" class="btn btn-outline-dark buttons">Remove</button>
         </div>
       </div>
-      <div class="row last_row">
+      <div class="row footer_row">
         <div class="col-4 .col-md-4">
           <p class="text_margin text_design empty_box">test</p>
         </div>

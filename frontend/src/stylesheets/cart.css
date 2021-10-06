@@ -58,11 +58,11 @@ button{
     margin-bottom: 1px;
 }
 
-.last_row{
+.footer_row{
     margin-bottom: 1px;
 }
 
-.header_row, .first_row, .last_row{
+.header_row, .first_row, .footer_row{
     background-color: #ffffff;
     border:1px solid #e8e8e8;
 }
@@ -81,7 +81,7 @@ button{
         margin-left: -5px;
     }
     .productlabel{
-        margin-top: -10px;
+        margin-top: -50px;
         margin-left: 10px;
     }
   }
