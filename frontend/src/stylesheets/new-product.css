@@ -1,21 +1,40 @@
-#profile-container {
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
+.bimg {
+    background-image: linear-gradient(#F5E8C7, #DEBA9D);
 }
 
-#profile-container img {
-    width: 200px;
-    height: 200px;
+.bwhite {
+    background-color: white;
+    border-radius: 20px;
+}
+.imagecontainer {
+    max-width: 100%;
+    max-height: 100%;
+    text-align : center;
+    padding-top: 30px;
 }
 
-#imageUpload{
+.imge {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 100%;
+    border: black solid 1px;
+    object-fit: cover;
+}
+
+.opcon {
+    padding-top: 40px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+
+.imageUpload{
     margin-top: 20px;
+}
+
+
+.tleft {
+    text-align: left;
 }
 
 input[type=text] {
@@ -27,3 +46,19 @@ input[type=value] {
     border : black solid 1px;
 }
 
+.btn-sub {
+    text-align: center;
+    background-size: 200% auto;
+    border-radius: 5px;
+    background-color: #F5E8C7;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
