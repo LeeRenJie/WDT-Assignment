@@ -10,36 +10,54 @@
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid">
-      <div class="row one img_one">
-        <p>Exclusive Pet Mart
-        </p>
+    <div>
+      <div class="text-center py-5 dark-bg-container">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, metus sit amet facilisis porta, sem eros eleifend mauris, volutpat porttitor orci orci in felis.</p>
       </div>
-      <div class="row one img_two">
-        <div class="col col-2">
-          Cats <br>
-          <input type="button" value="View">
-        </div>
-        <div class="col-10">
-          2 of 2
+      <div class="row light-bg-container">
+        <div class="col-4 ml-5 py-5">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, metus sit amet facilisis porta, sem eros eleifend mauris, volutpat porttitor orci orci in felis.</p>
+          <a class="btn btn-1" href="">Button</a>
         </div>
       </div>
-      <div class="row one img_three">
-        <div class="col-10">
-          1 of 2
+      <div class="row dark-bg-container">
+        <div class="invisible col-7">
         </div>
-        <div class="col col-lg-2">
-        Dogs <br>
-        <input type="button" value="View">
+        <div class="col-4 ml-5 py-5">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, metus sit amet facilisis porta, sem eros eleifend mauris, volutpat porttitor orci orci in felis.</p>
+          <a class="btn btn-2" href="">Button</a>
         </div>
       </div>
-      <div class="row row-cols-3 one img_four">
-        <div class="col"> <p> <span class="category">Categories </span></p> </div>
-        <div class="col"> <img src="../../images/food.jpg" class="img-thumbnail" alt=""> <br> <p>Food</p></div>
-        <div class="col"> <img src="../../images/toys.jpg" class="img-thumbnail" alt=""> <br> <p> Toys </p></div>
-        <div class="col"></div>
-        <div class="col"> <img src="../../images/healthcare.jpg" class="img-thumbnail" alt=""> <br> <p> Healthcare </p> </div>
-        <div class="col"> <img src="../../images/gear.jpg" class="img-thumbnail" alt=""> <br> <p> Gear </p> </div>
+      <div class="light-bg-container text-center">
+        <h2 class="py-5"><u>Categories</u></h2>
+        <div class="row">
+          <div class="col mb-5 img-container">
+            <a href="#">
+              <img src="../../images/food.jpg" class="img" alt="Food Picture">
+              <div class="caption">Food</div>
+            </a>
+          </div>
+          <div class="col mb-5 img-container">
+            <a href="#">
+              <img src="../../images/toys.jpg" class="img" alt="Toys Picture">
+              <div class="caption">Toys</div>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-5 img-container">
+            <a href="#">
+              <img src="../../images/healthcare.jpg" class="img" alt="">
+              <div class="caption">Healthcare</div>
+            </a>
+          </div>
+          <div class="col mb-5 img-container">
+            <a href="#">
+              <img src="../../images/gear.jpg" class="img" alt="">
+              <div class="caption">Gear</div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
     <?php include '../shared/footer.php';?>
