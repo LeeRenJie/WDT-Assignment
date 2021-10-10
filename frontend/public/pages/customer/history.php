@@ -41,7 +41,7 @@
       <!--row-->
       <div class="row first_row mb-1 bgcolor">
         <div class="col-4">
-          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> 
+          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2">
           <div class="mt-5 pt-3 label_text">
             <p class="product_label text_design"><label for="DogFood200g">Dog Food 200g</label> </p>
           </div>
@@ -61,7 +61,7 @@
       </div>
       <!--row-->
       <div class="row bgcolor">
-        <div class="col-4">
+        <div class="col-6">
           <!--emptied column for design purpose-->
           <p class="text_margin text_design empty_box">test</p>
         </div>
@@ -71,9 +71,9 @@
         <div class="col-2">
           <p class="text_margin text_design text-center">RM150</p>
         </div>
-        <div class="col-4 text-center">
+        <div class="col-2 text-center">
           <!--Button to buy again-->
-          <button type="button" class="btn btn-outline-danger buttons">Buy Again</button>
+          <button type="button" class="btn btn-outline-success buttons">Buy Again</button>
         </div>
       </div>
     </div>

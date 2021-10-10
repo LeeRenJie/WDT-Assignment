@@ -14,7 +14,7 @@
       <div class = "col-15 bwhite">
         <div class = "row justify-content-center">
           <!--profile-->
-          <div class= "col-2 profile"> <!--profile for js-->
+          <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
             <div class = "imagecontainer">
               <image class="imge" src="../../images/img_three.jpg" alt="Profile Pic" />
             </div>
@@ -23,7 +23,7 @@
             </div>
           </div>
           <!--label-->
-          <div class = "col-2 icon opcon"> <!--icon for js-->
+          <div class = "col-2 icon opcon ml-5 pl-5"> <!--icon for js-->
             <div class="form-group row">
                 <label for="itemname" class = "col-form-label">Item description :</label>
             </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="tleft">
               <!--button-->
-              <input class="btn-sub" type="submit" value="Add">
+              <input class="btn-sub mr-2" type="submit" value="Add">
               <!--This is for delete. but the type not sure-->
               <input class="btn-sub" type="submit" value="Reset">
             </div>
