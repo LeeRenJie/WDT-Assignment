@@ -57,7 +57,7 @@
           <p class="text_margin text_design text-center">RM150</p>
         </div>
         <div class="col-2 .col-md-4 text-center">
-          <p class="text_margin text_design text-center">Yes</p>
+          <p class="text_margin text_design text-center">Completed</p>
         </div>
       </div>
       <div class="row footer_row">

@@ -1,3 +1,12 @@
+.bimg {
+    background-image: linear-gradient(#F5E8C7, #DEBA9D);
+}
+
+.bwhite {
+    background-color: white;
+    border-radius: 25px;
+}
+
 .button1 {
     margin-bottom: 20px;
 }
@@ -24,4 +33,9 @@ h2{
 
 #imageUpload{
     margin-top: 20px;
+}
+
+.padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
