@@ -42,9 +42,10 @@
                   <i class="fas fa-user mr-1"></i>Username
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
+                  <a class="dropdown-item" href="#">Purchase History</a>
+                  <a class="dropdown-item" href="#">Logout</a>
                 </div>
               </li>
             </ul>
