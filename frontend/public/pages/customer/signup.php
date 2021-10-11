@@ -9,9 +9,8 @@
 	}
 	else {
 		echo '
-    <script >
-		  window.location.href= "home.php";
-      <div class="alert alert-success" role="alert">Account Successfully Created!</div>
+    <script>alert("Account Successfully Created!")
+    window.location.href= "home.php";
 		</script>';
 	}
 
