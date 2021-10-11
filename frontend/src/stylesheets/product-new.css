@@ -16,15 +16,14 @@
 .imge {
     max-width: 100%;
     max-height: 100%;
-    border-radius: 100%;
+    border-radius: 5px;
     border: black solid 1px;
     object-fit: cover;
 }
 
 .opcon {
-    padding-top: 40px;
+    padding: 20px 0;
     text-align: center;
-    padding-bottom: 40px;
 }
 
 
@@ -39,11 +38,10 @@
 
 input[type=text] {
     box-sizing: border-box;
-    border : black solid 1px;
 }
+
 input[type=value] {
     box-sizing: border-box;
-    border : black solid 1px;
 }
 
 .btn-sub {

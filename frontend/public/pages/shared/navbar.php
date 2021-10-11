@@ -37,16 +37,17 @@
               <li class="nav-item">
                 <a class="nav-link login-btn" href="../customer/login.php">Login</a>
               </li>
-              <!-- <li class="nav-item dropdown">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-user mr-1"></i>Username
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
+                  <a class="dropdown-item" href="#">Purchase History</a>
+                  <a class="dropdown-item" href="#">Logout</a>
                 </div>
-              </li> -->
+              </li>
             </ul>
           </div>
         </nav>

@@ -14,7 +14,7 @@
       <div class = "col-15 bwhite">
         <div class = "row justify-content-center">
           <!--profile-->
-          <div class= "col-2 profile"> <!--profile for js-->
+          <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
             <div class = "imagecontainer">
               <image class="imge" src="../../images/img_three.jpg" alt="Profile Pic" />
             </div>
@@ -23,7 +23,7 @@
             </div>
           </div>
           <!--label-->
-          <div class = "col-2 icon opcon"> <!--icon for js-->
+          <div class = "col-2 icon opcon ml-5 pl-5"> <!--icon for js-->
             <div class="form-group row">
                 <label for="itemname" class = "col-form-label">Item description :</label>
             </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="tleft">
               <!--button-->
-              <input class="btn-sub" type="submit" value="Confirm">
+              <input class="btn-sub mr-2" type="submit" value="Confirm">
               <!--This is for delete. but the type not sure-->
               <input class="btn-sub" type="submit" value="Delete">
             </div>
@@ -78,7 +78,7 @@
       </div>
     </div>
     <?php include '../shared/footer.php';?>
-    <script src="edit.js"></script>
+    <script src="product-edit.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
