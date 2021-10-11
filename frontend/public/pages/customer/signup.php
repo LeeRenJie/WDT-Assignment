@@ -8,9 +8,10 @@
 		die('Error: ' . mysqli_error($con));
 	}
 	else {
-		echo '<div class="alert alert-success" role="alert">Account Successfully Created!</div>
-    <script>
+		echo '
+    <script >
 		  window.location.href= "home.php";
+      <div class="alert alert-success" role="alert">Account Successfully Created!</div>
 		</script>';
 	}
 

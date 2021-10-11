@@ -28,12 +28,14 @@
       $search_key = $_POST['search_key'];
     }
 
-    $result=mysqli_query($con,"SELECT * FROM customer WHERE customer_name LIKE '%$search_key%' ORDER BY customer_name");
+    $result=mysqli_query($con,"SELECT * FROM customer WHERE customer_name LIKE '%$search_key%' or customer_username LIKE '%$search_key%' ORDER BY customer_name, customer_username");
     ?>
+
     <table id="customer" class="text-center">
       <tr>
         <th><input id="checkbox" type="checkbox"></th>
         <th>Username</th>
+        <th>Name</th>
         <th>Phone Number</th>
         <th>Email</th>
         <th>Address</th>
@@ -42,38 +44,44 @@
     <?php
       while($row=mysqli_fetch_array($result)){
         echo "<tr>";
-        echo "<td>";
-        echo "<input id='' type='checkbox'>";
+          echo "<td>";
+            echo "<input id='' type='checkbox'>";
+          echo "</td>";
+          echo "<td>";
+            echo $row['customer_username'];
+          echo "</td>";
+          echo "<td>";
+          echo $row['customer_name'];
         echo "</td>";
-        echo "<td>";
-        echo $row['customer_username'];
-        echo "</td>";
-        echo "<td>";
-        echo "<a href=\"mailto:".$row['customer_email']."\">".$row['customer_email']."</a> "; // Hyperlink
-        echo "</td>";
-        echo "<td>";
-        echo $row['customer_address'];
-        echo "</td>";
-        echo "<td>";
-        echo $row['customer_phone_number'];
-        echo "</td>";
-        echo "<td>";
-        echo '<div class="dropdown textcenter">';
-        echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-        echo "Actions";
-        echo "</button>";
-        echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
-        echo '<input type="button" class="dropdown-item" value="Order History" href="../customer/history.php"></input>';
-        echo "<input type='button' class='dropdown-item' value='Edit' href=\"user-edit.php?id=";
-        echo $row['customer_id'];
-        echo "\"></input>";
-        echo "<input type='button' class='dropdown-item' value='Delete' href=\"user-del.php?id="; //hyperlink to delete.php page with ‘id’ parameter
-        echo $row['customer_id'];
-        echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
-        echo $row['customer_name'];
-        echo " details?');\"></input></div></td></tr>";
-        echo"</div>";
-        echo"</div>";
+          echo "<td>";
+            echo "<a href=\"mailto:".$row['customer_email']."\">".$row['customer_email']."</a> "; // Hyperlink
+          echo "</td>";
+          echo "<td>";
+            echo $row['customer_address'];
+          echo "</td>";
+          echo "<td>";
+            echo $row['customer_phone_number'];
+          echo "</td>";
+          echo "<td>";
+            echo '<div class="dropdown textcenter">';
+              echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                echo "Actions";
+              echo "</button>";
+              echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
+                echo '<a class="dropdown-item" href="../customer/history.php">Order History</a>';
+                echo "<a class='dropdown-item' href=\"user-edit.php?id=";
+                echo $row['customer_id'];
+                echo "\">Edit</a>";
+                echo "<a class='dropdown-item' href=\"user-del.php?id="; //hyperlink to delete.php page with ‘id’ parameter
+                  echo $row['customer_id'];
+                  echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
+                  echo $row['customer_name'];
+                  echo " details?')";
+                echo "\">Delete</a>";
+              echo "</div>";
+            echo "</div>";
+          echo"</td>";
+        echo"</tr>";
         }
         mysqli_close($con);//to close the database connection
       ?>
