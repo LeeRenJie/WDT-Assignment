@@ -14,7 +14,8 @@
       <!--row-->
       <div class="row header_row">
         <div class="col-4 .col-md-4">
-          <input type="checkbox" class="select_all_checkbox" name="select_all_checkbox"> <p class="header text_design header_text product_label">Product</p>
+          <input type="checkbox" class="select_all_checkbox" name="select_all_checkbox"> 
+          <p class="header text_design header_text product_label">Product</p>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_design header_text text-center">Unit Price</p>

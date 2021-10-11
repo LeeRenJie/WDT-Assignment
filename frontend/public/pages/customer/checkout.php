@@ -45,7 +45,8 @@
       </div>
       <div class="row first_row">
         <div class="col-4 .col-md-4">
-          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
+          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> 
+          <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_margin text_design text-center">RM50</p>
