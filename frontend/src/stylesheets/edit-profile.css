@@ -1,3 +1,12 @@
+.bimg {
+    background-image: linear-gradient(#F5E8C7, #DEBA9D);
+}
+
+.bwhite {
+    background-color: white;
+    border-radius: 25px;
+}
+
 .button1 {
     margin-bottom: 20px;
 }
@@ -26,6 +35,7 @@ h2{
     margin-top: 20px;
 }
 
+<<<<<<< HEAD
 .btn-sub {
     text-align: center;
     background-size: 200% auto;
@@ -68,4 +78,9 @@ h2{
 
 .symbol {
     justify-content: center;
+=======
+.padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
+>>>>>>> 025adf54fcaad16237125fee5c8b946b109d38ff
 }

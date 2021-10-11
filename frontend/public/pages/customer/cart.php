@@ -11,6 +11,7 @@
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
+      <!--row-->
       <div class="row header_row">
         <div class="col-4 .col-md-4">
           <input type="checkbox" class="select_all_checkbox" name="select_all_checkbox"> <p class="header text_design header_text product_label">Product</p>
@@ -28,17 +29,23 @@
           <p class="text_design header_text text-center">Actions</p>
         </div>
       </div>
+      <!--row-->
       <div class="row first_row">
         <div class="col-4 .col-md-4">
-          <input type="checkbox" class="checkboxes" name="DogFood200g"> <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> <p class="product_label text_design pt-3"><label for="DogFood200g">Dog Food 200g</label> </p>
+          <input type="checkbox" class="checkboxes" name="DogFood200g">
+          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2">
+          <div class="mt-5 pt-3 label_text">
+            <p class="product_label text_design"><label for="DogFood200g">Dog Food 200g</label> </p>
+          </div>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_margin text_design text-center">RM50</p>
         </div>
         <div class="col-2 .col-md-4 text-center">
+          <!--dropdown button-->
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
+            3
             </button>
             <div class="dropdown-menu" aria-labelledby="quantity_dropdown">
               <button class="dropdown-item" type="button"> <p>Add</p> </button>
@@ -50,9 +57,13 @@
           <p class="text_margin text_design text-center">RM150</p>
         </div>
         <div class="col-2 .col-md-4 text-center">
-          <button type="button" class="btn btn-outline-dark buttons">Remove</button>
+          <!--button-->
+          <button type="button" class="btn btn-outline-dark buttons">
+            <p class="button_label mb-n1">Remove</p>
+          </button>
         </div>
       </div>
+      <!--row-->
       <div class="row footer_row">
         <div class="col-4 .col-md-4">
           <p class="text_margin text_design empty_box">test</p>
@@ -67,7 +78,10 @@
           <p class="text_margin text_design text-center">RM150</p>
         </div>
         <div class="col-2 .col-md-4 text-center">
-          <button type="button" class="btn btn-outline-dark buttons">Checkout</button>
+          <!--button-->
+          <button type="button" class="btn btn-outline-dark buttons">
+            <a class="button_label mb-n1" href="checkout.php"> Checkout </a>
+          </button>
         </div>
       </div>
     </div>

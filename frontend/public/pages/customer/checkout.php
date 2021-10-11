@@ -11,18 +11,18 @@
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
-      <div class="row header_row">
+      <div class="row header_row pt-2">
         <div class="col-4 .col-md-4">
           <p class="text-center pt-3">Name :</p>
           <br>
           <p class="text-center ">Delivery Address :</p>
         </div>
-        <div class="col-4 .col-md-4">
+        <div class="col-4 col-md-4">
           <p class="text-center font-weight-bold pt-3">Lee Ren Jie 0123456789</p>
           <br>
           <p class="text-center font-weight-light">65,Jalan Halo, Bye bye, bla bla bla, 58200</p>
         </div>
-        <div class="col-4 .col-md-4 text-center">
+        <div class="col-4 .col-md-4 text-center mt-2">
           <button type="button" class="btn btn-outline-dark buttons">Change</button>
         </div>
       </div>
@@ -57,7 +57,7 @@
           <p class="text_margin text_design text-center">RM150</p>
         </div>
         <div class="col-2 .col-md-4 text-center">
-          <p class="text_margin text_design text-center">Yes</p>
+          <p class="text_margin text_design text-center">Completed</p>
         </div>
       </div>
       <div class="row footer_row">
@@ -80,14 +80,14 @@
         </div>
       </div>
       <div class="row footer_row">
-        <div class="col-4 .col-md-4">
+        <div class="col-5 .col-md-4">
           <p class="text_margin text_design empty_box">test</p>
         </div>
-        <div class="col-4 .col-md-4">
+        <div class="col-5 .col-md-4">
           <p class="text_margin text_design empty_box">test</p>
         </div>
-        <div class="col-4 .col-md-4 text-center">
-          <button type="button" class="btn btn-outline-dark buttons">Comfirm</button>
+        <div class="col-2 .col-md-4 text-center">
+          <a type="button" class="btn btn-outline-dark buttons" href="history.php">Comfirm</a>
         </div>
       </div>
     </div>
