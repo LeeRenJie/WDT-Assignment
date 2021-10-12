@@ -50,18 +50,18 @@
             </div>
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
-              <option value="">Choose Pet Type</option>
-              <option value="Cat">Cat</option>
-              <option value="Dog">Dog</option>
+                <option value="">Choose Pet Type</option>
+                <option value="Cat">Cat</option>
+                <option value="Dog">Dog</option>
               </select>
             </div>
             <div class="col-sm-10 form-group row">
               <select name="category" required="required" class= "form-control form-control-md">
-              <option value="">Choose Category</option>
-              <option value="food">Food</option>
-              <option value="toy">Toy</option>
-              <option value="healthcare">Healthcare</option>
-              <option value="gear">Gear</option>
+                <option value="">Choose Category</option>
+                <option value="food">Food</option>
+                <option value="toy">Toy</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="gear">Gear</option>
               </select>
             </div>
             <div class="col-sm-10 form-group row">

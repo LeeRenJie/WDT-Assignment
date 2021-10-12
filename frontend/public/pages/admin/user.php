@@ -69,9 +69,6 @@
               echo "</button>";
               echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
                 echo '<a class="dropdown-item" href="../customer/history.php">Order History</a>';
-                echo "<a class='dropdown-item' href=\"user-edit.php?id=";
-                echo $row['customer_id'];
-                echo "\">Edit</a>";
                 echo "<a class='dropdown-item' href=\"user-del.php?id="; //hyperlink to delete.php page with ‘id’ parameter
                   echo $row['customer_id'];
                   echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
