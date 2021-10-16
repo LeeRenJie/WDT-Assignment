@@ -78,53 +78,6 @@
               <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
           </div>
         </div>
-        <div class = "full-screen hidden " id="popform">
-            <form action="#" class="form-container">
-              <div class= "container-fluid">
-                <div class = "row">
-                  <div class ="col-7">
-                    <div class = "form-group row">
-                      <h2>Edit password</h2>
-                    </div>
-                  </div>
-                  <div class ="col-3">
-                    <div class = "form-group row">
-                      <a class="symbol" onclick="closeForm()">
-                        <i class="fas fa-times"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class = "row">
-                  <div class ="col-5">
-                    <div class = "form-group row">
-                      <label for ="curpsw">Current Passowrd :</label>
-                    </div>
-                    <div class = "form-group row">
-                      <label for ="newpsw">New Passowrd :</label>
-                    </div>
-                    <div class = "form-group row">
-                      <label for ="confirmpsw">Confirm Passowrd :</label>
-                    </div>
-                  </div>
-                  <div class ="col-6">
-                    <div class = "form-group row">
-                      <input type ="text" placeholder = "Enter Current password.." name="curpsw" required autofocus>
-                    </div>
-                    <div class = "form-group row">
-                      <input type ="password" placeholder = "Enter New password.." name="newpsw" required autofocus>
-                    </div>
-                    <div class = "form-group row">
-                      <input type ="password" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
-                    </div>
-                  </div>
-                </div>
-                <div class = "form-group row">
-                  <input class="btn-sub" type="submit" value="Confirm">
-                </div>
-              </div>
-            </form>
-          </div>
       </div>
     </div>
     <?php include '../shared/footer.php';?>

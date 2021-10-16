@@ -16,7 +16,7 @@
           <!--profile-->
           <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
             <div class = "imagecontainer">
-              <image class="imge" src="../../images/img_three.jpg" alt="Profile Pic" />
+              <image class="imge" src="../../images/default.jpg" alt="Profile Pic" />
             </div>
             <div class = "opcon">
               <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
@@ -25,10 +25,13 @@
           <!--label-->
           <div class = "col-2 icon opcon ml-5 pl-5"> <!--icon for js-->
             <div class="form-group row">
-                <label for="itemname" class = "col-form-label">Item description :</label>
+              <label for="name" class="col-form-label">Product Name :</label>
             </div>
             <div class="form-group row">
-              <label for="quantity" class = "col-form-label">Quantity :</label>
+              <label for="price" class = "col-form-label">Price :</label>
+            </div>
+            <div class="form-group row">
+              <label for="stock" class = "col-form-label">Stock :</label>
             </div>
             <div class="form-group row">
               <label for="pet" class = "col-form-label">Pet :</label>
@@ -37,16 +40,19 @@
               <label for="category" class = "col-form-label">Category :</label>
             </div>
             <div class="form-group row">
-              <label for="price" class = "col-form-label">Price :</label>
+              <label for="desc" class = "col-form-label">Item description :</label>
             </div>
           </div>
           <!--input-->
           <div class = "col-7 tcon opcon"> <!--tcon for js-->
             <div class="col-sm-10 form-group row">
-                <input type="text" maxlength="60" class="form-control" id="itemname" placeholder="Enter Product Description.." required>
+              <input type="text" maxlength="50" class="form-control" name="name" placeholder="Enter Product Name.." required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="value" class="form-control" id="quantity" placeholder="Enter Product Quantity.." required="required">
+              <input type="value" class="form-control" id="price" placeholder="Enter Product Price.. (RM)" required="required">
+            </div>
+            <div class="col-sm-10 form-group row">
+              <input type="value" class="form-control" id="stock" placeholder="Enter Product Total Stock.." required="required">
             </div>
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
@@ -65,7 +71,7 @@
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="value" class="form-control" id="price" placeholder="Enter Product Price.." required="required">
+              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc" placeholder="Enter Product Description.." required="required"></textarea>
             </div>
             <div class="tleft">
               <!--button-->
