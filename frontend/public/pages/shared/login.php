@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid text-center">
-      <div class="p-3 mb-2">
+      <div class="p-3 m-5">
         <div class="row">
           <div class="col-md">
             <form class="form-login" method="post">
