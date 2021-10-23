@@ -35,7 +35,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link login-btn" href="../customer/login.php">Login</a>
+                <a class="nav-link login-btn" href="../shared/login.php">Login</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,14 +45,69 @@
                   <a class="dropdown-item" href="../customer/profile.php">Profile</a>
                   <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
                   <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>
                 </div>
               </li>
             </ul>
           </div>
         </nav>
+        <div class = "full-screen hidden " id="popform">
+          <form action="#" class="form-container">
+            <div class= "container-fluid">
+              <div class = "row">
+                <div class ="col-7">
+                  <div class = "form-group row">
+                    <h2>Edit password</h2>
+                  </div>
+                </div>
+                <div class ="col-3">
+                  <div class = "form-group row">
+                    <a class="symbol" onclick="closeForm()">
+                      <i class="fas fa-times"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class = "row">
+                <div class ="col-5">
+                  <div class = "form-group row">
+                    <label for ="curpsw">Current Passowrd :</label>
+                  </div>
+                  <div class = "form-group row">
+                    <label for ="newpsw">New Passowrd :</label>
+                  </div>
+                  <div class = "form-group row">
+                    <label for ="confirmpsw">Confirm Passowrd :</label>
+                  </div>
+                </div>
+                <div class ="col-6">
+                  <div class = "form-group row">
+                    <input type ="text" placeholder = "Enter Current password.." name="curpsw" required autofocus>
+                  </div>
+                  <div class = "form-group row">
+                    <input type ="password" placeholder = "Enter New password.." name="newpsw" required autofocus>
+                  </div>
+                  <div class = "form-group row">
+                    <input type ="password" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
+                  </div>
+                </div>
+              </div>
+              <div class = "form-group row">
+                <input class="btn-sub" type="submit" value="Confirm">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
+    <script>
+    function togglepopup() {
+      document.getElementById("popform").style.display = "block";
+    }
+    function closeForm() {
+      document.getElementById("popform").style.display = "none";
+    }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   </body>

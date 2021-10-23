@@ -2,16 +2,14 @@
  if (isset($_POST['signupBtn'])) {
 	include("../../../../backend/conn.php");
 
-	$sql="INSERT INTO customer (customer_password, customer_username, customer_name, customer_email, customer_address, customer_phone_number) VALUES ('$_POST[password]',LOWER('$_POST[username]'),'$_POST[name]',LOWER('$_POST[email]'),'$_POST[address]','$_POST[phoneNumber]')";
+	$sql="INSERT INTO user (user_password, user_username, user_name, user_email, user_address, user_phone_number) VALUES ('$_POST[password]',LOWER('$_POST[username]'),'$_POST[name]',LOWER('$_POST[email]'),'$_POST[address]','$_POST[phoneNumber]')";
 
 	if (!mysqli_query($con,$sql)){
 		die('Error: ' . mysqli_error($con));
 	}
 	else {
-		echo '
-    <script>alert("Account Successfully Created!")
-    window.location.href= "home.php";
-		</script>';
+    echo("<script>alert('Account Successfully Created')</script>");
+		echo("<script>window.location = '../shared/login.php'</script>");
 	}
 
 	mysqli_close($con);
