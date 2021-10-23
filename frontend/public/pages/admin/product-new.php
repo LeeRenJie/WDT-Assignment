@@ -12,7 +12,7 @@
     <script>alert("Product Successfully Added!")
     window.location.href= "product.php";
 		</script>';
-	}
+  }
 
 	mysqli_close($con);
   }
@@ -36,11 +36,11 @@
           <div class = "row justify-content-center">
             <!--profile-->
             <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
-              <div class = "imagecontainer">
-                <image class="imge" src="../../images/default.jpg" alt="Product Picture" />
+              <div class = "imagecontainer" id = "imageContainer">
+                <image class="imge" id="imge" src="../../images/default.jpg" alt="Profile Pic" />
               </div>
               <div class = "opcon">
-                <input id="imageUpload" type="file" name="img" placeholder="Photo" required="required" capture>
+                <input id="imageUpload" type="file" name="profile_photo" onchange="preimg(event)" required="" capture>
               </div>
             </div>
             <!--label-->
@@ -104,7 +104,23 @@
       </form>
     </div>
     <?php include '../shared/footer.php';?>
-    <script src="edit.js"></script>
+    <!--js to resize-->
+    <script src="product-edit.js"></script>
+    <!--js to preview image-->
+    <script>
+    function preimg(event) {
+      document.getElementById('imge').src="../../images/default.jpg";
+      var picture = new FileReader();
+      if (picture){
+        picture.onload = function() 
+        {
+            var imgpreview = document.getElementById('imge');
+            imgpreview.src = picture.result; 
+          }
+        picture.readAsDataURL(event.target.files[0]);
+      }
+    }
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
