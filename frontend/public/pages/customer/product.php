@@ -14,12 +14,12 @@
         <form method="post">
           Search
           <input type="text" style="width: 250px; padding: 8px; margin: 3px 0 11px 0; display: inline-block; font-size:12pt;" name="search_key">
-          <button class="button" name="searchBtn" type="submit">Submit</button>
+          <button class="btn btn-secondary" name="searchBtn" type="submit">Submit</button>
         </form>
       </div>
     </div>
 
-    <?php 
+    <?php
     //connect to phpmyadmin sql server with username="root" password="" and database name="pet_mart"
     // Check database connection
     include("../../../../backend/conn.php");
@@ -28,7 +28,7 @@
     if(isset($_POST['searchBtn'])){
       $search_key = $_POST['search_key'];
     }
-    
+
     $result=mysqli_query($con,"SELECT * FROM product WHERE product_name LIKE '%$search_key%' ");
     ?>
 
@@ -39,81 +39,34 @@
         $sql = mysqli_query($con, $fetch);
         $number_row = mysqli_num_rows($sql);
         echo "<div class = \"ml-4 mb-4\">";
-        echo "<h5 class='float-left'>";
-          echo $number_row; 
-        echo " products</h5>";
+          echo "<h5 class='float-left'>";
+            echo $number_row;
+          echo $number_row > 1 ? " Products" : " Product";
+          echo "</h5>";
         echo "</div>";
-        echo "<div class=\"container-fluid p-5 bg-color\">";
-        echo "<div class = \"col-15\">";
-        echo "<div class=\"row row-cols-4 justify-content-center ml-2 mt-2\">";
-        while($row=mysqli_fetch_array($result)){
-          echo "<div class=\"col\">";
-            echo "<a href=\"\">";
-              $imgURL = "data:image/jpg;base64,".base64_encode($row['product_image']);  
-              echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
-              echo "<p class=\"text_design mx-auto text-center\">"; 
-                echo "<!--label tag for UI purpose-->";
-                echo "<label>".$row['product_name']."</label>";
-              echo "</p>";
-            echo "</a>";
-            echo "<!--Price-->";
-            echo "<p class=\"text-center text-muted mt-n2\">";
-              echo $row['product_price'];
-            echo "</p>";
+        echo "<div class=\"p-5 whiteBg\">";
+          echo "<div class = \"col-15\">";
+            echo "<div class=\"row row-cols-4 justify-content-center ml-2 mt-2\">";
+              while($row=mysqli_fetch_array($result)){
+                echo "<div class=\"col\">";
+                  echo "<a href=\"\">";
+                    $imgURL = "data:image/jpg;base64,".base64_encode($row['product_image']);
+                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
+                    echo "<p class=\"text_design mx-auto text-center\">";
+                      echo "<!--label tag for UI purpose-->";
+                      echo "<label>".$row['product_name']."</label>";
+                    echo "</p>";
+                  echo "</a>";
+                  echo "<!--Price-->";
+                  echo "<p class=\"text-center text-muted mt-n2\">";
+                    echo $row['product_price'];
+                  echo "</p>";
+                echo "</div>";
+                }
+            echo "</div>";
           echo "</div>";
-          }
-          /*
-                echo "<div class=\"col-3\">";
-                  echo "<a href=\"\">"; 
-                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
-                    echo "<p class=\"text_design mx-auto text-center\">";
-                      echo "<!--label tag for UI purpose-->";
-                      echo "<label>".$row['product_name']."</label>";
-                    echo "</p>";
-                  echo "</a>";
-                  echo "<!--Price-->";
-                  echo "<div class=\"row justify-content-center\">";
-                    echo "<!--Price before discount-->";
-                    echo "<p class=\"text-center text-muted mt-n2\">";
-                      echo $row['product_price'];
-                    echo "</p>";
-                  echo "</div>";
-                echo "</div>";
-                echo "<div class=\"col-3\">";
-                  echo "<a href=\"\"> ";
-                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
-                    echo "<p class=\"text_design mx-auto text-center\">";
-                      echo "<!--label tag for UI purpose-->";
-                      echo "<label>".$row['product_name']."</label>";
-                    echo "</p>";
-                  echo "</a>";
-                  echo "<!--Price-->";
-                  echo "<div class=\"row justify-content-center\">";
-                    echo "<!--Price before discount-->";
-                    echo "<p class=\"text-center text-muted mt-n2\">";
-                      echo $row['product_price'];
-                    echo "</p>";
-                  echo "</div>";
-                echo "</div>";
-                echo "<div class=\"col-3\">";
-                  echo "<a href=\"\"> ";
-                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
-                    echo "<p class=\"text_design mx-auto text-center\">";
-                      echo "<!--label tag for UI purpose-->";
-                      echo "<label>".$row['product_name']."</label>";
-                    echo "</p>";
-                  echo "</a>";
-                  echo "<!--Price-->";
-                  echo "<div class=\"row justify-content-center\">";
-                    echo "<!--Price before discount-->";
-                    echo "<p class=\"text-center text-muted mt-n2\">";
-                      echo $row['product_price'];
-                    echo "</p>";
-                  echo "</div>";
-                echo "</div>";
-              echo "</div>";
-        */
-        ?>    
+        echo "</div>";
+        ?>
       </div>
     </div>
     <?php include '../shared/footer.php';?>

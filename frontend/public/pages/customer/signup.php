@@ -57,8 +57,7 @@
         <input type="tel" id="signupPhonenumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required="required" autofocus>
 
         <button class="signup-btn mt-3" name="signupBtn" type="submit">Sign up</button>
-        <p class="mt-2 mb-3 text-muted">Already have an account? Log in <a href="login.php">here</a></p>
-        <p class="text-muted">For admin click <a href="../admin/login.php">here</a></p>
+        <p class="mt-2 mb-3 text-muted">Already have an account? Log in <a href="../shared/login.php">here</a></p>
       </form>
     </div>
     <?php include '../shared/footer.php';?>

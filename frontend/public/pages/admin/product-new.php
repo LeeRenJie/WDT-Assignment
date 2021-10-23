@@ -2,20 +2,17 @@
  if (isset($_POST['addProductBtn'])) {
 	include("../../../../backend/conn.php");
 
-	
+  $target_dir = "../../images/";
+  $target_file = $target_dir . basename($_FILES['productPic']['name']);
 
-  $target_dir = "C:/wamp64/www/WDT-Assignment/frontend/public/images/";
-  $target_file = $target_dir . basename($_FILES['file']['name']);
-
-  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file))
+  if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file))
   {
     //To get file name
-    $file_name= basename($_FILES["file"]["name"]);
+    $file_name= basename($_FILES["productPic"]["name"]);
     //To store the file name & file title into the database
 
-    include("conn.php");
-    $sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$_POST[file]','$_POST[desc]','$_POST[name]','$_POST[category]','$_POST[pet]','$_POST[price]','$_POST[stock]')";
-  
+    $sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$file_name','$_POST[desc]','$_POST[name]','$_POST[category]','$_POST[pet]','$_POST[price]','$_POST[stock]')";
+
     if (!mysqli_query($con,$sql)){
       die('Error: ' . mysqli_error($con));
       }
@@ -24,22 +21,9 @@
         echo("<script>window.location = 'product.php'</script>");
       }
       mysqli_close($con);
-    
+
   }
 }
-
-
-  
-#  if (!mysqli_query($con,$sql)){
-#  die('Error: ' . mysqli_error($con));
-#  }
-#  else {
-#    echo("<script>alert('Product Successfully Added!')</script>");
-#    echo("<script>window.location = 'product.php'</script>");
-#  }
-#  mysqli_close($con);
-#  }
-  
 ?>
 
 <!DOCTYPE html>
@@ -56,15 +40,15 @@
     <?php include '../shared/navbar.php';?>
     <div class= "container-fluid opcon bimg">
       <form action="product-new.php" method="post" ENCTYPE="multipart/form-data">
-        <div class = "col-15 bwhite">
+        <div class = "bwhite">
           <div class = "row justify-content-center">
             <!--profile-->
             <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
               <div class = "imagecontainer" id = "imageContainer">
-                <image class="imge" id="imge" name="imge" src="../../images/default.jpg" alt="Profile Pic" />
+                <image class="imge" id="img" name="img" src="../../images/default.jpg" alt="Profile Pic" />
               </div>
               <div class = "opcon">
-                <input id="imageUpload" type="file" name="file" onchange="preimg(event)" required="" capture>
+                <input id="imageUpload" type="file" name="productPic" onchange="preimg(event)" required="" capture>
               </div>
             </div>
             <!--label-->
@@ -133,12 +117,12 @@
     <!--js to preview image-->
     <script>
     function preimg(event) {
-      document.getElementById('imge').src="../../images/default.jpg";
+      document.getElementById('img').src="../../images/default.jpg";
       var picture = new FileReader();
       if (picture){
         picture.onload = function()
         {
-            var imgpreview = document.getElementById('imge');
+            var imgpreview = document.getElementById('img');
             imgpreview.src = picture.result;
           }
         picture.readAsDataURL(event.target.files[0]);
