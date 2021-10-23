@@ -1,8 +1,11 @@
 <?php
-session_start();
-if (!isset($_SESSION['mySession']))
+if(!isset($_SESSION)) {
+  session_start();
+}
+
+if (!isset($_SESSION['username']))
 {
-  //header("location: login.php");
-  echo "<script>alert('Please login!'); window.location.href='login.php';</script>";
+  echo("<script>alert('Please login first')</script>");
+  echo("<script>window.location = '../shared/login.php'</script>");
 }
 ?>

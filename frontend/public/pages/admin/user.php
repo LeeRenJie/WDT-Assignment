@@ -37,9 +37,9 @@
             <th class="text-center"><input id="checkbox" type="checkbox"></th>
             <th class="text-center">Username</th>
             <th class="text-center">Name</th>
-            <th class="text-center">Phone Number</th>
             <th class="text-center">Email</th>
             <th class="text-center">Address</th>
+            <th class="text-center">Phone Number</th>
             <th class="text-center">Actions</th>
           </tr>
           <?php

@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 	$username=mysqli_real_escape_string($con,$_POST['username']);
 	$password=mysqli_real_escape_string($con,$_POST['password']);
 
-	$sql="SELECT user_id FROM user WHERE user_username='$username' and user_password='$password'";
+	$sql="SELECT * FROM user WHERE user_username='$username' and user_password='$password'";
 	if ($result=mysqli_query($con,$sql))  {
 	  // Return the number of rows in result set
 	  $rownum=mysqli_num_rows($result);
@@ -16,11 +16,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 	while($row=mysqli_fetch_array($result)){
 		$id = $row['user_id'];
+    $admin = boolval($row['admin']) ? true : false;
+    $name = $row['user_name'];
+    $email = $row['user_email'];
+    $address = $row['user_address'];
+    $phone = $row['user_phone_number'];
 	}
 
 	if($rownum==1)  {
-		$_SESSION['session']=$username;
+		$_SESSION['username']=$username;
 		$_SESSION['user_id']=$id;
+    $_SESSION['admin']=$admin;
+    $_SESSION['name']=$name;
+    $_SESSION['email']=$email;
+    $_SESSION['address']=$address;
+    $_SESSION['phone']=$phone;
     echo("<script>alert('Welcome Back $username')</script>");
 		echo("<script>window.location = '../customer/home.php'</script>");
 	}
