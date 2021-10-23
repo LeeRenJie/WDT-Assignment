@@ -36,7 +36,7 @@ if(!isset($_SESSION)) {
                   </a>
                 </li>
                 <?php
-                  if(isset($_SESSION['session'])) {
+                  if(isset($_SESSION['username']) && !$_SESSION['admin']) {
                     echo('
                         <li class="nav-item">
                           <a class="nav-link" href="../customer/cart.php">
@@ -47,28 +47,45 @@ if(!isset($_SESSION)) {
                   }
                 ?>
                 <?php
-                  if(!isset($_SESSION['session'])) {
+                  if(!isset($_SESSION['username'])) {
                     echo('<li class="nav-item">
                       <a class="nav-link login-btn" href="../shared/login.php">Login</a>
                     </li>');
                   }
                 ?>
                 <?php
-                  if(isset($_SESSION['session'])) {
+                  if(isset($_SESSION['username'])) {
                     echo('
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-user mr-1"></i>');
-                          echo($_SESSION['session']);
-                        echo('</a>
-                        <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item" href="../customer/profile.php">Profile</a>
-                          <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
-                          <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
-                          <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>
-                        </div>
-                      </li>');
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-user mr-1"></i>'
+                    );
+                    if($_SESSION['admin']) {
+                      echo("Admin {$_SESSION['username']}");
+                    }else{
+                      echo($_SESSION['username']);
+                    }
+                    echo('</a>
+                    <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">'
+                    );
+                    if($_SESSION['admin']){
+                      echo('
+                      <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
+                      <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
+                      <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
+                      );
+                    }
+                    else{
+                      echo('
+                        <a class="dropdown-item" href="../customer/profile.php">Profile</a>
+                        <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
+                        <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
+                        <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
+                      );
+                    }
                   }
+                  echo('</div>
+                  </li>');
                 ?>
               </ul>
             </div>
