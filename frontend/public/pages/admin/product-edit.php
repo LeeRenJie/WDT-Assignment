@@ -1,3 +1,14 @@
+<?php
+ if (isset($_POST['addProductBtn'])) {
+	  include("../../../../backend/conn.php");
+    $product_id = intval ($_GET['product_id']); //get int value of the variable
+    $output = mysqli_query($con, "SELECT * FROM product WHERE product_id = $product_id");
+    while($row = mysqli_fetch_array($output))
+    mysqli_close($con);
+  }
+?>
+<?php include 'update-edit-product.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,13 +21,15 @@
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
+    <form method="post">
+    <input type = "hidden" name = "product_id" value = "<?php echo $row['product_id'] ?>">
     <div class= "container-fluid opcon bimg">
       <div class = "col-15 bwhite">
         <div class = "row justify-content-center">
           <!--profile-->
           <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
             <div class = "imagecontainer" id = "imageContainer">
-              <image class="imge" id="imge" src="../../images/default.jpg" alt="Profile Pic" />
+              <image class="imge" id="imge" src="<?php echo $row["product_image"]?>" alt="Profile Pic" />
             </div>
             <div class = "opcon">
               <input id="imageUpload" type="file" name="profile_photo" onchange="preimg(event)" required="" capture>
@@ -46,32 +59,71 @@
           <!--input-->
           <div class = "col-7 tcon opcon"> <!--tcon for js-->
             <div class="col-sm-10 form-group row">
-              <input type="text" maxlength="50" class="form-control" name="name" placeholder="Enter Product Name.." required="required">
+              <input type="text" maxlength="50" class="form-control" name="name" value="<?php echo $row["product_name"]?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="value" class="form-control" id="price" placeholder="Enter Product Price.. (RM)" required="required">
+              <input type="value" class="form-control" id="price" value="<?php echo $row["product_price"]?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="value" class="form-control" id="stock" placeholder="Enter Product Total Stock.." required="required">
+              <input type="value" class="form-control" id="stock" value="<?php echo $row["product_stock"]?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
                 <option value="">Choose Pet Type</option>
-                <option value="Cat">Cat</option>
-                <option value="Dog">Dog</option>
+                <option 
+                <?php
+                if ($row["product_pet"]=="Cat"){
+                  echo 'selected="selected"';
+                }
+                ?>
+                value="Cat">Cat</option>
+                <option 
+                <?php
+                if ($row["product_pet"]=="Dog"){
+                  echo 'selected="selected"';
+                }
+                ?>
+                value="Dog">Dog</option>
               </select>
             </div>
             <div class="col-sm-10 form-group row">
               <select name="category" required="required" class= "form-control form-control-md">
                 <option value="">Choose Category</option>
-                <option value="food">Food</option>
-                <option value="toy">Toy</option>
-                <option value="healthcare">Healthcare</option>
-                <option value="gear">Gear</option>
+                <option 
+                <?php
+                if ($row["product_category"]=="food"){
+                  echo 'selected="selected"';
+                }
+                ?>
+                value="food">Food</option>
+                <option 
+                <?php
+                if ($row["product_category"]=="toy"){
+                  echo 'selected="selected"';
+                }
+                ?>
+                value="toy">Toy</option>
+                <option 
+                <?php
+                if ($row["product_category"]=="healthcare"){
+                  echo 'selected="selected"';
+                }
+                ?>
+                value="healthcare">Healthcare</option>
+                <option 
+                <?php
+                if ($row["product_category"]=="gear"){
+                  echo 'selected="selected"';
+                }
+                ?>
+                value="gear">Gear</option>
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc" placeholder="Enter Product Description.." required="required"></textarea>
+              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc" 
+              placeholder="Enter Product Description.." required="required">
+              <?php echo $row['product_desc'] ?>
+              </textarea>
             </div>
             <div class="tleft">
               <!--button-->
@@ -83,6 +135,7 @@
         </div>
       </div>
     </div>
+    </form>
     <?php include '../shared/footer.php';?>
     <!--js to resize-->
     <script src="product-edit.js"></script>
