@@ -8,12 +8,9 @@
 		die('Error: ' . mysqli_error($con));
 	}
 	else {
-		echo '
-    <script>alert("Product Successfully Added!")
-    window.location.href= "product.php";
-		</script>';
+		echo("<script>alert('Product Successfully Added!')</script>");
+    echo("<script>window.location = 'product.php'</script>");
   }
-
 	mysqli_close($con);
   }
 ?>
@@ -112,10 +109,10 @@
       document.getElementById('imge').src="../../images/default.jpg";
       var picture = new FileReader();
       if (picture){
-        picture.onload = function() 
+        picture.onload = function()
         {
             var imgpreview = document.getElementById('imge');
-            imgpreview.src = picture.result; 
+            imgpreview.src = picture.result;
           }
         picture.readAsDataURL(event.target.files[0]);
       }
