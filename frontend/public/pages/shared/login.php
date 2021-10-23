@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $_SESSION['email']=$email;
     $_SESSION['address']=$address;
     $_SESSION['phone']=$phone;
-    echo("<script>alert('Welcome Back $username')</script>");
+    echo("<script>alert('Welcome Back User $name')</script>");
 		echo("<script>window.location = '../customer/home.php'</script>");
 	}
 	else  {
