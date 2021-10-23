@@ -10,200 +10,110 @@
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
+    <div style="width:50%; float: left" class="ml-3">
+        <form method="post">
+          Search
+          <input type="text" style="width: 250px; padding: 8px; margin: 3px 0 11px 0; display: inline-block; font-size:12pt;" name="search_key">
+          <button class="button" name="searchBtn" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <?php 
+    //connect to phpmyadmin sql server with username="root" password="" and database name="pet_mart"
+    // Check database connection
+    include("../../../../backend/conn.php");
+    $search_key = "";
+
+    if(isset($_POST['searchBtn'])){
+      $search_key = $_POST['search_key'];
+    }
+    
+    $result=mysqli_query($con,"SELECT * FROM product WHERE product_name LIKE '%$search_key%' ");
+    ?>
+
     <div class="container-fluid p-5 bg-color">
       <div class = "col-15">
-        <div class = "row ml-4 mb-4">
-          <h5>12 products</h5>
-        </div>
-        <div class="row justify-content-center ml-2 mt-2">
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/ingredient_zssential_formula_dog_food.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Ingredient Zssential Formula Dog Food 13.5 LBS</label>
-              </p>
-            </a>
-            <!--Price-->
-            <p class="text-center text-muted mt-n2">
-              RM 29
-            </p>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/ez_clear_dog_collar_small.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">EZ Clear Dog Collar (S)</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-              <p class="text-center text-muted mt-n2">
-                RM 50
-              </p>
-            </div>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/joint_health_soft_chews_dog_supplement.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Joint Health Soft Chews Dog Supplement 60 Count</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-             <p class="text-center text-muted mt-n2">
-               RM39
-             </p>
-            </div>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/full_spectrum_hemp_oil_dropper_for_dog.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Full-Spectrum Hemp Oil Dropper For Dog 1 Oz</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-             <p class="text-center text-muted mt-n2">
-               RM 99
-             </p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center ml-2 mt-2">
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/jolly_pets_push_n_play_dog_toy.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Jolly pets push & play dog Toy</label>
-              </p>
-            </a>
-            <!--Price-->
-            <p class="text-center text-muted mt-n2">
-              RM 89
-            </p>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/diamond_pro89_dog_food.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Diamond Pro89 Dog Food</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-              <p class="text-center text-muted mt-n2">
-                RM 199
-              </p>
-            </div>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/alpine_climb_scratcher_cat_toy.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Alpine Climb Scratcher Cat Toy</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-             <p class="text-center text-muted mt-n2">
-               RM399
-             </p>
-            </div>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/squeak_mini_monkey_dog_toy.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Squeak Mini Monkey Dog Toy</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-             <p class="text-center text-muted mt-n2">
-               RM 99
-             </p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center ml-2 mt-2">
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/raw_goat_milk_for_cat_n_dog.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Raw Goat Milk for Cats & Dogs 16 Oz</label>
-              </p>
-            </a>
-            <!--Price-->
-            <p class="text-center text-muted mt-n2">
-              RM 49
-            </p>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/diet_grain_free_chicken_dog_food.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Diet grain Free Chicken Adult Dog Food 24 LBS</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-              <p class="text-center text-muted mt-n2">
-                RM 129
-              </p>
-            </div>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/cat_harness_n_bungee_leash_black_color_medium.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Cat Harness & Bungee Leash Black Color (M)</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-             <p class="text-center text-muted mt-n2">
-               RM89
-             </p>
-            </div>
-          </div>
-          <div class="col-3">
-            <a href=""> 
-              <img src="../../images/cat_chews.jpg" alt="..." class="img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block"> 
-              <p class="text_design mx-auto text-center">
-                <!--label tag for UI purpose-->
-                <label for="">Pet Naturals of Vermont Cat Chews 30 Count</label>
-              </p>
-            </a>
-            <!--Price-->
-            <div class="row justify-content-center">
-              <!--Price before discount-->
-             <p class="text-center text-muted mt-n2">
-               RM 49
-             </p>
-            </div>
-          </div>
-        </div>
+        <?php
+        $fetch = "SELECT product_image, product_name FROM product";
+        $sql = mysqli_query($con, $fetch);
+        $number_row = mysqli_num_rows($sql);
+        echo "<div class = \"ml-4 mb-4\">";
+        echo "<h5 class='float-left'>";
+          echo $number_row; 
+        echo " products</h5>";
+        echo "</div>";
+        echo "<div class=\"container-fluid p-5 bg-color\">";
+        echo "<div class = \"col-15\">";
+        echo "<div class=\"row row-cols-4 justify-content-center ml-2 mt-2\">";
+        while($row=mysqli_fetch_array($result)){
+          echo "<div class=\"col\">";
+            echo "<a href=\"\">";
+              $imgURL = "data:image/jpg;base64,".base64_encode($row['product_image']);  
+              echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
+              echo "<p class=\"text_design mx-auto text-center\">"; 
+                echo "<!--label tag for UI purpose-->";
+                echo "<label>".$row['product_name']."</label>";
+              echo "</p>";
+            echo "</a>";
+            echo "<!--Price-->";
+            echo "<p class=\"text-center text-muted mt-n2\">";
+              echo $row['product_price'];
+            echo "</p>";
+          echo "</div>";
+          }
+          /*
+                echo "<div class=\"col-3\">";
+                  echo "<a href=\"\">"; 
+                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
+                    echo "<p class=\"text_design mx-auto text-center\">";
+                      echo "<!--label tag for UI purpose-->";
+                      echo "<label>".$row['product_name']."</label>";
+                    echo "</p>";
+                  echo "</a>";
+                  echo "<!--Price-->";
+                  echo "<div class=\"row justify-content-center\">";
+                    echo "<!--Price before discount-->";
+                    echo "<p class=\"text-center text-muted mt-n2\">";
+                      echo $row['product_price'];
+                    echo "</p>";
+                  echo "</div>";
+                echo "</div>";
+                echo "<div class=\"col-3\">";
+                  echo "<a href=\"\"> ";
+                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
+                    echo "<p class=\"text_design mx-auto text-center\">";
+                      echo "<!--label tag for UI purpose-->";
+                      echo "<label>".$row['product_name']."</label>";
+                    echo "</p>";
+                  echo "</a>";
+                  echo "<!--Price-->";
+                  echo "<div class=\"row justify-content-center\">";
+                    echo "<!--Price before discount-->";
+                    echo "<p class=\"text-center text-muted mt-n2\">";
+                      echo $row['product_price'];
+                    echo "</p>";
+                  echo "</div>";
+                echo "</div>";
+                echo "<div class=\"col-3\">";
+                  echo "<a href=\"\"> ";
+                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
+                    echo "<p class=\"text_design mx-auto text-center\">";
+                      echo "<!--label tag for UI purpose-->";
+                      echo "<label>".$row['product_name']."</label>";
+                    echo "</p>";
+                  echo "</a>";
+                  echo "<!--Price-->";
+                  echo "<div class=\"row justify-content-center\">";
+                    echo "<!--Price before discount-->";
+                    echo "<p class=\"text-center text-muted mt-n2\">";
+                      echo $row['product_price'];
+                    echo "</p>";
+                  echo "</div>";
+                echo "</div>";
+              echo "</div>";
+        */
+        ?>    
       </div>
     </div>
     <?php include '../shared/footer.php';?>
