@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION)) {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,93 +15,111 @@
   <body>
     <section id="navbar">
       <div class="container-fluid nav-color">
-        <nav class="navbar navbar-expand-lg navbar-light nav-color text-center">
-          <a class="navbar-brand" href="../customer/home.php">
-            <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto ">
-              <li class="nav-item">
-                <a class="nav-link" href="../customer/product.php">
-                  <i class="fas fa-shopping-bag"></i> Shop
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../customer/search.php">
-                  <i class="fas fa-search"></i> Search
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../customer/cart.php">
-                <i class="fas fa-shopping-cart"></i> Cart
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link login-btn" href="../shared/login.php">Login</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-user mr-1"></i>Username
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="../customer/profile.php">Profile</a>
-                  <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
-                  <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
-                  <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <div class = "full-screen hidden " id="popform">
-          <form action="#" class="form-container">
-            <div class= "container-fluid">
-              <div class = "row">
-                <div class ="col-7">
-                  <div class = "form-group row">
-                    <h2>Edit password</h2>
-                  </div>
-                </div>
-                <div class ="col-3">
-                  <div class = "form-group row">
-                    <a class="symbol" onclick="closeForm()">
-                      <i class="fas fa-times"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class = "row">
-                <div class ="col-5">
-                  <div class = "form-group row">
-                    <label for ="curpsw">Current Passowrd :</label>
-                  </div>
-                  <div class = "form-group row">
-                    <label for ="newpsw">New Passowrd :</label>
-                  </div>
-                  <div class = "form-group row">
-                    <label for ="confirmpsw">Confirm Passowrd :</label>
-                  </div>
-                </div>
-                <div class ="col-6">
-                  <div class = "form-group row">
-                    <input type ="text" placeholder = "Enter Current password.." name="curpsw" required autofocus>
-                  </div>
-                  <div class = "form-group row">
-                    <input type ="password" placeholder = "Enter New password.." name="newpsw" required autofocus>
-                  </div>
-                  <div class = "form-group row">
-                    <input type ="password" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
-                  </div>
-                </div>
-              </div>
-              <div class = "form-group row">
-                <input class="btn-sub" type="submit" value="Confirm">
-              </div>
+        <div class = "container">
+          <nav class="navbar navbar-expand-lg navbar-light nav-color text-center">
+            <a class="navbar-brand" href="../customer/home.php">
+              <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto ">
+                <li class="nav-item">
+                  <a class="nav-link" href="../customer/product.php">
+                    <i class="fas fa-shopping-bag"></i> Shop
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../customer/search.php">
+                    <i class="fas fa-search"></i> Search
+                  </a>
+                </li>
+                <?php
+                  if(isset($_SESSION['session'])) {
+                    echo('
+                        <li class="nav-item">
+                          <a class="nav-link" href="../customer/cart.php">
+                          <i class="fas fa-shopping-cart"></i> Cart
+                          </a>
+                        </li>'
+                    );
+                  }
+                ?>
+                <?php
+                  if(!isset($_SESSION['session'])) {
+                    echo('<li class="nav-item">
+                      <a class="nav-link login-btn" href="../shared/login.php">Login</a>
+                    </li>');
+                  }
+                ?>
+                <?php
+                  if(isset($_SESSION['session'])) {
+                    echo('
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-user mr-1"></i>');
+                          echo($_SESSION['session']);
+                        echo('</a>
+                        <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="../customer/profile.php">Profile</a>
+                          <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
+                          <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
+                          <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>
+                        </div>
+                      </li>');
+                  }
+                ?>
+              </ul>
             </div>
-          </form>
+          </nav>
+          <div class = "full-screen hidden " id="popform">
+            <form action="#" class="form-container">
+              <div class= "container-fluid">
+                <div class = "row">
+                  <div class ="col-7">
+                    <div class = "form-group row">
+                      <h2>Edit password</h2>
+                    </div>
+                  </div>
+                  <div class ="col-3">
+                    <div class = "form-group row">
+                      <a class="symbol" onclick="closeForm()">
+                        <i class="fas fa-times"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class = "row">
+                  <div class ="col-5">
+                    <div class = "form-group row">
+                      <label for ="curpsw">Current Passowrd :</label>
+                    </div>
+                    <div class = "form-group row">
+                      <label for ="newpsw">New Passowrd :</label>
+                    </div>
+                    <div class = "form-group row">
+                      <label for ="confirmpsw">Confirm Passowrd :</label>
+                    </div>
+                  </div>
+                  <div class ="col-6">
+                    <div class = "form-group row">
+                      <input type ="text" placeholder = "Enter Current password.." name="curpsw" required autofocus>
+                    </div>
+                    <div class = "form-group row">
+                      <input type ="password" placeholder = "Enter New password.." name="newpsw" required autofocus>
+                    </div>
+                    <div class = "form-group row">
+                      <input type ="password" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
+                    </div>
+                  </div>
+                </div>
+                <div class = "form-group row">
+                  <input class="btn-sub" type="submit" value="Confirm">
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
