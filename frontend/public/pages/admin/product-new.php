@@ -2,7 +2,7 @@
  if (isset($_POST['addProductBtn'])) {
 	include("../../../../backend/conn.php");
 
-	$sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$_POST[img]','$_POST[desc]','$_POST[name]','$_POST[category],'$_POST[pet]','$_POST[price]','$_POST[stock]')";
+	$sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$_POST[img]','$_POST[desc]','$_POST[name]','$_POST[category]','$_POST[pet]','$_POST[price]','$_POST[stock]')";
 
 	if (!mysqli_query($con,$sql)){
 		die('Error: ' . mysqli_error($con));
