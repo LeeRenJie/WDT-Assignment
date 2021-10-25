@@ -60,7 +60,7 @@ html {
 	text-align: center;
 	background-size: 200% auto;
 	border-radius: 5px;
-	background-color: #F5E8C7;
+	background-color: #E3C5A7;
 	display: inline-block;
 	font-weight: 400;
 	text-align: center;
@@ -71,14 +71,7 @@ html {
 	font-size: 1rem;
 	line-height: 1.5;
 	border-radius: .25rem;
-}
-
-.form-container {
-	padding-left: 30px;
-	max-width: 500px;
-	border: black solid 1px;
-	border-radius: 20px;
-	background-image: linear-gradient(#F5E8C7, #DEBA9D);
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .full-screen {
@@ -92,10 +85,31 @@ html {
 	z-index: 3;
 }
 
+.form-container {
+	position: relative;
+	top: 25%;
+	left: 32%;
+	max-width: 500px;
+	background: rgba( 245, 232, 199, 0.9 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 20px );
+	-webkit-backdrop-filter: blur( 20px );
+	border-radius: 10px;
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
 .hidden {
 	display: none;
 }
 
 .symbol {
 	justify-content: center;
+	color: #F20000;
+}
+
+.pswInput {
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
