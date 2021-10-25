@@ -105,6 +105,7 @@ html {
 .symbol {
 	justify-content: center;
 	color: #F20000;
+	font-size: 2rem;
 }
 
 .pswInput {

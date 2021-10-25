@@ -72,6 +72,7 @@ if(!isset($_SESSION)) {
                       echo('
                       <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
                       <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
+                      <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
                       <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
                       );
                     }
@@ -94,17 +95,18 @@ if(!isset($_SESSION)) {
           <div class = "full-screen hidden" id="popform">
             <form action="#" class="form-container">
               <div class = "row">
-                <div class ="col-11">
+                <div class ="col-10">
                   <div class = "form-group row justify-content-center py-4">
                     <h2 class="pl-5"><u>Edit Password</u></h2>
                   </div>
                 </div>
                 <div class ="col-1">
-                  <div class = "form-group row pt-2">
-                    <a class="symbol" onclick="closeForm()">
+                  <div class = "form-group row">
+                    <a class="symbol pt-4 pl-2" onclick="closeForm()">
                       <i class="fas fa-times"></i>
                     </a>
                   </div>
+                  <div class ="col-1"></div>
                 </div>
               </div>
               <div class = "row">

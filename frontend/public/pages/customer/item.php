@@ -1,5 +1,5 @@
 <?php
-session_start();
+  include("../../../../backend/conn.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,17 +14,15 @@ session_start();
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <?php include("../../../../backend/conn.php");?>
     <div class="container-fluid p-5 bg-color">
       <div class="row justify-content-center ml-2">
           <div class="col-6">
-            <?php
+            </?php
             include("../../../../backend/conn.php");
             $product_id = intval ($_GET['product_id']); //get int value of the variable
             $output = mysqli_query($con, "SELECT * FROM product WHERE product_id = $product_id");
             while($row = mysqli_fetch_array($output))
             mysqli_close($con);
-
             ?>
           </div>
           <div class="col-6">
