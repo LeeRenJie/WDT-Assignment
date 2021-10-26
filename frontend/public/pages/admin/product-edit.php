@@ -1,22 +1,33 @@
 <?php
 include("../../../../backend/conn.php");
 $id = intval($_GET['id']); //get int value of the variable
-
 $result = mysqli_query($con, "SELECT * FROM product WHERE product_id = $id");
+$row = mysqli_fetch_assoc($result);
+$file_path = "../../images/";
+$prodImg = $file_path . basename($row["product_image"]);
+if (isset($_POST['editProductBtn'])){
+	$target_file = $file_path . basename($_FILES['productPic']['name']);
+	if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file))
+	{
+		$file_name= basename($_FILES["productPic"]["name"]);
+	}
 
-while($row = mysqli_fetch_assoc($result))
- {
-  $file_path = "../../images/";
-  $prodImg = $file_path . basename($row["product_image"]);
+  $sql = "UPDATE product SET
+  product_pet = '$_POST[pet]',
+  product_name = '$_POST[name]',
+  product_image = '$file_name',
+  product_desc = '$_POST[desc]',
+  product_category = '$_POST[category]',
+  product_price = '$_POST[price]',
+  product_stock = '$_POST[stock]'
 
-  if (isset($_POST['editProductBtn'])) 
-    {
-    $target_file = $file_path . basename($_FILES['productPic']['name']);
-    if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) 
-      {
-      $file_name= basename($_FILES["productPic"]["name"]);
-    }
+  WHERE product_id=$_POST[id];";
+
+  if (mysqli_query($con,$sql)) {
+      mysqli_close($con);
+      header('Location: product.php');
   }
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +42,7 @@ while($row = mysqli_fetch_assoc($result))
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <form action="update-edit-product.php" method="post" ENCTYPE="multipart/form-data">
+    <form method="post" ENCTYPE="multipart/form-data">
     <input type = "hidden" name = "id" value = "<?php echo $row['product_id'] ?>">
     <div class= "container-fluid opcon bimg">
       <div class = "col-15 bwhite">
@@ -130,7 +141,7 @@ while($row = mysqli_fetch_assoc($result))
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc" 
+              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc"
               required="required"><?php echo $row['product_desc'] ?></textarea>
             </div>
             <div class="tleft">
@@ -162,9 +173,8 @@ while($row = mysqli_fetch_assoc($result))
       }
     }
     </script>
-    <?php 
-      }
-    mysqli_close($con);
+    <?php
+      mysqli_close($con);
     ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
