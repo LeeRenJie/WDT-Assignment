@@ -80,14 +80,14 @@ while($row = mysqli_fetch_assoc($result))
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
                 <option value="">Choose Pet Type</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_pet"]=="Cat"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="Cat">Cat</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_pet"]=="Dog"){
                   echo 'selected="selected"';
@@ -99,28 +99,28 @@ while($row = mysqli_fetch_assoc($result))
             <div class="col-sm-10 form-group row">
               <select name="category" required="required" class= "form-control form-control-md">
                 <option value="">Choose Category</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="food"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="food">Food</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="toy"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="toy">Toy</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="healthcare"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="healthcare">Healthcare</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="gear"){
                   echo 'selected="selected"';
