@@ -1,19 +1,21 @@
-img{
-	max-height: 180px;
+img {
+	height: 180px;
 	width: auto;
 }
 
-.text_design {
+.pointer:hover {
+	cursor: pointer;
+}
+
+.prodName:hover{
+	cursor: pointer;
+	text-decoration: none;
+	color: #000;
+}
+
+.textDesign {
 	font-weight: 300;
 	font-size: 18px;
-}
-
-.empty_box {
-	display: none;
-}
-
-.original_price{
-	text-decoration: line-through;
 }
 
 .bg-color {

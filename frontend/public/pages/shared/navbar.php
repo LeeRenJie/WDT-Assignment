@@ -72,6 +72,7 @@ if(!isset($_SESSION)) {
                       echo('
                       <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
                       <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
+                      <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
                       <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
                       );
                     }
@@ -90,53 +91,58 @@ if(!isset($_SESSION)) {
               </ul>
             </div>
           </nav>
-          <div class = "full-screen hidden " id="popform">
+
+          <div class = "full-screen hidden" id="popform">
             <form action="#" class="form-container">
-              <div class= "container-fluid">
-                <div class = "row">
-                  <div class ="col-7">
-                    <div class = "form-group row">
-                      <h2>Edit password</h2>
-                    </div>
-                  </div>
-                  <div class ="col-3">
-                    <div class = "form-group row">
-                      <a class="symbol" onclick="closeForm()">
-                        <i class="fas fa-times"></i>
-                      </a>
-                    </div>
+              <div class = "row">
+                <div class ="col-10">
+                  <div class = "form-group row justify-content-center py-4">
+                    <h2 class="pl-5"><u>Edit Password</u></h2>
                   </div>
                 </div>
-                <div class = "row">
-                  <div class ="col-5">
-                    <div class = "form-group row">
-                      <label for ="curpsw">Current Passowrd :</label>
-                    </div>
-                    <div class = "form-group row">
-                      <label for ="newpsw">New Passowrd :</label>
-                    </div>
-                    <div class = "form-group row">
-                      <label for ="confirmpsw">Confirm Passowrd :</label>
-                    </div>
+                <div class ="col-1">
+                  <div class = "form-group row">
+                    <a class="symbol pt-4 pl-2" onclick="closeForm()">
+                      <i class="fas fa-times"></i>
+                    </a>
                   </div>
-                  <div class ="col-6">
-                    <div class = "form-group row">
-                      <input type ="text" placeholder = "Enter Current password.." name="curpsw" required autofocus>
-                    </div>
-                    <div class = "form-group row">
-                      <input type ="password" placeholder = "Enter New password.." name="newpsw" required autofocus>
-                    </div>
-                    <div class = "form-group row">
-                      <input type ="password" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
-                    </div>
+                  <div class ="col-1"></div>
+                </div>
+              </div>
+              <div class = "row">
+                <div class ="col-5 pr-5">
+                  <div class = "form-group row justify-content-end">
+                    <label for ="curpsw">Current Password :</label>
+                  </div>
+                  <div class = "form-group row justify-content-end">
+                    <label for ="newpsw">New Password :</label>
+                  </div>
+                  <div class = "form-group row justify-content-end">
+                    <label for ="confirmpsw">Confirm Password :</label>
                   </div>
                 </div>
-                <div class = "form-group row">
-                  <input class="btn-sub" type="submit" value="Confirm">
+                <div class ="col-6">
+                  <div class = "form-group row pb-1">
+                    <input class="pswInput" type="text" name="currentpsw" placeholder = "Enter Current password.." name="curpsw" required autofocus>
+                  </div>
+                  <div class = "form-group row pb-1">
+                    <input class="pswInput" type="password" name="newpsw" placeholder = "Enter New password.." name="newpsw" required autofocus>
+                  </div>
+                  <div class = "form-group row">
+                    <input class="pswInput" type="password" name="confirmpsw" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
+                  </div>
+                </div>
+              </div>
+              <div class = "form-group row">
+                <div class ="col-9">
+                </div>
+                <div class ="col-3 justify-content-center">
+                  <input class="btn-sub" name="pswBtn" type="submit" value="Confirm">
                 </div>
               </div>
             </form>
           </div>
+
         </div>
       </div>
     </section>

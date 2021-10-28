@@ -69,9 +69,22 @@
                 echo $row['product_stock'];
               echo "</td>";
               echo "<td>";
-                echo "<a class='btn btn-secondary' href=\"product-edit.php?id=";
-                  echo $row['product_id'];
-                echo "\">Edit</a>";
+                echo '<div class="dropdown textcenter">';
+                echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                  echo "Actions";
+                echo "</button>";
+                echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
+                    echo "<a class='dropdown-item' href=\"product-edit.php?id=";
+                      echo $row['product_id'];
+                    echo "\">Edit</a>";
+                    echo "<a class='dropdown-item' href=\"delete-product.php?id="; //hyperlink to delete.php page with ‘id’ parameter
+                    echo $row['product_id'];
+                    echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
+                    echo $row['product_name'];
+                    echo " details?')";
+                  echo "\">Delete</a>";
+                echo "</div>";
+              echo "</div>";
               echo"</td>";
             echo"</tr>";
           }

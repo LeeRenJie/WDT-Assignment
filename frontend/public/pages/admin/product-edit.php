@@ -1,13 +1,34 @@
 <?php
- if (isset($_POST['addProductBtn'])) {
-	  include("../../../../backend/conn.php");
-    $product_id = intval ($_GET['product_id']); //get int value of the variable
-    $output = mysqli_query($con, "SELECT * FROM product WHERE product_id = $product_id");
-    while($row = mysqli_fetch_array($output))
-    mysqli_close($con);
+include("../../../../backend/conn.php");
+$id = intval($_GET['id']); //get int value of the variable
+$result = mysqli_query($con, "SELECT * FROM product WHERE product_id = $id");
+$row = mysqli_fetch_assoc($result);
+$file_path = "../../images/";
+$prodImg = $file_path . basename($row["product_image"]);
+if (isset($_POST['editProductBtn'])){
+	$target_file = $file_path . basename($_FILES['productPic']['name']);
+	if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file))
+	{
+		$file_name= basename($_FILES["productPic"]["name"]);
+	}
+
+  $sql = "UPDATE product SET
+  product_pet = '$_POST[pet]',
+  product_name = '$_POST[name]',
+  product_image = '$file_name',
+  product_desc = '$_POST[desc]',
+  product_category = '$_POST[category]',
+  product_price = '$_POST[price]',
+  product_stock = '$_POST[stock]'
+
+  WHERE product_id=$_POST[id];";
+
+  if (mysqli_query($con,$sql)) {
+      mysqli_close($con);
+      header('Location: product.php');
   }
+}
 ?>
-<?php include 'update-edit-product.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,18 +42,18 @@
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <form method="post">
-    <input type = "hidden" name = "product_id" value = "<?php echo $row['product_id'] ?>">
+    <form method="post" ENCTYPE="multipart/form-data">
+    <input type = "hidden" name = "id" value = "<?php echo $row['product_id'] ?>">
     <div class= "container-fluid opcon bimg">
       <div class = "col-15 bwhite">
         <div class = "row justify-content-center">
           <!--profile-->
           <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
             <div class = "imagecontainer" id = "imageContainer">
-              <image class="imge" id="imge" src="<?php echo $row["product_image"]?>" alt="Profile Pic" />
+              <image class="imge" id="img" name="img" src="<?php echo $prodImg?>" alt="Profile Pic" />
             </div>
             <div class = "opcon">
-              <input id="imageUpload" type="file" name="profile_photo" onchange="preimg(event)" required="" capture>
+              <input id="imageUpload" type="file" name="productPic" onchange="preimg(event)" required="required" capture>
             </div>
           </div>
           <!--label-->
@@ -62,22 +83,22 @@
               <input type="text" maxlength="50" class="form-control" name="name" value="<?php echo $row["product_name"]?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="value" class="form-control" id="price" value="<?php echo $row["product_price"]?>" required="required">
+              <input type="number" class="form-control" name="price" id="price" value="<?php echo $row["product_price"]?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="value" class="form-control" id="stock" value="<?php echo $row["product_stock"]?>" required="required">
+              <input type="number" class="form-control" name="stock" id="stock" value="<?php echo $row["product_stock"]?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
                 <option value="">Choose Pet Type</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_pet"]=="Cat"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="Cat">Cat</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_pet"]=="Dog"){
                   echo 'selected="selected"';
@@ -89,28 +110,28 @@
             <div class="col-sm-10 form-group row">
               <select name="category" required="required" class= "form-control form-control-md">
                 <option value="">Choose Category</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="food"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="food">Food</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="toy"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="toy">Toy</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="healthcare"){
                   echo 'selected="selected"';
                 }
                 ?>
                 value="healthcare">Healthcare</option>
-                <option 
+                <option
                 <?php
                 if ($row["product_category"]=="gear"){
                   echo 'selected="selected"';
@@ -120,14 +141,12 @@
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc" 
-              placeholder="Enter Product Description.." required="required">
-              <?php echo $row['product_desc'] ?>
-              </textarea>
+              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc"
+              required="required"><?php echo $row['product_desc'] ?></textarea>
             </div>
             <div class="tleft">
               <!--button-->
-              <input class="btn-sub mr-2" type="submit" value="Confirm">
+              <input class="btn-sub mr-2" type="submit" value="Confirm" name="editProductBtn">
               <!--This is for delete. but the type not sure-->
               <input class="btn-sub" type="submit" value="Delete">
             </div>
@@ -139,6 +158,24 @@
     <?php include '../shared/footer.php';?>
     <!--js to resize-->
     <script src="product-edit.js"></script>
+    <!--js to preview image-->
+    <script>
+    function preimg(event) {
+      document.getElementById('img').src="<?php echo $prodImg?>";
+      var picture = new FileReader();
+      if (picture){
+        picture.onload = function()
+        {
+            var imgpreview = document.getElementById('img');
+            imgpreview.src = picture.result;
+          }
+        picture.readAsDataURL(event.target.files[0]);
+      }
+    }
+    </script>
+    <?php
+      mysqli_close($con);
+    ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>

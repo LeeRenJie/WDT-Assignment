@@ -1,3 +1,21 @@
+<?php
+include("../../../../backend/conn.php");
+$userid = intval($_GET['id']); //get int value of the variable
+$result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
+while($row = mysqli_fetch_assoc($result)){
+$file_path = "../../images/";
+$prodImg = $file_path . basename($row["product_image"]);
+
+if (isset($_POST['editProductBtn'])) 
+  {
+  $target_file = $file_path . basename($_FILES['productPic']['name']);
+  if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) 
+    {
+    $file_name= basename($_FILES["productPic"]["name"]);
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,6 +36,7 @@
         <div class="row justify-content-center ml-2">
           <div class="col-9">
             <form action="">
+            <input type = "hidden" name = "id" value = "<?php echo $row['user_id'] ?>">
               <!--Display only-->
               <fieldset disabled>
                 <div class="form-group row">
@@ -73,14 +92,33 @@
           <!--Profile Picture-->
           <div class="col-3">
             <div id="profile-container">
-              <image id="profileImage" src="http://lorempixel.com/100/100" alt="Profile Pic" />
+              <image id="img" name="img" src="<?php echo $user_image?>" alt="Profile Pic" />
             </div>
-              <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+              <input id="imageUpload" type="file" name="user_profile" onchange="preimg(event)" required="required" capture>
           </div>
         </div>
       </div>
     </div>
     <?php include '../shared/footer.php';?>
+    <!--js to preview image-->
+    <script>
+    function preimg(event) {
+      document.getElementById('img').src="<?php echo $user_image?>";
+      var picture = new FileReader();
+      if (picture){
+        picture.onload = function()
+        {
+            var imgpreview = document.getElementById('img');
+            imgpreview.src = picture.result;
+          }
+        picture.readAsDataURL(event.target.files[0]);
+      }
+    }
+    </script>
+    <?php 
+    }
+    mysqli_close($con);
+    ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
