@@ -30,7 +30,7 @@
       $search_key = $_POST['search_key'];
     }
 
-    $result=mysqli_query($con,"SELECT * FROM product WHERE product_name LIKE '%$search_key%' or product_category LIKE '%$search_key%' or product_pet LIKE '%$search_key%' ORDER BY product_name, product_category, product_pet");
+    $result=mysqli_query($con,"SELECT * FROM product WHERE product_name LIKE '%$search_key%' or product_category LIKE '%$search_key%' or product_pet LIKE '%$search_key%' ORDER BY product_id, product_name, product_category, product_pet");
     ?>
     <div class="container mb-5">
       <table id="product" class="text-center">

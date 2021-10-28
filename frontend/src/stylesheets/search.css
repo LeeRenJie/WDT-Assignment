@@ -156,3 +156,8 @@ input[type=checkbox].switch:disabled:not(:checked):after {
     display: none;
   }
 }
+
+img{
+	max-height: 180px;
+	width: auto;
+}

@@ -59,7 +59,7 @@
                   echo "</a>";
                   echo "<!--Price-->";
                   echo "<p class=\"text-center text-muted mt-n2\">";
-                    echo $row['product_price'];
+                    echo "RM" . $row['product_price'];
                   echo "</p>";
                 echo "</div>";
                 }
