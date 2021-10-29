@@ -1,3 +1,21 @@
+<?php
+if(!isset($_SESSION)) {
+  session_start();
+}
+
+include("../../../../backend/conn.php");
+$user_id = $_SESSION['user_id'];
+$sql =  (
+  "SELECT pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price, ct.product_quantity_added AS product_quantity_added, ct.cart_id AS cart_id
+  FROM shopping_cart AS ct JOIN product AS pd ON ct.product_id = pd.product_id
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '1'
+  ORDER BY ct.cart_id ASC"
+);
+$result = mysqli_query($con, $sql);
+$number_row = mysqli_num_rows($result);
+?>
+
+<!-- user name,  address, product image,product name, unit price, amount, total price -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,8 +45,8 @@
         </div>
       </div>
       <div class="row header_row">
-        <div class="col-4 .col-md-4">
-          <p class="header text_design header_text pl-3">Products Ordered</p>
+        <div class="col-6 .col-md-4">
+          <p class="header text_design header_text text-center pl-3">Products Ordered</p>
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_design header_text text-center">Unit Price</p>
@@ -39,13 +57,10 @@
         <div class="col-2 .col-md-4">
           <p class="text_design header_text text-center">Total Price</p>
         </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_design header_text text-center">Status of delivery</p>
-        </div>
       </div>
       <div class="row first_row">
-        <div class="col-4 .col-md-4">
-          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2"> 
+        <div class="col-6 .col-md-4 justify-content-center">
+          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2">
           <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
         </div>
         <div class="col-2 .col-md-4">
@@ -56,9 +71,6 @@
         </div>
         <div class="col-2 .col-md-4">
           <p class="text_margin text_design text-center">RM150</p>
-        </div>
-        <div class="col-2 .col-md-4 text-center">
-          <p class="text_margin text_design text-center">Completed</p>
         </div>
       </div>
       <div class="row footer_row">

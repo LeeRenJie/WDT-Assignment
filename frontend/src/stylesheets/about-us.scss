@@ -48,6 +48,16 @@
   color: #F5E8C7;
 }
 
+.accordian-item {
+  color:#F5E8C7;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #000;
+  background-color: #e7f1ff;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
 @media only screen and (max-width: 768px) {
   .wave {
     bottom: 75px;
