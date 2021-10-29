@@ -26,7 +26,7 @@ if (isset($_POST['editProductBtn'])){
   if (mysqli_query($con,$sql)) {
     mysqli_close($con);
     echo'<script>alert("Product Details Had Changed Successfully!");</script>';
-    echo("<script>window.location = 'home.php'</script>");
+    echo("<script>window.location = 'product.php'</script>");
   }
   else {
     die('Error: ' . mysqli_error($con));
