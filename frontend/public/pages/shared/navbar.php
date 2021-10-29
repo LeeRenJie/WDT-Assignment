@@ -77,8 +77,10 @@ if(!isset($_SESSION)) {
                       );
                     }
                     else{
-                      echo('
-                        <a class="dropdown-item" href="../customer/profile.php">Profile</a>
+                        echo "<a class='dropdown-item' href=\"profile.php?id=";
+                        echo $_SESSION['user_id'];
+                        echo "\">Profile</a>";
+                        echo('
                         <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
                         <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
                         <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
