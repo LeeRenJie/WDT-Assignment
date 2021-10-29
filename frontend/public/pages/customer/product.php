@@ -49,17 +49,19 @@
             echo "<div class=\"row row-cols-4 justify-content-center ml-2 mt-2\">";
               while($row=mysqli_fetch_array($result)){
                 echo "<div class=\"col\">";
-                  echo "<a href=\"\">";
+                  echo "<a class=\"itemLink\" href=\"item.php?id=";
+                    echo $row['product_id'];
+                    echo "\">";
                     $imgURL = "data:image/jpg;base64,".base64_encode($row['product_image']);
-                    echo "<img src='../../images/{$row['product_image']}' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>";
-                    echo "<p class=\"text_design mx-auto text-center\">";
-                      echo "<!--label tag for UI purpose-->";
-                      echo "<label>".$row['product_name']."</label>";
+                    echo "<img src='../../images/{$row['product_image']}' class='pointer img-thumbnail mx-auto my-2 rounded d-block'>";
+                    echo "<p class=\"textDesign mx-auto text-center\">";
+                      // <label tag for UI purpose
+                      echo "<label class=\"text-capitalize prodName\">".$row['product_name']."</label>";
                     echo "</p>";
                   echo "</a>";
                   echo "<!--Price-->";
                   echo "<p class=\"text-center text-muted mt-n2\">";
-                    echo $row['product_price'];
+                    echo "RM" . $row['product_price'];
                   echo "</p>";
                 echo "</div>";
                 }
