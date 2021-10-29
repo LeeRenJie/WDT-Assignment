@@ -59,9 +59,9 @@
                       echo "<label class=\"text-capitalize prodName\">".$row['product_name']."</label>";
                     echo "</p>";
                   echo "</a>";
-                  //Price
-                  echo "<p class=\"text-center text-muted mt-n2\">RM ";
-                    echo $row['product_price'];
+                  echo "<!--Price-->";
+                  echo "<p class=\"text-center text-muted mt-n2\">";
+                    echo "RM" . $row['product_price'];
                   echo "</p>";
                 echo "</div>";
                 }
