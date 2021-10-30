@@ -3,12 +3,35 @@ if (isset($_POST['addProductBtn'])) {
 include("../../../../backend/conn.php");
 $target_dir = "../../images/";
 $target_file = $target_dir . basename($_FILES['productPic']['name']);
+$category = $_POST['category'];
+switch ($category) {
+  case 'Toys':
+    $category = 1;
+    break;
+  case 'Food':
+    $category = 2;
+    break;
+  case 'Healthcare':
+    $category = 3;
+    break;
+  case 'Gears':
+    $category = 4;
+    break;
+}
+
+$pet = $_POST['pet'];
+$pet == "Cat" ? $pet=1 : $pet=2;
+
 if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) {
   //To get file name
   $file_name= basename($_FILES["productPic"]["name"]);
   //To store the file name & file title into the database
 
-  $sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$file_name','$_POST[desc]','$_POST[name]','$_POST[category]','$_POST[pet]','$_POST[price]','$_POST[stock]')";
+  $sql="INSERT INTO
+  product (product_image, product_desc, product_name, category_id, pet_id, product_price, product_stock)
+  VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]','$_POST[stock]'
+  )";
+
   if (!mysqli_query($con,$sql)){
     die('Error: ' . mysqli_error($con));
     }
@@ -88,10 +111,10 @@ if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) {
               <div class="col-sm-10 form-group row">
                 <select name="category" required="required" name="category" class="form-control form-control-md">
                   <option value="">Choose Category</option>
-                  <option value="food">Food</option>
-                  <option value="toy">Toy</option>
-                  <option value="healthcare">Healthcare</option>
-                  <option value="gear">Gear</option>
+                  <option value="Food">Food</option>
+                  <option value="Toys">Toys</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Gears">Gears</option>
                 </select>
               </div>
               <div class="col-sm-10 form-group row">

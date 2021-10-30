@@ -1,64 +1,71 @@
 .bimg {
-    background-image: linear-gradient(#F5E8C7, #DEBA9D);
-    padding: 20px 0;
-    text-align: center;
+	background-image: linear-gradient(#F5E8C7, #DEBA9D);
+	padding: 20px 0;
+	text-align: center;
 }
 
 .bwhite {
-    background-color: white;
-    border-radius: 20px;
+	background-color: white;
+	border-radius: 20px;
 }
+
 .imagecontainer {
-    max-width: 100%;
-    max-height: 100%;
-    text-align : center;
-    padding-top: 30px;
+	max-width: 100%;
+	max-height: 100%;
+	text-align : center;
+	padding-top: 30px;
 }
 
 .imge {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 5px;
-    border: black solid 1px;
-    object-fit: cover;
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 5px;
+	border: black solid 1px;
+	object-fit: cover;
 }
 
 .opcon {
-    padding: 20px 0;
-    text-align: center;
+	padding: 20px 0;
+	text-align: center;
 }
 
 
 .imageUpload{
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 
 .tleft {
-    text-align: left;
+	text-align: left;
 }
 
 input[type=text] {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 input[type=value] {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .btn-sub {
-    text-align: center;
-    background-size: 200% auto;
-    border-radius: 5px;
-    background-color: #F5E8C7;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
+	text-align: center;
+	background-size: 200% auto;
+	border-radius: 5px;
+	background-color: #F5E8C7;
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	color: #000;
+}
+
+.btn-sub:hover {
+	color: #000;
+	text-decoration: none;
 }
