@@ -22,7 +22,7 @@
     }
 
     mysqli_close($con);
-    }
+  }
 ?>
 
 <!DOCTYPE html>

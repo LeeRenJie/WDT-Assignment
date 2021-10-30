@@ -6,16 +6,34 @@ if(!isset($_SESSION)) {
 include("../../../../backend/conn.php");
 $user_id = $_SESSION['user_id'];
 $sql =  (
-  "SELECT pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price, ct.product_quantity_added AS product_quantity_added, ct.cart_id AS cart_id
-  FROM shopping_cart AS ct JOIN product AS pd ON ct.product_id = pd.product_id
+  "SELECT pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price,
+  ct.product_quantity_added AS amount, ct.cart_id AS cart_id, u.user_name AS cus_name,
+  u.user_address AS cus_address, u.user_phone_number AS cus_phone
+  FROM shopping_cart AS ct
+  JOIN product AS pd ON ct.product_id = pd.product_id
+  JOIN user AS u ON ct.user_id = u.user_id
   WHERE ct.user_id = '$user_id' AND ct.checkout = '1'
   ORDER BY ct.cart_id ASC"
 );
 $result = mysqli_query($con, $sql);
+$user_result = mysqli_query($con, $sql);
 $number_row = mysqli_num_rows($result);
+$user_row = mysqli_fetch_assoc($user_result);
+
+// if (isset($_POST['paymentBtn'])) {
+//   for ($i = 0; $i < $number_row; $i++) {
+//     $cart_id = $row['cart_id'][$i];
+//     $date = date("d-m-Y");
+//     $status_of_delivery = "Preparing your order";
+//     $payment_sql="INSERT INTO customer_order (cart_id, order_date, status_of_delivery) VALUES ('$cart_id', '$date','$status_of_delivery')";
+//   }
+//   if (!$result){
+//     die('Error: ' . mysqli_error($con));
+//   }
+//   mysqli_close($con);
+// }
 ?>
 
-<!-- user name,  address, product image,product name, unit price, amount, total price -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,84 +47,161 @@ $number_row = mysqli_num_rows($result);
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
-      <div class="row header_row pt-2">
-        <div class="col-4 .col-md-4">
-          <p class="text-center pt-3">Name :</p>
-          <br>
-          <p class="text-center ">Delivery Address :</p>
-        </div>
-        <div class="col-4 col-md-4">
-          <p class="text-center font-weight-bold pt-3">Lee Ren Jie 0123456789</p>
-          <br>
-          <p class="text-center font-weight-light">65,Jalan Halo, Bye bye, bla bla bla, 58200</p>
-        </div>
-        <div class="col-4 .col-md-4 text-center mt-2">
-          <button type="button" class="btn btn-outline-dark buttons">Change</button>
-        </div>
-      </div>
-      <div class="row header_row">
-        <div class="col-6 .col-md-4">
-          <p class="header text_design header_text text-center pl-3">Products Ordered</p>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_design header_text text-center">Unit Price</p>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_design header_text text-center">Amount</p>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_design header_text text-center">Total Price</p>
-        </div>
-      </div>
-      <div class="row first_row">
-        <div class="col-6 .col-md-4 justify-content-center">
-          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2">
-          <p class="product_label text_design text_margin"><label for="DogFood200g">Dog Food 200g</label> </p>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_margin text_design text-center">RM50</p>
-        </div>
-        <div class="col-2 .col-md-4 text-center">
-          <p class="text_margin text_design text-center">3</p>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_margin text_design text-center">RM150</p>
-        </div>
-      </div>
-      <div class="row footer_row">
-        <div class="col-6 .col-md-4">
-          <div class="form-group row text_margin text_design">
-            <label for="credit_card_num" class="col-sm-4 col-form-label">Credit Card Number :</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="credit_card_num" value="5468135649758" required>
+      <?php
+        if ($number_row == 0)
+        {
+          echo '<div class="empty text-center pb-5">';
+            echo '<div class="card-body">';
+              echo '<h5 class="card-title">You have no items to pay!</h5>';
+              echo '<p class="card-text">Head over to our shop and add some items to your cart!</p>';
+              echo '<a href="product.php" class="btn btn-lg btn-primary"><i class="fas fa-shopping-bag pr-2"></i>Shop</a>';
+            echo '</div>';
+          echo '</div>';
+        }
+        else
+        {
+        echo'<div class="row header_row align-items-center">';
+
+          echo'<div class="col-1">';
+            echo'<p class="text-center">Name :</p>';
+          echo'</div>';
+
+          echo'<div class="col-2">';
+            echo'<p class="text-start font-weight-bold text-capitalize">';
+              echo $user_row['cus_name'];
+              echo " ({$user_row['cus_phone']})";
+            echo'</p>';
+          echo'</div>';
+
+          echo'<div class="col-2">';
+            echo'<p class="text-center">Delivery Address :</p>';
+          echo'</div>';
+
+          echo'<div class="col-3">';
+            echo'<p class="text-start font-weight-bold">';
+            echo $user_row['cus_address'];
+            echo '</p>';
+          echo'</div>';
+
+          echo'<div class="col-2 text-center">';
+            echo'<button type="button" class="btn btn-outline-dark buttons">Change</button>';
+          echo'</div>';
+
+        echo'</div>';
+
+        echo'<div class="row header_row">';
+          echo'<div class="col-4 .col-md-4">';
+            echo'<p class="header text_design header_text text-center pl-3">Products Ordered</p>';
+          echo'</div>';
+          echo'<div class="col-2 .col-md-4">';
+            echo'<p class="text_design header_text text-center">Unit Price</p>';
+          echo'</div>';
+          echo'<div class="col-2 .col-md-4">';
+            echo'<p class="text_design header_text text-center">Amount</p>';
+          echo'</div>';
+          echo'<div class="col-2 .col-md-4">';
+            echo'<p class="text_design header_text text-center">Total Price</p>';
+          echo'</div>';
+          echo'<div class="col-2 .col-md-4">';
+            echo'<p class="text_design header_text text-center">Actions</p>';
+          echo'</div>';
+        echo'</div>';
+        while($row=mysqli_fetch_array($result)){
+          echo'<div class="row first_row">';
+            echo'<div class="col-4 .col-md-4 justify-content-center">';
+              echo "<img src='../../images/{$row['product_img']}'  alt='...' class='img-thumbnail mr-3 p-2'>";
+              echo'<p class="product_label text_design text_margin"><label for="product_image">';
+                echo $row['product_name'];
+              echo '</label> </p>';
+            echo'</div>';
+
+            echo'<div class="col-2 .col-md-4">';
+              echo'<p class="text_margin text_design text-center">';
+                echo $row['product_price'];
+              echo'</p>';
+            echo'</div>';
+
+            echo'<div class="col-2 .col-md-4 text-center">';
+              echo'<p class="text_margin text_design text-center">';
+                echo $row['amount'];
+              echo'</p>';
+            echo'</div>';
+
+            echo'<div class="col-2 .col-md-4">';
+              echo'<p class="text_margin text_design text-center">';
+                echo $row['product_price'] * $row['amount'];
+              echo'</p>';
+            echo'</div>';
+
+            echo '<div class="col-2 .col-md-4 text-center">';
+            echo "<a class='btn btn-danger buttons' href=\"delete-cart.php?id=";
+              echo $row['cart_id'];
+              echo "\" onClick=\"return confirm('Remove ";
+              echo $row['product_name'];
+              echo " from cart?')";
+              echo "\">Remove";
+            echo "</a>";
+          echo '</div>';
+          echo'</div>';
+        }
+        echo'<div class="row footer_row">';
+          echo'<div class="col-6 .col-md-4 pt-5">';
+            echo'<div class="form-group row text_margin text_design">';
+              echo'<label for="credit_card_num" class="col-sm-4 col-form-label">Credit Card Number :</label>';
+              echo'<div class="col-sm-8">';
+                echo'<input type="text" class="form-control" id="credit_card_num" value="5468135649758" required>';
+              echo'</div>';
+            echo'</div>';
+          echo'</div>';
+          echo'<div class="col-2 .col-md-4"></div>';
+          echo'<div class="col-2 .col-md-4">';
+            echo'<p class="text_margin text_design text-center">Subtotal :</p>';
+          echo'</div>';
+          echo'<div class="col-2 .col-md-4 text-center">';
+            echo'<p class="text_margin text_design text-center">RM150</p>';
+          echo'</div>';
+        echo'</div>';
+
+        echo'<div class="row footer_row">';
+          echo'<div class="col-10 .col-md-4"></div>';
+          echo'<div class="col-2 .col-md-4 text-center">';
+            echo'<form method="post"
+                  onsubmit="setTimeout(function() {
+                    $(\'#loading\').hide();
+                    $(\'#completed\').show();
+                    setTimeout(function(){window.location = \'history.php\';},4000);}
+                  ,3000);return false">';
+              echo'<button type="submit" name="paymentBtn" class="btn btn-success buttons"
+                  data-bs-toggle="modal" data-bs-target="#payment">';
+                echo'Place Order';
+              echo'</button>';
+            echo'</form>';
+          echo'</div>';
+        echo'</div>';
+        }
+      ?>
+      <!-- Bootstrap modal -->
+      <div class="modal fade" id="payment" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="paymentLabel">Payment</h5>
+            </div>
+            <div class="modal-body text-center">
+              <div class="spinner-border my-5 text-success" role="status" id="loading">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div class="" id="completed" style="display:none;">
+                <i class="fas fa-check-circle text-success fa-5x my-3"></i>
+                <p>Payment Completed</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_margin text_design text-center">3</p>
-        </div>
-        <div class="col-2 .col-md-4">
-          <p class="text_margin text_design text-center">Subtotal :</p>
-        </div>
-        <div class="col-2 .col-md-4 text-center">
-          <p class="text_margin text_design text-center">RM150</p>
-        </div>
-      </div>
-      <div class="row footer_row">
-        <div class="col-5 .col-md-4">
-          <p class="text_margin text_design empty_box">test</p>
-        </div>
-        <div class="col-5 .col-md-4">
-          <p class="text_margin text_design empty_box">test</p>
-        </div>
-        <div class="col-2 .col-md-4 text-center">
-          <a type="button" class="btn btn-outline-dark buttons" href="history.php">Comfirm</a>
         </div>
       </div>
     </div>
   <?php include '../shared/footer.php';?>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <script src="checkout.js"></script>
 </body>
 </html>

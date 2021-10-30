@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION)) {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +34,8 @@
         $search_key = $_POST['search_key'];
       }
 
-      $result=mysqli_query($con,"SELECT * FROM user WHERE admin=0 and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_name, user_username");
+      $result=mysqli_query($con,"SELECT * FROM user WHERE privilege='user' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_name, user_username");
+      $owner_result=mysqli_query($con,"SELECT * FROM user WHERE NOT privilege='owner' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_name, user_username");
       ?>
       <div class="container mb-5">
         <table id="customer" class="text-center">
@@ -40,10 +46,11 @@
             <th class="text-center">Email</th>
             <th class="text-center">Address</th>
             <th class="text-center">Phone Number</th>
+            <th class="text-center">Privilege</th>
             <th class="text-center">Actions</th>
           </tr>
           <?php
-            while($row=mysqli_fetch_array($result)){
+            while($row=mysqli_fetch_array($_SESSION['privilege'] == "owner" ? $owner_result : $result)){
               echo "<tr>";
                 echo "<td>";
                   echo "<input id='' type='checkbox'>";
@@ -64,12 +71,17 @@
                   echo $row['user_phone_number'];
                 echo "</td>";
                 echo "<td>";
+                  echo $row['privilege'];
+              echo "</td>";
+                echo "<td>";
                   echo '<div class="dropdown textcenter">';
                     echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
                       echo "Actions";
                     echo "</button>";
                     echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
+                      if ($row['privilege'] == "user"){
                       echo '<a class="dropdown-item" href="../customer/history.php">Order History</a>';
+                      }
                       echo "<a class='dropdown-item' href=\"user-del.php?id="; //hyperlink to delete.php page with ‘id’ parameter
                         echo $row['user_id'];
                         echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record

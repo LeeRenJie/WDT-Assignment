@@ -37,7 +37,7 @@ if(!isset($_SESSION)) {
                   </a>
                 </li>
                 <?php
-                  if(isset($_SESSION['username']) && !$_SESSION['admin']) {
+                  if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
                     echo('
                         <li class="nav-item">
                           <a class="nav-link" href="../customer/cart.php">
@@ -61,15 +61,16 @@ if(!isset($_SESSION)) {
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-user mr-1"></i>'
                     );
-                    if($_SESSION['admin']) {
-                      echo("Admin {$_SESSION['username']}");
-                    }else{
-                      echo($_SESSION['username']);
+                    if($_SESSION['privilege'] == "admin") {
+                      echo "Admin ";
+                    }elseif ($_SESSION['privilege'] == "owner"){
+                      echo "Owner ";
                     }
+                    echo($_SESSION['username']);
                     echo('</a>
                     <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">'
                     );
-                    if($_SESSION['admin']){
+                    if($_SESSION['privilege'] == ("admin" || "owner")){
                       echo('
                       <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
                       <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
