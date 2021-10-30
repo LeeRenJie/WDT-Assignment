@@ -161,3 +161,13 @@ img{
 	max-height: 180px;
 	width: auto;
 }
+
+input[type =number]{
+  width: 80px;
+}
+
+.whiteBg {
+	background-color: white;
+	border-radius: 20px;
+	min-height: 400px;
+}
