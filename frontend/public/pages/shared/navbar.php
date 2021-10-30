@@ -70,7 +70,7 @@ if(!isset($_SESSION)) {
                     echo('</a>
                     <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">'
                     );
-                    if($_SESSION['privilege'] == ("admin" || "owner")){
+                    if($_SESSION['privilege'] != "user"){
                       echo('
                       <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
                       <a class="dropdown-item" href="../admin/product.php">Manage Products</a>

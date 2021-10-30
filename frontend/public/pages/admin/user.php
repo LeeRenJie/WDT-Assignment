@@ -1,7 +1,12 @@
 <?php
 if(!isset($_SESSION)) {
   session_start();
-}
+};
+
+if ($_SESSION['privilege'] == "user") {
+
+  header("Location: ../../../customer/home.php");
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,8 +39,8 @@ if(!isset($_SESSION)) {
         $search_key = $_POST['search_key'];
       }
 
-      $result=mysqli_query($con,"SELECT * FROM user WHERE privilege='user' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_name, user_username");
-      $owner_result=mysqli_query($con,"SELECT * FROM user WHERE NOT privilege='owner' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_name, user_username");
+      $result=mysqli_query($con,"SELECT * FROM user WHERE privilege='user' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
+      $owner_result=mysqli_query($con,"SELECT * FROM user WHERE NOT privilege='owner' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
       ?>
       <div class="container mb-5">
         <table id="customer" class="text-center">
@@ -82,12 +87,14 @@ if(!isset($_SESSION)) {
                       if ($row['privilege'] == "user"){
                       echo '<a class="dropdown-item" href="../customer/history.php">Order History</a>';
                       }
+                      if ($_SESSION['privilege'] == "owner"){
                       echo "<a class='dropdown-item' href=\"user-del.php?id="; //hyperlink to delete.php page with ‘id’ parameter
                         echo $row['user_id'];
                         echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
                         echo $row['user_name'];
                         echo " details?')";
                       echo "\">Delete</a>";
+                      }
                     echo "</div>";
                   echo "</div>";
                 echo"</td>";
