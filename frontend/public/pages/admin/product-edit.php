@@ -1,7 +1,12 @@
 <?php
 include("../../../../backend/conn.php");
 $id = intval($_GET['id']); //get int value of the variable
-$result = mysqli_query($con, "SELECT * FROM product WHERE product_id = $id");
+$result = mysqli_query($con, "
+  SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
+  FROM product AS pd JOIN category AS cat ON pd.category_id = cat.category_id
+  JOIN pet ON pd.pet_id = pet.pet_id
+  WHERE pd.product_id = $id
+");
 $row = mysqli_fetch_assoc($result);
 //get image store in images folder
 $file_path = "../../images/";
@@ -12,17 +17,39 @@ if (isset($_POST['editProductBtn'])){
 	{
 		$file_name= basename($_FILES["productPic"]["name"]);
 	}
+  else{
+    $file_name = basename($row["product_image"]);
+  };
+
+  $category = $_POST['category'];
+  switch ($category) {
+    case 'Toys':
+      $category = 1;
+      break;
+    case 'Food':
+      $category = 2;
+      break;
+    case 'Healthcare':
+      $category = 3;
+      break;
+    case 'Gears':
+      $category = 4;
+      break;
+  };
+
+  $pet = $_POST['pet'];
+  $pet == "Cat" ? $pet=1 : $pet=2;
 
   $sql = "UPDATE product SET
-  product_pet = '$_POST[pet]',
+  pet_id = '$pet',
   product_name = '$_POST[name]',
   product_image = '$file_name',
   product_desc = '$_POST[desc]',
-  product_category = '$_POST[category]',
+  category_id = '$category',
   product_price = '$_POST[price]',
   product_stock = '$_POST[stock]'
+  WHERE product_id = $_POST[id];";
 
-  WHERE product_id=$_POST[id];";
   if (mysqli_query($con,$sql)) {
     mysqli_close($con);
     echo'<script>alert("Product Details Had Changed Successfully!");</script>';
@@ -58,7 +85,7 @@ if (isset($_POST['editProductBtn'])){
               <image class="imge" id="img" name="img" src="<?php echo $prodImg?>" alt="Profile Pic" />
             </div>
             <div class = "opcon">
-              <input id="imageUpload" type="file" name="productPic" onchange="preimg(event)" required="required" capture>
+              <input id="imageUpload" type="file" name="productPic" onchange="preimg(event)" capture>
             </div>
           </div>
           <!--label-->
@@ -100,6 +127,7 @@ if (isset($_POST['editProductBtn'])){
                 <?php
                 if ($row["product_pet"]=="Cat"){
                   echo 'selected="selected"';
+                  $pet = 1;
                 }
                 ?>
                 value="Cat">Cat</option>
@@ -107,6 +135,7 @@ if (isset($_POST['editProductBtn'])){
                 <?php
                 if ($row["product_pet"]=="Dog"){
                   echo 'selected="selected"';
+                  $pet = 2;
                 }
                 ?>
                 value="Dog">Dog</option>
@@ -117,32 +146,36 @@ if (isset($_POST['editProductBtn'])){
                 <option value="">Choose Category</option>
                 <option
                 <?php
-                if ($row["product_category"]=="food"){
+                if ($row["product_category"]=="Food"){
                   echo 'selected="selected"';
+                  $category = 1;
                 }
                 ?>
-                value="food">Food</option>
+                value="Food">Food</option>
                 <option
                 <?php
-                if ($row["product_category"]=="toy"){
+                if ($row["product_category"]=="Toys"){
                   echo 'selected="selected"';
+                  $category = 2;
                 }
                 ?>
-                value="toy">Toy</option>
+                value="Toys">Toys</option>
                 <option
                 <?php
-                if ($row["product_category"]=="healthcare"){
+                if ($row["product_category"]=="Healthcare"){
                   echo 'selected="selected"';
+                  $category = 3;
                 }
                 ?>
-                value="healthcare">Healthcare</option>
+                value="Healthcare">Healthcare</option>
                 <option
                 <?php
-                if ($row["product_category"]=="gear"){
+                if ($row["product_category"]=="Gears"){
                   echo 'selected="selected"';
+                  $category = 4;
                 }
                 ?>
-                value="gear">Gear</option>
+                value="Gears">Gears</option>
               </select>
             </div>
             <div class="col-sm-10 form-group row">
@@ -152,8 +185,14 @@ if (isset($_POST['editProductBtn'])){
             <div class="tleft">
               <!--button-->
               <input class="btn-sub mr-2" type="submit" value="Confirm" name="editProductBtn">
-              <!--back-->
-              <input class="btn-sub" type="submit" value="Delete">
+              <?php
+              echo "<a class='btn-sub' href=\"delete-product.php?id=";
+                  echo $id;
+                  echo "\" onClick=\"return confirm('Delete ";
+                  echo $row['product_name'];
+                  echo " details?')";
+                echo "\">Delete</a>";
+              ?>
             </div>
           </div>
         </div>

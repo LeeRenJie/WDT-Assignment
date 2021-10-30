@@ -6,9 +6,7 @@
   include("../../../../backend/conn.php");
   $product_id = intval($_GET['id']); //get int value of the variable
   $result = mysqli_query($con,
-    "SELECT pd.product_image as product_image, pd.product_name as product_name,
-    pd.product_desc as product_desc, pd.product_price as product_price,
-    pd.product_stock as product_stock, cat.product_category as product_category, pet.product_pet as product_pet
+    "SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
     FROM product AS pd JOIN category AS cat ON pd.category_id = cat.category_id
     JOIN pet ON pd.pet_id = pet.pet_id
     WHERE pd.product_id = $product_id");
