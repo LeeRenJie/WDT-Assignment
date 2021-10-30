@@ -11,7 +11,7 @@
   <body>
     <?php include '../shared/navbar.php';?>
     <div>
-      <div class="text-center py-5 dark-bg-container">
+      <div class="text-center py-5 dark-bg-container" style="height: 400px">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, metus sit amet facilisis porta, sem eros eleifend mauris, volutpat porttitor orci orci in felis.</p>
       </div>
       <div class="row light-bg-container">

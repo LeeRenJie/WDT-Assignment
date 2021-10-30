@@ -31,11 +31,6 @@ if(!isset($_SESSION)) {
                     <i class="fas fa-shopping-bag"></i> Shop
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="../customer/search.php">
-                    <i class="fas fa-search"></i> Search
-                  </a>
-                </li>
                 <?php
                   if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
                     echo('
