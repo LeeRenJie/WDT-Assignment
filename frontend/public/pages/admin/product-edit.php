@@ -23,11 +23,15 @@ if (isset($_POST['editProductBtn'])){
   product_stock = '$_POST[stock]'
 
   WHERE product_id=$_POST[id];";
-
   if (mysqli_query($con,$sql)) {
-      mysqli_close($con);
-      header('Location: product.php');
+    mysqli_close($con);
+    echo'<script>alert("Product Details Had Changed Successfully!");</script>';
+    echo("<script>window.location = 'product.php'</script>");
   }
+  else {
+    die('Error: ' . mysqli_error($con));
+  }
+  mysqli_close($con);
 }
 ?>
 

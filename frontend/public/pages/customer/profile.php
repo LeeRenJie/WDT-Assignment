@@ -61,7 +61,7 @@ if (isset($_POST['saveInfoBtn'])) {
     <form method="post" ENCTYPE="multipart/form-data">
       <!--get user id-->
       <input type = "hidden" name = "id" value ="<?php echo $row['user_id']?>">
-      <div class="cont px-5  modify">
+      <div class="container-fluid cont px-5  modify">
         <div class = "col-15 background-white">
           <div class = "row box-container">
             <h2><strong><?php echo $row["user_name"]?></strong> Profile</h2>
@@ -118,13 +118,11 @@ if (isset($_POST['saveInfoBtn'])) {
               </div>
             </div>
             <!--Profile Picture-->
-            <div class="col-3">
-              <div class = "row justify-content-center">
-                <div class="profile-container">
-                  <image class="imge" id="img" name="img" src=<?php echo ($row['user_image'])?> alt="Profile Pic" />
-                </div>
-                  <input id="imageUpload" type="file" name="profilePic" onchange="preimg(event)" capture>
+            <div class="col-3 justify-content-center pl-5">
+              <div class="profile-container">
+                <image class="imge" id="img" name="img" src=<?php echo ($row['user_image'])?> alt="Profile Pic" />
               </div>
+                <input id="imageUpload" type="file" name="profilePic" onchange="preimg(event)" capture>
             </div>
           </div> <!--row-->
         </div> <!--col-15-->

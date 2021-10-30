@@ -5,7 +5,8 @@ if (isset($_POST['signupBtn'])) {
   $imageFileType = strtolower(pathinfo($defaultPic,PATHINFO_EXTENSION));
 	$defaultImg = base64_encode(file_get_contents($defaultPic));
   $image = 'data:image/'.$imageFileType.';base64,'.$defaultImg;
-	$sql="INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number) VALUES ('$_POST[password]',LOWER('$_POST[username]'),'$_POST[name]','$image',LOWER('$_POST[email]'),'$_POST[address]','$_POST[phoneNumber]')";
+  $privilege = 'user';
+	$sql="INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$_POST[password]',LOWER('$_POST[username]'),'$_POST[name]','$image',LOWER('$_POST[email]'),'$_POST[address]','$_POST[phoneNumber]', '$privilege')";
   if (!mysqli_query($con,$sql)){
     die('Error: ' . mysqli_error($con));
     }
