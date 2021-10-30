@@ -27,7 +27,6 @@
 
         <div class="col-3 info-links">
           <ul class="nav flex-column margin-top">
-            <li class="nav-item mb-2"><a href="../customer/about-us.php" class="nav-link p-0 text-muted">About Us</a></li>
             <li class="nav-item mb-2"><a href="../customer/T&C.php" class="nav-link p-0 text-muted">Terms and condition</a></li>
           </ul>
         </div>

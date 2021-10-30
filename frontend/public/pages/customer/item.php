@@ -2,7 +2,7 @@
   if(!isset($_SESSION)) {
   session_start();
   }
-
+  include("../../../../backend/session.php");
   include("../../../../backend/conn.php");
   $product_id = intval($_SERVER['QUERY_STRING']); //get int value of the variable
   $result = mysqli_query($con,
