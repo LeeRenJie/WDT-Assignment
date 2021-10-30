@@ -1,27 +1,22 @@
 <?php
- if (isset($_POST['addProductBtn'])) {
-	include("../../../../backend/conn.php");
+if (isset($_POST['addProductBtn'])) {
+include("../../../../backend/conn.php");
+$target_dir = "../../images/";
+$target_file = $target_dir . basename($_FILES['productPic']['name']);
+if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) {
+  //To get file name
+  $file_name= basename($_FILES["productPic"]["name"]);
+  //To store the file name & file title into the database
 
-  $target_dir = "../../images/";
-  $target_file = $target_dir . basename($_FILES['productPic']['name']);
-
-  if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file))
-  {
-    //To get file name
-    $file_name= basename($_FILES["productPic"]["name"]);
-    //To store the file name & file title into the database
-
-    $sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$file_name','$_POST[desc]','$_POST[name]','$_POST[category]','$_POST[pet]','$_POST[price]','$_POST[stock]')";
-
-    if (!mysqli_query($con,$sql)){
-      die('Error: ' . mysqli_error($con));
-      }
-      else {
-        echo("<script>alert('Product Successfully Added!')</script>");
-        echo("<script>window.location = 'product.php'</script>");
-      }
-      mysqli_close($con);
-
+  $sql="INSERT INTO product (product_image, product_desc, product_name, product_category, product_pet, product_price, product_stock) VALUES ('$file_name','$_POST[desc]','$_POST[name]','$_POST[category]','$_POST[pet]','$_POST[price]','$_POST[stock]')";
+  if (!mysqli_query($con,$sql)){
+    die('Error: ' . mysqli_error($con));
+    }
+    else {
+      echo("<script>alert('Product Successfully Added!')</script>");
+      echo("<script>window.location = 'product.php'</script>");
+    }
+    mysqli_close($con);
   }
 }
 ?>

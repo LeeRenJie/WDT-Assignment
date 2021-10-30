@@ -48,6 +48,10 @@
   color: #F5E8C7;
 }
 
+.accordian-item {
+  color:#F5E8C7;
+}
+
 @media only screen and (max-width: 768px) {
   .wave {
     bottom: 75px;

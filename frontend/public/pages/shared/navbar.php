@@ -10,6 +10,7 @@ if(!isset($_SESSION)) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../src/stylesheets/nav.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
   <!-- Nav Bar -->
   <body>
@@ -36,7 +37,7 @@ if(!isset($_SESSION)) {
                   </a>
                 </li>
                 <?php
-                  if(isset($_SESSION['username']) && !$_SESSION['admin']) {
+                  if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
                     echo('
                         <li class="nav-item">
                           <a class="nav-link" href="../customer/cart.php">
@@ -60,26 +61,29 @@ if(!isset($_SESSION)) {
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-user mr-1"></i>'
                     );
-                    if($_SESSION['admin']) {
-                      echo("Admin {$_SESSION['username']}");
-                    }else{
-                      echo($_SESSION['username']);
+                    if($_SESSION['privilege'] == "admin") {
+                      echo "Admin ";
+                    }elseif ($_SESSION['privilege'] == "owner"){
+                      echo "Owner ";
                     }
+                    echo($_SESSION['username']);
                     echo('</a>
                     <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">'
                     );
-                    if($_SESSION['admin']){
+                    if($_SESSION['privilege'] != "user"){
                       echo('
                       <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
                       <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
-                      <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
+                      <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
                       <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
                       );
                     }
                     else{
-                      echo('
-                        <a class="dropdown-item" href="../customer/profile.php">Profile</a>
-                        <a class="dropdown-item" href="#" onclick="togglepopup()">Edit Password</a>
+                        echo "<a class='dropdown-item' href=\"profile.php?id=";
+                        echo $_SESSION['user_id'];
+                        echo "\">Profile</a>";
+                        echo('
+                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
                         <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
                         <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
                       );
@@ -91,69 +95,33 @@ if(!isset($_SESSION)) {
               </ul>
             </div>
           </nav>
-
-          <div class = "full-screen hidden" id="popform">
-            <form action="#" class="form-container">
-              <div class = "row">
-                <div class ="col-10">
-                  <div class = "form-group row justify-content-center py-4">
-                    <h2 class="pl-5"><u>Edit Password</u></h2>
-                  </div>
+          <!-- // Password edit window -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <p class="modal-title" id="staticBackdropLabel">Edit Password</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class ="col-1">
-                  <div class = "form-group row">
-                    <a class="symbol pt-4 pl-2" onclick="closeForm()">
-                      <i class="fas fa-times"></i>
-                    </a>
-                  </div>
-                  <div class ="col-1"></div>
+                <div class="modal-body">
+                  <form method="post">
+                    <input type="password" class="form-control mb-2" name="currentpsw" placeholder="Current Password">
+                    <input type="password" class="form-control mb-2" name="newpsw" placeholder="New Password">
+                    <input type="password" class="form-control mb-2" name="confirmpsw" placeholder="Confirm New Password">
+                  </form>
                 </div>
-              </div>
-              <div class = "row">
-                <div class ="col-5 pr-5">
-                  <div class = "form-group row justify-content-end">
-                    <label for ="curpsw">Current Password :</label>
-                  </div>
-                  <div class = "form-group row justify-content-end">
-                    <label for ="newpsw">New Password :</label>
-                  </div>
-                  <div class = "form-group row justify-content-end">
-                    <label for ="confirmpsw">Confirm Password :</label>
-                  </div>
-                </div>
-                <div class ="col-6">
-                  <div class = "form-group row pb-1">
-                    <input class="pswInput" type="text" name="currentpsw" placeholder = "Enter Current password.." name="curpsw" required autofocus>
-                  </div>
-                  <div class = "form-group row pb-1">
-                    <input class="pswInput" type="password" name="newpsw" placeholder = "Enter New password.." name="newpsw" required autofocus>
-                  </div>
-                  <div class = "form-group row">
-                    <input class="pswInput" type="password" name="confirmpsw" placeholder = "Enter your new password again.." name="confirmpsw" required autofocus>
-                  </div>
+                <div class="modal-footer">
+                  <input type="submit" name="pswBtn" class="btn btn-primary" value="Confirm"></input>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
-              <div class = "form-group row">
-                <div class ="col-9">
-                </div>
-                <div class ="col-3 justify-content-center">
-                  <input class="btn-sub" name="pswBtn" type="submit" value="Confirm">
-                </div>
-              </div>
-            </form>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
-    <script>
-    function togglepopup() {
-      document.getElementById("popform").style.display = "block";
-    }
-    function closeForm() {
-      document.getElementById("popform").style.display = "none";
-    }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   </body>

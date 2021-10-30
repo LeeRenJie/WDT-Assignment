@@ -3,6 +3,7 @@ include("../../../../backend/conn.php");
 $id = intval($_GET['id']); //get int value of the variable
 $result = mysqli_query($con, "SELECT * FROM product WHERE product_id = $id");
 $row = mysqli_fetch_assoc($result);
+//get image store in images folder
 $file_path = "../../images/";
 $prodImg = $file_path . basename($row["product_image"]);
 if (isset($_POST['editProductBtn'])){
@@ -22,11 +23,15 @@ if (isset($_POST['editProductBtn'])){
   product_stock = '$_POST[stock]'
 
   WHERE product_id=$_POST[id];";
-
   if (mysqli_query($con,$sql)) {
-      mysqli_close($con);
-      header('Location: product.php');
+    mysqli_close($con);
+    echo'<script>alert("Product Details Had Changed Successfully!");</script>';
+    echo("<script>window.location = 'product.php'</script>");
   }
+  else {
+    die('Error: ' . mysqli_error($con));
+  }
+  mysqli_close($con);
 }
 ?>
 
@@ -44,12 +49,12 @@ if (isset($_POST['editProductBtn'])){
     <?php include '../shared/navbar.php';?>
     <form method="post" ENCTYPE="multipart/form-data">
     <input type = "hidden" name = "id" value = "<?php echo $row['product_id'] ?>">
-    <div class= "container-fluid opcon bimg">
+    <div class= "container-fluid bimg">
       <div class = "col-15 bwhite">
         <div class = "row justify-content-center">
           <!--profile-->
           <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
-            <div class = "imagecontainer" id = "imageContainer">
+            <div class = "imagecontainer">
               <image class="imge" id="img" name="img" src="<?php echo $prodImg?>" alt="Profile Pic" />
             </div>
             <div class = "opcon">
@@ -80,13 +85,13 @@ if (isset($_POST['editProductBtn'])){
           <!--input-->
           <div class = "col-7 tcon opcon"> <!--tcon for js-->
             <div class="col-sm-10 form-group row">
-              <input type="text" maxlength="50" class="form-control" name="name" value="<?php echo $row["product_name"]?>" required="required">
+              <input type="text" maxlength="50" class="form-control" name="name" value="<?php echo $row['product_name']?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="number" class="form-control" name="price" id="price" value="<?php echo $row["product_price"]?>" required="required">
+              <input type="number" class="form-control" name="price" id="price" value="<?php echo $row['product_price']?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
-              <input type="number" class="form-control" name="stock" id="stock" value="<?php echo $row["product_stock"]?>" required="required">
+              <input type="number" class="form-control" name="stock" id="stock" value="<?php echo $row['product_stock']?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
@@ -141,13 +146,13 @@ if (isset($_POST['editProductBtn'])){
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <textarea type="textarea" rows="3" column="3" maxlength="60" class="form-control" name="desc"
+              <textarea type="textarea" rows="3" column="3" maxlength="200" class="form-control" name="desc"
               required="required"><?php echo $row['product_desc'] ?></textarea>
             </div>
             <div class="tleft">
               <!--button-->
               <input class="btn-sub mr-2" type="submit" value="Confirm" name="editProductBtn">
-              <!--This is for delete. but the type not sure-->
+              <!--back-->
               <input class="btn-sub" type="submit" value="Delete">
             </div>
           </div>

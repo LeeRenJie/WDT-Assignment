@@ -5,31 +5,36 @@ if(!isset($_SESSION)) {
 
 include("../../../../backend/conn.php");
 $user_id = $_SESSION['user_id'];
+
 $sql =  (
   "SELECT pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price, ct.product_quantity_added AS product_quantity_added, ct.cart_id AS cart_id
   FROM shopping_cart AS ct JOIN product AS pd ON ct.product_id = pd.product_id
   WHERE ct.user_id = '$user_id' AND ct.checkout = '0'
   ORDER BY ct.cart_id ASC"
 );
-
 $result = mysqli_query($con, $sql);
 $number_row = mysqli_num_rows($result);
 
-if(!empty($_POST['check_list'])) {
-  foreach($_POST['check_list'] as $check) {
-    if (isset($_POST['checkout'])) {
-      $update_sql="UPDATE shopping_cart SET checkout='1' WHERE cart_id = '$check'";
+if (isset($_POST['checkout'])) {
+  if(!empty($_POST['check_list']))
+  {
+    foreach($_POST['check_list'] as $check) {
+      $update_sql="UPDATE shopping_cart SET checkout='1' WHERE cart_id='$check'";
 
-      if (!mysqli_query($con,$update_sql)){
+      if (!mysqli_query($con, $update_sql)){
         die('Error: ' . mysqli_error($con));
       }
       else {
         echo("<script>alert('Item Successfully Checked Out')</script>");
         echo("<script>window.location = 'checkout.php'</script>");
       }
-
       mysqli_close($con);
     }
+  }
+  else
+  {
+    echo("<script>alert('Please select at least one item')</script>");
+    echo("<script>window.location = 'cart.php'</script>");
   }
 }
 ?>
@@ -47,50 +52,67 @@ if(!empty($_POST['check_list'])) {
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
-      <form method="post">
-        <?php
-          if ($number_row == 0)
-          {
-            echo '<div class="empty text-center">';
-              echo '<div class="card-body">';
-                echo '<h5 class="card-title">Your cart is empty!</h5>';
-                echo '<p class="card-text">Head over to our shop and add some items to your cart!</p>';
-                echo '<a href="product.php" class="btn btn-lg btn-primary"><i class="fas fa-shopping-bag pr-2"></i>Shop</a>';
-              echo '</div>';
+      <div class="row py-3 text-center">
+        <div class="col-10 .col-md-4"></div>
+        <div class="col-2 .col-md-4">
+          <a href="checkout.php" class="btn btn-primary position-relative">
+            <i class="fas fa-wallet pr-1"></i>
+            To Pay
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              <?php
+                $checkout = ("SELECT * FROM shopping_cart WHERE checkout = '1' AND user_id = '$user_id'");
+                $checkout_result = mysqli_query($con, $checkout);
+                $number_row_checkout = mysqli_num_rows($checkout_result);
+                echo $number_row_checkout
+              ?>
+              <span class="visually-hidden">checked out items</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <?php
+        if ($number_row == 0)
+        {
+          echo '<div class="empty text-center pb-5">';
+            echo '<div class="card-body">';
+              echo '<h5 class="card-title">Your cart is empty!</h5>';
+              echo '<p class="card-text">Head over to our shop and add some items to your cart!</p>';
+              echo '<a href="product.php" class="btn btn-lg btn-primary"><i class="fas fa-shopping-bag pr-2"></i>Shop</a>';
             echo '</div>';
-          }
-          else
-          {
-            echo '<div class="row header_row pt-2">';
+          echo '</div>';
+        }
+        else
+        {
+          echo '<div class="row header_row pt-2">';
 
-              echo '<div class="col-4 .col-md-4">';
-                echo "<input type='checkbox' id='checkall'>";
-                echo '<p class="header text_design header_text product_label">Product</p>';
-              echo '</div>';
-
-              echo '<div class="col-2 .col-md-4">';
-                echo '<p class="text_design header_text text-center">Unit Price</p>';
-              echo '</div>';
-
-              echo '<div class="col-2 .col-md-4">';
-                echo '<p class="text_design header_text text-center">Amount</p>';
-              echo '</div>';
-
-              echo '<div class="col-2 .col-md-4">';
-                echo '<p class="text_design header_text text-center">Item Subtotal</p>';
-              echo '</div>';
-
-              echo '<div class="col-2 .col-md-4">';
-                echo '<p class="text_design header_text text-center">Actions</p>';
-              echo '</div>';
-
+            echo '<div class="col-4 .col-md-4">';
+              echo "<input type='checkbox' id='checkall'>";
+              echo '<p class="header text_design header_text product_label">Product</p>';
             echo '</div>';
 
+            echo '<div class="col-2 .col-md-4">';
+              echo '<p class="text_design header_text text-center">Unit Price</p>';
+            echo '</div>';
+
+            echo '<div class="col-2 .col-md-4">';
+              echo '<p class="text_design header_text text-center">Amount</p>';
+            echo '</div>';
+
+            echo '<div class="col-2 .col-md-4">';
+              echo '<p class="text_design header_text text-center">Item Subtotal</p>';
+            echo '</div>';
+
+            echo '<div class="col-2 .col-md-4">';
+              echo '<p class="text_design header_text text-center">Actions</p>';
+            echo '</div>';
+
+          echo '</div>';
+          echo '<form method="post">';
             while($row=mysqli_fetch_array($result)){
               echo '<div class="row first_row">';
 
                 echo '<div class="col-4 .col-md-4">';
-                  echo"<input type='checkbox' class='checkbox' name='check_list[]' id='{$row['cart_id']}'>";
+                  echo"<input type='checkbox' class='checkbox' name='check_list[]' value='{$row['cart_id']}'>";
                   echo "<img src='../../images/{$row['product_img']}' class='img-thumbnail mr-3 ml-2 my-2'>";
                   echo '<div class="mt-5 pt-3 label_text">';
                     echo '<p class="product_label text_design"><label for="product_image">';
@@ -128,20 +150,20 @@ if(!empty($_POST['check_list'])) {
                 echo '</div>';
               echo '</div>';
             }
-              echo '<div class="row footer_row">';
-                echo '<div class="col-8"></div>';
-                echo '<div class="col-2 .col-md-4">';
-                  echo '<p class="text_margin text_design text-center">';
-                    // TOTAL HERE
-                  echo'</p>';
-                echo '</div>';
-                echo '<div class="col-2 .col-md-4 text-center">';
-                  echo '<a type="submit" name="checkout" class="btn btn-success buttons"> Checkout </a>';
-                echo '</div>';
+            echo '<div class="row footer_row">';
+              echo '<div class="col-8"></div>';
+              echo '<div class="col-2 .col-md-4">';
+                echo '<p class="text_margin text_design text-center">';
+                  // TOTAL HERE
+                echo'</p>';
               echo '</div>';
-          }
-        ?>
-      </form>
+              echo '<div class="col-2 .col-md-4 text-center">';
+                echo '<button type="submit" name="checkout" class="btn btn-success buttons"> Checkout </button>';
+              echo '</div>';
+            echo '</div>';
+          echo '</form>';
+        }
+      ?>
     </div>
   <?php include '../shared/footer.php';?>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

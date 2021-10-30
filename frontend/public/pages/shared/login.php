@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 	while($row=mysqli_fetch_array($result)){
 		$id = $row['user_id'];
-    $admin = boolval($row['admin']) ? true : false;
+    $privilege = $row['privilege'];
     $name = $row['user_name'];
     $email = $row['user_email'];
     $address = $row['user_address'];
@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 	if($rownum==1)  {
 		$_SESSION['username']=$username;
 		$_SESSION['user_id']=$id;
-    $_SESSION['admin']=$admin;
+    $_SESSION['privilege']=$privilege;
     $_SESSION['name']=$name;
     $_SESSION['email']=$email;
     $_SESSION['address']=$address;

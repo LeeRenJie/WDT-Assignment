@@ -1,5 +1,7 @@
 .bimg {
     background-image: linear-gradient(#F5E8C7, #DEBA9D);
+    padding: 20px 0;
+    text-align: center;
 }
 
 .bwhite {

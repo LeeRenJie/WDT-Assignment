@@ -5,7 +5,13 @@
 
   include("../../../../backend/conn.php");
   $product_id = intval($_GET['id']); //get int value of the variable
-  $result = mysqli_query($con, "SELECT * FROM product WHERE product_id = $product_id");
+  $result = mysqli_query($con,
+    "SELECT pd.product_image as product_image, pd.product_name as product_name,
+    pd.product_desc as product_desc, pd.product_price as product_price,
+    pd.product_stock as product_stock, cat.product_category as product_category, pet.product_pet as product_pet
+    FROM product AS pd JOIN category AS cat ON pd.category_id = cat.category_id
+    JOIN pet ON pd.pet_id = pet.pet_id
+    WHERE pd.product_id = $product_id");
   $row = mysqli_fetch_assoc($result);
 
   $user_id = $_SESSION['user_id'];
@@ -22,7 +28,7 @@
     }
 
     mysqli_close($con);
-    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -52,17 +58,17 @@
             <span class="badge badgeColor text-white"><?php echo $row['product_pet'];?></span>
             <h1 class="price pt-2">RM <?php echo $row['product_price'];?></h1>
             <p class="lead py-4 desc"><?php echo $row['product_desc'];?></p>
-            <form method="post" action="">
+            <form method="post">
               <div>
-                <span class="quantityTitle text-muted pb-2">Quantity:</span>
-                <div class="quantity buttons_added row px-3">
+                <span class="quantityTitle text-muted row pl-3 pb-2">Quantity:</span>
+                <div class="quantity buttons_added">
                   <input type="button" value="-" class="minus">
                   <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="1">
                   <input type="button" value="+" class="plus">
                 </div>
               </div>
-              <div class="row my-2 px-3">
-                <span class="py-2 text-muted ship"><i class="fas fa-truck pr-2"></i>Free Malaysia shipping and a risk-free quality gurantee</span>
+              <div class="my-4">
+                <div class="text-muted ship py-2"><i class="fas fa-truck pr-2"></i>Free Malaysia shipping and a risk-free quality gurantee</div>
                 <button type="submit" name="addCartBtn" class="btn-lg btn-block btn btn-success">
                   <i class="fas fa-shopping-cart pr-2"></i>
                   Add to Cart
