@@ -16,7 +16,7 @@
       <form action="" method="post">
       <div class="row">
         <div class="col-2">
-          <button class="btn btn-outline-dark mt-4 mb-4 ml-4 float-right" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
+          <button class="btn btn-outline-dark mt-4 mb-4 ml-4 float-right btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><h5>Filter</h5></button>
         </div>
         <div class="col-10">
           <p class="d-none">Empty</p>
@@ -205,10 +205,6 @@
                                 <?php
                               }
                             }
-                            else
-                            {
-                              echo"No Products";
-                            }
                           }
                         }
                       }
@@ -241,10 +237,6 @@
                                   </div>
                                 <?php
                               endforeach;
-                            }
-                            else
-                            {
-                              echo"No Products";
                             }
                           }
                         }
@@ -291,10 +283,6 @@
                                 <?php
                               }
                             }
-                            else
-                            {
-                              echo"No Products";
-                            }
                           }
                         }  
                       }
@@ -327,10 +315,6 @@
                                   </div>
                                 <?php
                               endforeach;
-                            }
-                            else
-                            {
-                              echo"No Products";
                             }
                           }
                         }
@@ -366,10 +350,6 @@
                               <?php
                             endforeach;
                           }
-                          else
-                          {
-                            echo"No Products";
-                          }
                         }
                       }
                     }
@@ -403,10 +383,6 @@
                             </div>
                           <?php
                         endforeach;
-                      }
-                      else
-                      {
-                        echo"No Products";
                       }
                     }
                   }
@@ -458,10 +434,6 @@
                             <?php
                           }
                         }
-                        else
-                        {
-                          echo"No Products";
-                        }
                       }  
                     }
                     # If user checked category checkboxes + least_expensive checkbox (no check cat,dog, price range checkbox)
@@ -494,10 +466,6 @@
                               </div>
                             <?php
                           }
-                        }
-                        else
-                        {
-                          echo"No Products";
                         }
                       }
                     }
@@ -542,10 +510,6 @@
                               <?php
                             }
                           }
-                          else
-                          {
-                            echo"No Products";
-                          }
                         }  
                     }
 
@@ -579,10 +543,6 @@
                               </div>
                             <?php
                           }
-                        }
-                        else
-                        {
-                          echo"No Products";
                         }
                       }
                     }
@@ -621,10 +581,6 @@
                           <?php
                         }
                       }
-                      else
-                      {
-                        echo"No Products";
-                      }
                     }
                     
                   }
@@ -658,10 +614,6 @@
                             </div>
                           <?php
                         endforeach;
-                      }
-                      else
-                      {
-                        echo"No Products";
                       }
                     }
                   }
@@ -702,10 +654,6 @@
                         <?php
                       }
                     }
-                    else
-                    {
-                      echo"No Products";
-                    }
                   }
 
 
@@ -734,10 +682,6 @@
                           </div>
                         <?php
                       endforeach;
-                    }
-                    else
-                    {
-                      echo"No Products";
                     }
                   }
                 }  
@@ -777,10 +721,6 @@
                         <?php
                       }
                     }
-                    else
-                    {
-                      echo"No Products";
-                    }
                   }
 
                   # If user only check most expensive checkboxes 
@@ -807,10 +747,6 @@
                           </div>
                         <?php
                       endforeach;
-                    }
-                    else
-                    {
-                      echo"No Products";
                     }
                   }
                 }
@@ -848,10 +784,6 @@
                         <?php
                       }
                     }
-                    else
-                    {
-                      echo"No Products";
-                    }
                   }
                 }
               }
@@ -884,10 +816,6 @@
                       </div>
                     <?php
                   endforeach;
-                }
-                else
-                {
-                  echo"No Products";
                 }
               }
             ?>
