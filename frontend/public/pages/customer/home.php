@@ -32,13 +32,13 @@
         <h2 class="py-5"><u>Categories</u></h2>
         <div class="row">
           <div class="col mb-5 img-container">
-            <a href="#">
+            <a href="home-product.php?2">
               <img src="../../images/food.jpg" class="img" alt="Food Picture">
               <div class="caption">Food</div>
             </a>
           </div>
           <div class="col mb-5 img-container">
-            <a href="#">
+            <a href="home-product.php?1">
               <img src="../../images/toys.jpg" class="img" alt="Toys Picture">
               <div class="caption">Toys</div>
             </a>
@@ -46,13 +46,13 @@
         </div>
         <div class="row">
           <div class="col mb-5 img-container">
-            <a href="#">
+            <a href="home-product.php?3">
               <img src="../../images/healthcare.jpg" class="img" alt="">
               <div class="caption">Healthcare</div>
             </a>
           </div>
           <div class="col mb-5 img-container">
-            <a href="#">
+            <a href="home-product.php?4">
               <img src="../../images/gear.jpg" class="img" alt="">
               <div class="caption">Gear</div>
             </a>
