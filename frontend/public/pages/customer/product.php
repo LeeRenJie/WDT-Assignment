@@ -190,7 +190,7 @@
                               {
                                 ?>
                                   <div class="col">
-                                    <a href="">
+                                    <a href="item.php?<?=$prod_items['product_id']?>">
                                       <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                       <p class="text_design mx-auto text-center">
                                       <!--label tag for UI purpose-->
@@ -227,7 +227,7 @@
                               foreach($products_run as $prod_items) :
                                 ?>
                                   <div class="col">
-                                    <a href="">
+                                    <a href="item.php?<?=$prod_items['product_id']?>">
                                       <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                       <p class="text_design mx-auto text-center">
                                       <!--label tag for UI purpose-->
@@ -276,7 +276,7 @@
                               {
                                 ?>
                                   <div class="col">
-                                    <a href="">
+                                    <a href="item.php?<?=$prod_items['product_id']?>">
                                       <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                       <p class="text_design mx-auto text-center">
                                       <!--label tag for UI purpose-->
@@ -351,7 +351,7 @@
                             foreach($categories_run as $prod_items) :
                               ?>
                                 <div class="col">
-                                  <a href="">
+                                  <a href="item.php?<?=$prod_items['product_id']?>">
                                     <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                     <p class="text_design mx-auto text-center">
                                     <!--label tag for UI purpose-->
@@ -389,7 +389,7 @@
                         foreach($products_run as $prod_items) :
                           ?>
                             <div class="col">
-                              <a href="">
+                              <a href="item.php?<?=$prod_items['product_id']?>">
                                 <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                 <p class="text_design mx-auto text-center">
                                 <!--label tag for UI purpose-->
@@ -443,7 +443,7 @@
                           {
                             ?>
                               <div class="col">
-                                <a href="">
+                                <a href="item.php?<?=$prod_items['product_id']?>">
                                   <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                   <p class="text_design mx-auto text-center">
                                   <!--label tag for UI purpose-->
@@ -480,7 +480,7 @@
                           {
                             ?>
                               <div class="col">
-                                <a href="">
+                                <a href="item.php?<?=$prod_items['product_id']?>">
                                   <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                   <p class="text_design mx-auto text-center">
                                   <!--label tag for UI purpose-->
@@ -527,7 +527,7 @@
                             {
                               ?>
                                 <div class="col">
-                                  <a href="">
+                                  <a href="item.php?<?=$prod_items['product_id']?>">
                                     <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                     <p class="text_design mx-auto text-center">
                                     <!--label tag for UI purpose-->
@@ -565,7 +565,7 @@
                           {
                             ?>
                               <div class="col">
-                                <a href="">
+                                <a href="item.php?<?=$prod_items['product_id']?>">
                                   <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                   <p class="text_design mx-auto text-center">
                                   <!--label tag for UI purpose-->
@@ -606,7 +606,7 @@
                         {
                           ?>
                             <div class="col">
-                              <a href="">
+                              <a href="item.php?<?=$prod_items['product_id']?>">
                                 <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                 <p class="text_design mx-auto text-center">
                                 <!--label tag for UI purpose-->
@@ -644,7 +644,7 @@
                         foreach($categories_run as $prod_items) :
                           ?>
                             <div class="col">
-                              <a href="">
+                              <a href="item.php?<?=$prod_items['product_id']?>">
                                 <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                                 <p class="text_design mx-auto text-center">
                                 <!--label tag for UI purpose-->
@@ -687,7 +687,7 @@
                       {
                         ?>
                           <div class="col">
-                            <a href="">
+                            <a href="item.php?<?=$prod_items['product_id']?>">
                               <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                               <p class="text_design mx-auto text-center">
                               <!--label tag for UI purpose-->
@@ -722,7 +722,7 @@
                       foreach($products_run as $prod_items) :
                         ?>
                           <div class="col">
-                            <a href="">
+                            <a href="item.php?<?=$prod_items['product_id']?>">
                               <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                               <p class="text_design mx-auto text-center">
                                 <label><?= $prod_items['product_name'] ?></label>
@@ -762,7 +762,7 @@
                       {
                         ?>
                           <div class="col">
-                            <a href="">
+                            <a href="item.php?<?=$prod_items['product_id']?>">
                               <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                               <p class="text_design mx-auto text-center">
                               <!--label tag for UI purpose-->
@@ -793,7 +793,7 @@
                       foreach($products_run as $prod_items) :
                         ?>
                           <div class="col">
-                            <a href="">
+                            <a href="item.php?<?=$prod_items['product_id']?>">
                               <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                               <p class="text_design mx-auto text-center">
                               <!--label tag for UI purpose-->
@@ -835,7 +835,7 @@
                       {
                         ?>
                           <div class="col">
-                            <a href="">
+                            <a href="item.php?<?=$prod_items['product_id']?>">
                               <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                               <p class="text_design mx-auto text-center">
                                 <label><?= $prod_items['product_name'] ?></label>
@@ -870,7 +870,7 @@
                   foreach($products_run as $prod_items) :
                     ?>
                       <div class="col">
-                        <a href="">
+                        <a href="item.php?<?=$prod_items['product_id']?>">
                           <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                           <p class="text_design mx-auto text-center">
                           <!--label tag for UI purpose-->
