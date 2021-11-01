@@ -91,11 +91,11 @@ if(!isset($_SESSION)) {
             </div>
           </nav>
           <!-- // Password edit window -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pswWindow" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <p class="modal-title" id="staticBackdropLabel">Edit Password</p>
+                  <p class="modal-title" id="pswWindow">Edit Password</p>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
