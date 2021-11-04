@@ -2,7 +2,35 @@
 if(!isset($_SESSION)) {
   session_start();
 }
+include("../../../../backend/conn.php");
+if (isset($_POST['pswBtn'])) {
+    $userid = $_SESSION['user_id']; //get user id
+    $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid"); 
+    $row = mysqli_fetch_assoc($result);
+    $user = $_SESSION['user_id'];
+    if($row['user_password'] == $_POST['currentpsw']) {
+        if($_POST['newpsw'] == $_POST['confirmpsw']){
+            $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $user";
+            if (mysqli_query($con,$sql)) {
+                mysqli_close($con);
+                echo'<script>alert("Your Password Had Changed Successfully!");</script>';
+                echo("<script>window.location = 'home.php'</script>");
+                }
+                else {
+                die('Error: ' . mysqli_error($con));
+                }
+                mysqli_close($con);
+            }
+        else {
+            echo'<script>alert("New Password not match with confirm password.");</script>';
+        }
+    }
+    else{
+        echo'<script>alert("Current password not match.");</script>';
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -91,28 +119,27 @@ if(!isset($_SESSION)) {
             </div>
           </nav>
           <!-- // Password edit window -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pswWindow" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <p class="modal-title" id="pswWindow">Edit Password</p>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form method="post">
+          <form  method="post">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pswWindow" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <p class="modal-title" id="pswWindow">Edit Password</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
                     <input type="password" class="form-control mb-2" name="currentpsw" placeholder="Current Password">
                     <input type="password" class="form-control mb-2" name="newpsw" placeholder="New Password">
                     <input type="password" class="form-control mb-2" name="confirmpsw" placeholder="Confirm New Password">
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <input type="submit" name="pswBtn" class="btn btn-primary" value="Confirm"></input>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                  <div class="modal-footer">
+                    <input type="submit" name="pswBtn" class="btn btn-primary" value="Confirm"></input>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
+          </form>
         </div>
       </div>
     </section>
