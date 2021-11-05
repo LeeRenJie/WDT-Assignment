@@ -20,18 +20,42 @@ $user_result = mysqli_query($con, $sql);
 $number_row = mysqli_num_rows($result);
 $user_row = mysqli_fetch_assoc($user_result);
 
-// if (isset($_POST['paymentBtn'])) {
-//   for ($i = 0; $i < $number_row; $i++) {
-//     $cart_id = $row['cart_id'][$i];
-//     $date = date("d-m-Y");
-//     $status_of_delivery = "Preparing your order";
-//     $payment_sql="INSERT INTO customer_order (cart_id, order_date, status_of_delivery) VALUES ('$cart_id', '$date','$status_of_delivery')";
-//   }
-//   if (!$result){
-//     die('Error: ' . mysqli_error($con));
-//   }
-//   mysqli_close($con);
-// }
+$total_sql = (
+  "SELECT SUM(pd.product_price * ct.product_quantity_added) AS total
+  FROM shopping_cart AS ct
+  JOIN product AS pd ON ct.product_id = pd.product_id
+  JOIN user AS u ON ct.user_id = u.user_id
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '1'"
+);
+$total_result = mysqli_query($con, $total_sql);
+$total_row = mysqli_fetch_assoc($total_result);
+if (isset($_POST['addressBtn'])) {
+  $address_result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $user_id");
+  $address_row = mysqli_fetch_assoc($address_result);
+  $address_sql = "UPDATE user SET user_address = '$_POST[address]' WHERE user_id = $user_id";
+  if (mysqli_query($con,$address_sql))
+  {
+    mysqli_close($con);
+    echo'<script>alert("Your address has been updated.");</script>';
+  }
+  else
+  {
+  die('Error: ' . mysqli_error($con));
+  }
+};
+
+if (isset($_POST['paymentBtn'])) {
+  for ($i = 0; $i < $number_row; $i++) {
+    $cart_id = $row['cart_id'][$i];
+    $date = date("d-m-Y");
+    $status_of_delivery = "Preparing your order";
+    $payment_sql="INSERT INTO customer_order (cart_id, order_date, status_of_delivery) VALUES ('$cart_id', '$date','$status_of_delivery')";
+  }
+  if (!$result){
+    die('Error: ' . mysqli_error($con));
+  }
+  mysqli_close($con);
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,34 +84,37 @@ $user_row = mysqli_fetch_assoc($user_result);
         }
         else
         {
-        echo'<div class="row header_row align-items-center">';
+        echo '<form method="post" class="m-0">';
+          echo'<div class="row py-3 header_row align-items-center">';
 
-          echo'<div class="col-1">';
-            echo'<p class="text-center">Name :</p>';
+            echo'<div class="col-1">';
+              echo'<p class="text-center col-form-label">Name :</p>';
+            echo'</div>';
+
+            echo'<div class="col-2">';
+              echo'<p class="text-start font-weight-bold text-capitalize col-form-label">';
+                echo $user_row['cus_name'];
+                echo " ({$user_row['cus_phone']})";
+              echo'</p>';
+            echo'</div>';
+
+            echo'<div class="col-2">';
+              echo'<p class="text-center col-form-label" for="address">Delivery Address :</p>';
+            echo'</div>';
+
+            echo '<div class="col-4">';
+              echo'<input id="address" type="text" class="form-control" name="address" value="';
+              echo$user_row['cus_address'];
+              echo'"</input>';
+            echo '</div>';
+
+
+            echo'<div class="col-2">';
+              echo'<button type="submit" name="addressBtn" class="btn btn-success">Save</button>';
+            echo'</div>';
+
           echo'</div>';
-
-          echo'<div class="col-2">';
-            echo'<p class="text-start font-weight-bold text-capitalize">';
-              echo $user_row['cus_name'];
-              echo " ({$user_row['cus_phone']})";
-            echo'</p>';
-          echo'</div>';
-
-          echo'<div class="col-2">';
-            echo'<p class="text-center">Delivery Address :</p>';
-          echo'</div>';
-
-          echo'<div class="col-3">';
-            echo'<p class="text-start font-weight-bold">';
-            echo $user_row['cus_address'];
-            echo '</p>';
-          echo'</div>';
-
-          echo'<div class="col-2 text-center">';
-            echo'<button type="button" class="btn btn-outline-dark buttons">Change</button>';
-          echo'</div>';
-
-        echo'</div>';
+        echo'</form>';
 
         echo'<div class="row header_row">';
           echo'<div class="col-4 .col-md-4">';
@@ -108,9 +135,12 @@ $user_row = mysqli_fetch_assoc($user_result);
         echo'</div>';
         while($row=mysqli_fetch_array($result)){
           echo'<div class="row first_row">';
-            echo'<div class="col-4 .col-md-4 justify-content-center">';
-              echo "<img src='../../images/{$row['product_img']}'  alt='...' class='img-thumbnail mr-3 p-2'>";
-              echo'<p class="product_label text_design text_margin"><label for="product_image">';
+            echo'<div class="col-2 .col-md-4 justify-content-center">';
+              echo "<img src='../../images/{$row['product_img']}'  alt='...' class='pdImg mr-3 p-2'>";
+            echo'</div>';
+
+            echo'<div class="col-2 .col-md-4 justify-content-center">';
+            echo'<p class="product_label text_design text-center text_margin"><label for="product_image">';
                 echo $row['product_name'];
               echo '</label> </p>';
             echo'</div>';
@@ -145,20 +175,31 @@ $user_row = mysqli_fetch_assoc($user_result);
           echo'</div>';
         }
         echo'<div class="row footer_row">';
-          echo'<div class="col-6 .col-md-4 pt-5">';
-            echo'<div class="form-group row text_margin text_design">';
-              echo'<label for="credit_card_num" class="col-sm-4 col-form-label">Credit Card Number :</label>';
-              echo'<div class="col-sm-8">';
-                echo'<input type="text" class="form-control" id="credit_card_num" value="5468135649758" required>';
+          echo'<div class="col-8 .col-md-4 pt-5">';
+            echo'<div class="row text_margin text_design">';
+              echo'<label for="credit_card_num" class="col-sm-4">Credit Card Number :</label>';
+              echo'<div class="col-sm-8 input-group">';
+                echo'<input type="text" class="form-control w-50"
+                id="credit_card_num" placeholder="Credit Card Number"
+                maxlength="16" aria-label="Credit Card Number" required>';
+
+                echo'<input type="text" class="form-control w-25"
+                id="monthyear" placeholder="MM/YY"
+                maxlength="5" aria-label="month and year" required>';
+
+                echo'<input type="text" class="form-control w-25"
+                id="cvc" placeholder="CVC"
+                maxlength="3" aria-label="cvc" required>';
               echo'</div>';
             echo'</div>';
           echo'</div>';
-          echo'<div class="col-2 .col-md-4"></div>';
           echo'<div class="col-2 .col-md-4">';
             echo'<p class="text_margin text_design text-center">Subtotal :</p>';
           echo'</div>';
           echo'<div class="col-2 .col-md-4 text-center">';
-            echo'<p class="text_margin text_design text-center">RM150</p>';
+            echo'<p class="text_margin text_design text-center">';
+              echo "RM {$total_row['total']}";
+            echo'</p>';
           echo'</div>';
         echo'</div>';
 
