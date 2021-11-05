@@ -6,6 +6,65 @@ if (isset($_POST['signupBtn'])) {
 	$defaultImg = base64_encode(file_get_contents($defaultPic));
   $image = 'data:image/'.$imageFileType.';base64,'.$defaultImg;
   $privilege = 'user';
+
+  # form validation for signup
+  $check_number = $_POST['phoneNumber'];
+  $num_length = strlen($check_number);
+  $check_mail = $_POST['email'];
+  $mail_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^"; 
+
+  #form validation for empty fields
+  if(empty($_POST['username'])){
+    echo 'Error! You did not enter the username!';
+  }
+  else if(empty($_POST['email'])){
+    echo 'Error! You did not enter the email!';
+  }
+  else if(empty($_POST['password'])){
+    echo 'Error! You did not enter the password!';
+  }
+  else if(empty($_POST['name'])){
+    echo 'Error! You did not enter the name!';
+  }
+  else if(empty($_POST['address'])){
+    echo 'Error! You did not enter the address!';
+  }
+
+  #form validation for phone number and email
+  else if(!preg_match('^[0-9]*$',$check_number)){
+    echo 'Only numeric value is allowed for phone number!';
+  }
+  else if(!preg_match($mail_pattern,$check_mail)){
+    echo 'Email format is not valid!';
+  }
+
+  #form validation for input length
+  else if($num_length < 12 && $num_length > 12){
+    echo 'Phone number must have 12 digits!!';
+  }
+
+  else{
+    $username = LOWER($_POST['username']);
+    $email = LOWER($_POST['email']);
+    $password = $_POST['password'];
+    $name = $_POST['name'];
+    $phonenumber = $_POST['phoneNumber'];
+    $address = $_POST['address'];
+
+
+    $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
+    $result = mysqli_query($conn, $sql);
+
+    if($result){
+      echo("<script>alert('Your Registration is Successfully!')</script>");
+      echo("<script>window.location = '../shared/login.php'</script>");
+    }
+    else{
+      echo 'Error! Please try again';
+    }
+  }
+
+  #old form 
 	$sql="INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$_POST[password]',LOWER('$_POST[username]'),'$_POST[name]','$image',LOWER('$_POST[email]'),'$_POST[address]','$_POST[phoneNumber]', '$privilege')";
   if (!mysqli_query($con,$sql)){
     die('Error: ' . mysqli_error($con));
