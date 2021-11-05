@@ -13,15 +13,6 @@
     <div class="container-fluid whole_page">
       <!--row-->
       <div class="row mb-1 bgcolor">
-        <div class="col-4 text-center">
-          <p class="float-left text-secondary font-weight-bold pt-3 pl-4">Order Date:</p>
-        </div>
-        <div class="col-2 text-center pt-3">
-          <p class="">10 March 2021</p>
-        </div>
-      </div>
-      <!--row-->
-      <div class="row mb-1 bgcolor">
         <div class="col-4">
           <p class="header text_design header_text pl-3">Products Ordered</p>
         </div>
@@ -39,6 +30,14 @@
         </div>
       </div>
       <!--row-->
+      <div class="row mb-1">
+        <div class="col-4 text-center">
+          <p class="float-left text-secondary font-weight-bold pt-3 pl-4">Order Date:</p>
+        </div>
+        <div class="col-2 text-center pt-3">
+          <p class="">10 March 2021</p>
+        </div>
+      </div>
       <div class="row first_row mb-1 bgcolor">
         <div class="col-4">
           <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2">

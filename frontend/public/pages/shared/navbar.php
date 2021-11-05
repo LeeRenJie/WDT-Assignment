@@ -5,12 +5,11 @@ if(!isset($_SESSION)) {
 include("../../../../backend/conn.php");
 if (isset($_POST['pswBtn'])) {
     $userid = $_SESSION['user_id']; //get user id
-    $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid"); 
+    $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
     $row = mysqli_fetch_assoc($result);
-    $user = $_SESSION['user_id'];
     if($row['user_password'] == $_POST['currentpsw']) {
         if($_POST['newpsw'] == $_POST['confirmpsw']){
-            $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $user";
+            $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $userid";
             if (mysqli_query($con,$sql)) {
                 mysqli_close($con);
                 echo'<script>alert("Your Password Had Changed Successfully!");</script>';

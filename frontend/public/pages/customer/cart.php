@@ -53,8 +53,8 @@ if (isset($_POST['checkout'])) {
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
       <div class="row py-3 text-center">
-        <div class="col-10 .col-md-4"></div>
-        <div class="col-2 .col-md-4">
+        <div class="col-10"></div>
+        <div class="col-2">
           <a href="checkout.php" class="btn btn-primary position-relative">
             <i class="fas fa-wallet pr-1"></i>
             To Pay
@@ -85,24 +85,31 @@ if (isset($_POST['checkout'])) {
         {
           echo '<div class="row header_row pt-2">';
 
-            echo '<div class="col-4 .col-md-4">';
-              echo "<input type='checkbox' id='checkall'>";
-              echo '<p class="header text_design header_text product_label">Product</p>';
+            echo '<div class="col-4">';
+              echo '<div class="row">';
+                echo '<div class="col-1">';
+                  echo "<input type='checkbox' id='checkall'>";
+                echo '</div>';
+
+                echo '<div class="col-11">';
+                  echo '<p class="header text_design text-center header_text">Product</p>';
+                echo '</div>';
+              echo '</div>';
             echo '</div>';
 
-            echo '<div class="col-2 .col-md-4">';
+            echo '<div class="col-2">';
               echo '<p class="text_design header_text text-center">Unit Price</p>';
             echo '</div>';
 
-            echo '<div class="col-2 .col-md-4">';
+            echo '<div class="col-2">';
               echo '<p class="text_design header_text text-center">Amount</p>';
             echo '</div>';
 
-            echo '<div class="col-2 .col-md-4">';
+            echo '<div class="col-2">';
               echo '<p class="text_design header_text text-center">Item Subtotal</p>';
             echo '</div>';
 
-            echo '<div class="col-2 .col-md-4">';
+            echo '<div class="col-2">';
               echo '<p class="text_design header_text text-center">Actions</p>';
             echo '</div>';
 
@@ -111,35 +118,43 @@ if (isset($_POST['checkout'])) {
             while($row=mysqli_fetch_array($result)){
               echo '<div class="row first_row">';
 
-                echo '<div class="col-4 .col-md-4">';
-                  echo"<input type='checkbox' class='checkbox' name='check_list[]' value='{$row['cart_id']}'>";
-                  echo "<img src='../../images/{$row['product_img']}' class='img-thumbnail mr-3 ml-2 my-2'>";
-                  echo '<div class="mt-5 pt-3 label_text">';
-                    echo '<p class="product_label text_design"><label for="product_image">';
-                      echo $row['product_name'];
+              echo '<div class="col-4">';
+                echo '<div class="row">';
+                  echo '<div class="col-1">';
+                    echo"<input type='checkbox' class='checkbox' name='check_list[]' value='{$row['cart_id']}'>";
+                  echo '</div>';
+
+                  echo '<div class="col-6">';
+                    echo "<img src='../../images/{$row['product_img']}' class='pdImg my-2'>";
+                  echo '</div>';
+
+                  echo '<div class="col-5">';
+                    echo '<p class="product_label text_design text-center text_margin"><label for="product_image">';
+                        echo $row['product_name'];
                     echo '</label> </p>';
                   echo '</div>';
                 echo '</div>';
+              echo '</div>';
 
-                echo '<div class="col-2 .col-md-4">';
+                echo '<div class="col-2">';
                   echo '<p class="productPrice text_margin text_design text-center">RM ';
                     echo $row['product_price'];
                   echo'</p>';
                 echo'</div>';
 
-                echo'<div class="col-2 .col-md-4 text-center">';
+                echo'<div class="col-2 text-center">';
                   echo'<p class="text_margin text_design">';
                     echo $row['product_quantity_added'];
                   echo'</p>';
                 echo'</div>';
 
-                echo '<div class="col-2 .col-md-4">';
+                echo '<div class="col-2">';
                   echo'<p class="text_margin text_design text-center">RM ';
                     echo $row['product_price']*$row['product_quantity_added'];
                   echo '</p>';
                 echo '</div>';
 
-                echo '<div class="col-2 .col-md-4 text-center">';
+                echo '<div class="col-2 text-center">';
                   echo "<a class='btn btn-danger buttons' href=\"delete-cart.php?id=";
                     echo $row['cart_id'];
                     echo "\" onClick=\"return confirm('Remove ";
@@ -152,12 +167,12 @@ if (isset($_POST['checkout'])) {
             }
             echo '<div class="row footer_row">';
               echo '<div class="col-8"></div>';
-              echo '<div class="col-2 .col-md-4">';
+              echo '<div class="col-2">';
                 echo '<p class="text_margin text_design text-center">';
                   // TOTAL HERE
                 echo'</p>';
               echo '</div>';
-              echo '<div class="col-2 .col-md-4 text-center">';
+              echo '<div class="col-2 text-center">';
                 echo '<button type="submit" name="checkout" class="btn btn-success buttons"> Checkout </button>';
               echo '</div>';
             echo '</div>';

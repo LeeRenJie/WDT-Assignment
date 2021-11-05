@@ -19,6 +19,13 @@ img{
 	margin-top: 60px;
 }
 
+.pdImg {
+	background-color: #fff;
+	border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+	height: 180px;
+}
+
 .header {
 	margin-left: 10px;
 }
