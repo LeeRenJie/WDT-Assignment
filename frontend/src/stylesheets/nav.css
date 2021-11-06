@@ -114,3 +114,7 @@ html {
 	border-radius: 4px;
 	box-sizing: border-box;
 }
+
+.maxHeight {
+	max-height: 91px;
+}

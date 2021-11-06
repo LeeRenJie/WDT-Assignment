@@ -5,5 +5,5 @@
 	$id = intval($_GET['id']);
 	$result = mysqli_query($con,"DELETE FROM shopping_cart WHERE cart_id=$id");
 	mysqli_close($con); //close database connection
-	header('Location: cart.php'); //redirect the page to user.php page
+	header('Location: checkout.php');
 ?>
