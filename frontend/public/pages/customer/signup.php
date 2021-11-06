@@ -25,7 +25,9 @@ if (isset($_POST['signupBtn'])) {
     {
       if($row['user_email'] == $check_mail)
       {
-        $toast_message = '<div class="alert alert-success">Email already exists</div>';
+        echo $row['user_email'];
+        echo $check_mail;
+        $message = "Email already exists";
         /*
         echo'<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">';
           echo"<div class=\"d-flex\">";
@@ -41,39 +43,46 @@ if (isset($_POST['signupBtn'])) {
       {
         echo("<script>alert('Username already exists!')</script>");
       }
+      
+      #form validation for phone number and email
+      else if(!preg_match("/^[0-9]*$/", $check_number)){
+        echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
+      }
+    
+      #form validation for input length
+      else if($num_length < 12 OR $num_length > 12){
+        $message = "Phone number must be 12 digits";
+        #echo("<script>alert('Phone number must have 12 digits!!')</script>");
+      }
+    
+      else{
+        $username = strtolower($_POST['username']);
+        $email = strtolower($_POST['email']);
+        $password = $_POST['password'];
+        $name = $_POST['name'];
+        $phonenumber = $_POST['phoneNumber'];
+        $address = $_POST['address'];
+    
+    
+        $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
+        $result = mysqli_query($con, $sql);
+    
+        if($result){
+          $message = "Signup successful!";
+          /*echo("<script>alert('Your Registration is Successfully!')</script>");*/
+          echo("<script>window.location = '../shared/login.php'</script>");
+        }
+        else{
+          echo("<script>alert('Error! pls try again')</script>");
+        }
+      }
     }
   }
+
+
+
   
-  #form validation for phone number and email
-  else if(!preg_match("/^[0-9]*$/", $check_number)){
-    echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
-  }
 
-  #form validation for input length
-  else if($num_length < 12 OR $num_length > 12){
-    echo("<script>alert('Phone number must have 12 digits!!')</script>");
-  }
-
-  else{
-    $username = strtolower($_POST['username']);
-    $email = strtolower($_POST['email']);
-    $password = $_POST['password'];
-    $name = $_POST['name'];
-    $phonenumber = $_POST['phoneNumber'];
-    $address = $_POST['address'];
-
-
-    $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
-    $result = mysqli_query($con, $sql);
-
-    if($result){
-      echo("<script>alert('Your Registration is Successfully!')</script>");
-      echo("<script>window.location = '../shared/login.php'</script>");
-    }
-    else{
-      echo("<script>alert('Error! pls try again')</script>");
-    }
-  }
   mysqli_close($con);
   
 }
@@ -87,6 +96,7 @@ if (isset($_POST['signupBtn'])) {
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Custom styles for this template -->
@@ -96,9 +106,11 @@ if (isset($_POST['signupBtn'])) {
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid">
-      <div class="toast toast-visible mt-5">
-          Sample toast message
-      </div>
+      <!-- Use a button to open the snackbar -->
+      <button onclick="myFunction()">Show Snackbar</button>
+      
+      <!-- The actual snackbar -->
+      <div id="snackbar"><?= $message ?></div>
       <form class="form-signup text-center my-4" action="signup.php" method="post" enctype="multipart/form-data">
         <h1 class="h3 mb-3 font-weight-normal">Sign Up to Exclusive Pet Mart</h1>
         <!-- username -->
@@ -120,11 +132,15 @@ if (isset($_POST['signupBtn'])) {
         <label for="signupPhonenumber" class="sr-only">Phone Number</label>
         <input type="tel" id="signupPhonenumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required="required" autofocus>
         <!-- signup button -->
-        <button class="signup-btn mt-3" name="signupBtn" type="submit">Sign up</button>
+        <button class="signup-btn mt-3" name="signupBtn" type="submit" onclick="myFunction()">Sign up</button>
         <p class="mt-2 mb-3 text-muted">Already have an account? Log in <a href="../shared/login.php">here</a></p>
       </form>
     </div>
     <?php include '../shared/footer.php';?>
+    <script src="signup.js"></script>
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="lib/js/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>

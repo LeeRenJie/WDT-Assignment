@@ -45,16 +45,21 @@ if (isset($_POST['addressBtn'])) {
 };
 
 if (isset($_POST['paymentBtn'])) {
-  for ($i = 0; $i < $number_row; $i++) {
-    $cart_id = $row['cart_id'][$i];
-    $date = date("d-m-Y");
-    $status_of_delivery = "Preparing your order";
-    $payment_sql="INSERT INTO customer_order (cart_id, order_date, status_of_delivery) VALUES ('$cart_id', '$date','$status_of_delivery')";
-  }
-  if (!$result){
-    die('Error: ' . mysqli_error($con));
-  }
+  $query = "SELECT * FROM shopping_cart WHERE user_id = $user_id AND checkout = '1'";
+  $run_query = mysqli_query($con, $query);
+  if(mysqli_num_rows($run_query) > 0)
+  {
+    foreach($run_query as $row)
+    {
+      $cart_id = $row['cart_id'];
+      $date = date("d-m-Y");
+      $status_of_delivery = "Preparing your order";
+      $payment_sql="INSERT INTO customer_order (cart_id, order_date, status_of_delivery) VALUES ('$cart_id', '$date','$status_of_delivery')";
+      $run_payment_sql = mysqli_query($con, $payment_sql);
+    }
+  
   mysqli_close($con);
+  }
 }
 ?>
 
