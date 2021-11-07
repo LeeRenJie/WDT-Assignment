@@ -5,9 +5,11 @@ if(!isset($_SESSION)) {
 
 include("../../../../backend/conn.php");
 $user_id = $_SESSION['user_id'];
-
+// Select user's cart items
 $sql =  (
-  "SELECT pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price, ct.product_quantity_added AS product_quantity_added, ct.cart_id AS cart_id
+  "SELECT pd.product_image AS product_img,
+  pd.product_name AS product_name,pd.product_price AS product_price,
+  ct.product_quantity_added AS product_quantity_added, ct.cart_id AS cart_id
   FROM shopping_cart AS ct JOIN product AS pd ON ct.product_id = pd.product_id
   WHERE ct.user_id = '$user_id' AND ct.checkout = '0'
   ORDER BY ct.cart_id ASC"
@@ -61,6 +63,7 @@ if (isset($_POST['checkout'])) {
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
+    <!--(Mark Otto, 2021) -->
     <div class="container-fluid whole_page">
       <div class="row py-3 text-center">
         <div class="col-10"></div>
@@ -127,43 +130,36 @@ if (isset($_POST['checkout'])) {
           echo '<form method="post">';
             while($row=mysqli_fetch_array($result)){
               echo '<div class="row first_row">';
-
-              echo '<div class="col-4">';
-                echo '<div class="row">';
-                  echo '<div class="col-1">';
-                    echo"<input type='checkbox' class='checkbox' name='check_list[]' value='{$row['cart_id']}'>";
-                  echo '</div>';
-
-                  echo '<div class="col-6">';
-                    echo "<img src='../../images/{$row['product_img']}' class='pdImg my-2'>";
-                  echo '</div>';
-
-                  echo '<div class="col-5">';
-                    echo '<p class="product_label text_design text-center text_margin"><label for="product_image">';
-                        echo $row['product_name'];
-                    echo '</label> </p>';
+                echo '<div class="col-4">';
+                  echo '<div class="row">';
+                    echo '<div class="col-1">';
+                      echo"<input type='checkbox' class='checkbox' name='check_list[]' value='{$row['cart_id']}'>";
+                    echo '</div>';
+                    echo '<div class="col-6">';
+                      echo "<img src='../../images/{$row['product_img']}' class='pdImg my-2'>";
+                    echo '</div>';
+                    echo '<div class="col-5">';
+                      echo '<p class="product_label text_design text-center text_margin"><label for="product_image">';
+                          echo $row['product_name'];
+                      echo '</label> </p>';
+                    echo '</div>';
                   echo '</div>';
                 echo '</div>';
-              echo '</div>';
-
                 echo '<div class="col-2">';
                   echo '<p class="productPrice text_margin text_design text-center">RM ';
                     echo $row['product_price'];
                   echo'</p>';
                 echo'</div>';
-
                 echo'<div class="col-2 text-center">';
                   echo'<p class="text_margin text_design">';
                     echo $row['product_quantity_added'];
                   echo'</p>';
                 echo'</div>';
-
                 echo '<div class="col-2">';
                   echo'<p class="text_margin text_design text-center">RM ';
                     echo $row['product_price']*$row['product_quantity_added'];
                   echo '</p>';
                 echo '</div>';
-
                 echo '<div class="col-2 text-center">';
                   echo "<a class='btn btn-danger buttons' href=\"delete-cart.php?id=";
                     echo $row['cart_id'];

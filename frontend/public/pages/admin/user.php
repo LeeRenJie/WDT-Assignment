@@ -20,16 +20,11 @@ if ($_SESSION['privilege'] == "user") {
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid">
-      <div class="container mt-4">
-        <div style="width:50%; float: left">
-          <form method="post">
-            Search
-            <input type="text" style="width: 200px; padding: 8px; margin: 3px 0 11px 0; display: inline-block; font-size:12pt;" name="search_key">
-            <button class="btn btn-md btn-secondary" name="searchBtn" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
+    <div class="container-fluid size">
+      <form method="post" class="px-5 pb-4">
+        <input type="text" class="form-control w-25 d-inline"name="search_key" placeholder="Search user..">
+        <button class="btn btn-success" name="searchBtn" type="submit">Search</button>
+      </form>
 
       <?php
       include("../../../../backend/conn.php");
@@ -42,7 +37,7 @@ if ($_SESSION['privilege'] == "user") {
       $result=mysqli_query($con,"SELECT * FROM user WHERE privilege='user' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
       $owner_result=mysqli_query($con,"SELECT * FROM user WHERE NOT privilege='owner' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
       ?>
-      <div class="container mb-5">
+      <div class="px-5 pb-5">
         <table id="customer" class="text-center">
           <tr>
             <th class="text-center">Username</th>

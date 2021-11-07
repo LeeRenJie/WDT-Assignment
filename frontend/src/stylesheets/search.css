@@ -140,13 +140,6 @@ input[type=checkbox].switch:disabled:not(:checked):after {
   position: relative;
 }
 
-.dash{
-  border: 1px solid black;
-  width: 63px;
-  margin-top: 35px;
-  padding-left: 15px;
-}
-
 .bg-color {
   background-image: linear-gradient(#F5E8C7, #DEBA9D);
 }

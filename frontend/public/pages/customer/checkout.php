@@ -32,13 +32,15 @@ $total_result = mysqli_query($con, $total_sql);
 $total_row = mysqli_fetch_assoc($total_result);
 
 // SQL for address change
+$address_result = mysqli_query($con, "SELECT user_address FROM user WHERE user_id = $user_id");
+$address_row = mysqli_fetch_assoc($address_result);
 if (isset($_POST['addressBtn'])) {
-  $address_result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $user_id");
-  $address_row = mysqli_fetch_assoc($address_result);
   $address_sql = "UPDATE user SET user_address = '$_POST[address]' WHERE user_id = $user_id";
   if (mysqli_query($con,$address_sql))
   {
     echo'<script>alert("Your address has been updated.");</script>';
+    $address_result = mysqli_query($con, "SELECT user_address FROM user WHERE user_id = $user_id");
+    $address_row = mysqli_fetch_assoc($address_result);
   }
   else
   {
@@ -46,7 +48,7 @@ if (isset($_POST['addressBtn'])) {
   }
 };
 
-// SQL to update customer order from cart
+// SQL to create customer order and update cart to paid
 if (isset($_POST['paymentBtn'])) {
   $date = date("Y-m-d");
   $order_status = 'Preparing your order';
@@ -67,9 +69,6 @@ if (isset($_POST['paymentBtn'])) {
     } while ($con->more_results() && $con->next_result());
     $showModal = "true";
   }
-  else{
-    die('Error: ' . mysqli_error($con));
-  }
   mysqli_close($con);
   }
 ?>
@@ -86,6 +85,7 @@ if (isset($_POST['paymentBtn'])) {
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
+    <!--(Mark Otto, 2021) -->
     <div class="container-fluid whole_page">
       <?php
         if ($number_row == 0)
@@ -102,33 +102,26 @@ if (isset($_POST['paymentBtn'])) {
         {
         echo '<form method="post" class="m-0">';
           echo'<div class="row py-3 header_row align-items-center">';
-
             echo'<div class="col-1">';
               echo'<p class="text-center col-form-label">Name :</p>';
             echo'</div>';
-
             echo'<div class="col-2">';
               echo'<p class="text-start font-weight-bold text-capitalize col-form-label">';
                 echo $user_row['cus_name'];
                 echo " ({$user_row['cus_phone']})";
               echo'</p>';
             echo'</div>';
-
             echo'<div class="col-2">';
               echo'<p class="text-center col-form-label" for="address">Delivery Address :</p>';
             echo'</div>';
-
             echo '<div class="col-4">';
               echo'<input id="address" type="text" class="form-control" name="address" value="';
-              echo$user_row['cus_address'];
-              echo'"</input>';
+              echo $address_row['user_address'];
+              echo'">';
             echo '</div>';
-
-
             echo'<div class="col-2">';
               echo'<button type="submit" name="addressBtn" class="btn btn-success">Save</button>';
             echo'</div>';
-
           echo'</div>';
         echo'</form>';
 
@@ -222,17 +215,18 @@ if (isset($_POST['paymentBtn'])) {
 
           echo'<div class="row footer_row">';
             echo'<div class="col-10 .col-md-4"></div>';
-            echo'<div class="col-2 .col-md-4 text-center">';
-            echo'<button type="submit" name="paymentBtn" class="btn btn-success buttons">';
-              echo'Place Order';
-            echo'</button>';
-            echo'</div>';
+              echo'<div class="col-2 .col-md-4 text-center">';
+                echo'<button type="submit" name="paymentBtn" class="btn btn-success buttons">';
+                  echo'Place Order';
+                echo'</button>';
+              echo'</div>';
           echo'</div>';
         echo'</form>';
         }
       ?>
       <!-- Bootstrap modal -->
-      <div class="modal fade" id="loading" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal fade" id="loading" tabindex="-1" aria-labelledby="paymentLabel"
+        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -247,7 +241,8 @@ if (isset($_POST['paymentBtn'])) {
         </div>
       </div>
       <!-- Bootstrap modal completed-->
-      <div class="modal fade" id="completed" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal fade" id="completed" tabindex="-1" aria-labelledby="paymentLabel"
+        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">

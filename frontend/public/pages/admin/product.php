@@ -10,97 +10,99 @@
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid">
-      <div class="row my-3 px-5">
+    <div class="container-fluid size">
+      <div class="row px-5 pb-4">
         <form method="post" class="col-10">
-          <input class="search" type="text" name="search_key" placeholder="Search Product">
-          <button class="btn btn-secondary" name="searchBtn" type="submit">Search</button>
+          <input class="form-control w-25 d-inline" type="text" name="search_key" placeholder="Search Product..">
+          <button class="btn btn-success" name="searchBtn" type="submit">Search</button>
         </form>
-        <div class="col-2">
+        <div class="col-2 text-end">
           <a class="btn btn-success" href="product-new.php">Add Product</a>
         </div>
       </div>
-    </div>
 
-    <?php
-    if ($_SESSION['privilege'] == "user") {
-      echo("<script>alert('Username already exists!')</script>");
-      header("Location: ../../../customer/home.php");
-    };
-    include("../../../../backend/conn.php");
-    $search_key = "";
+      <?php
+      if ($_SESSION['privilege'] == "user") {
+        echo("<script>alert('Username already exists!')</script>");
+        header("Location: ../../../customer/home.php");
+      };
+      include("../../../../backend/conn.php");
+      $search_key = "";
 
-    if(isset($_POST['searchBtn'])){
-      $search_key = $_POST['search_key'];
-    }
+      if(isset($_POST['searchBtn'])){
+        $search_key = $_POST['search_key'];
+      }
 
-    $result=mysqli_query($con,
-    "SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
-    FROM product pd JOIN category cat ON pd.category_id = cat.category_id
-    JOIN pet ON pd.pet_id = pet.pet_id
-    WHERE product_name LIKE '%$search_key%'
-    or product_category LIKE '%$search_key%' or product_pet LIKE '%$search_key%'
-    ORDER BY product_id, product_name, product_category, product_pet");
-    ?>
-    <div class="container mb-5">
-      <table id="product" class="text-center">
-        <tr>
-          <th>ID</th>
-          <th>Product</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Pet</th>
-          <th>Price</th>
-          <th>Stock</th>
-          <th>Actions</th>
-        </tr>
-        <?php
-          while($row=mysqli_fetch_array($result)){
-            echo "<tr>";
-              echo "<td>";
-              echo $row['product_id'];
+      $result=mysqli_query($con,
+      "SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
+      FROM product pd JOIN category cat ON pd.category_id = cat.category_id
+      JOIN pet ON pd.pet_id = pet.pet_id
+      WHERE product_name LIKE '%$search_key%'
+      or product_category LIKE '%$search_key%' or product_pet LIKE '%$search_key%'
+      ORDER BY product_id, product_name, product_category, product_pet");
+      ?>
+      <div class="pb-5 px-5">
+        <table id="product" class="text-center">
+          <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Pet</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+          <?php
+            while($row=mysqli_fetch_array($result)){
+              echo "<tr>";
+                echo "<td>";
+                echo $row['product_id'];
+                echo "</td>";
+                echo "<td>";
+                  echo '<img src="../../images/';
+                    echo $row['product_image'];
+                  echo'" alt="product image" class="img">';
+                echo "</td>";
+                echo "<td>";
+                echo $row['product_name'];
               echo "</td>";
-              echo "<td>";
-                echo $row['product_image'];
-              echo "</td>";
-              echo "<td>";
-              echo $row['product_name'];
-            echo "</td>";
-              echo "<td>";
-                echo $row['product_category'];
-              echo "</td>";
-              echo "<td>";
-                echo $row['product_pet'];
-              echo "</td>";
-              echo "<td>";
-                echo $row['product_price'];
-              echo "</td>";
-              echo "<td>";
-                echo $row['product_stock'];
-              echo "</td>";
-              echo "<td>";
-                echo '<div class="dropdown textcenter">';
-                echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-                  echo "Actions";
-                echo "</button>";
-                echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
-                    echo "<a class='dropdown-item' href=\"product-edit.php?id=";
+                echo "<td>";
+                  echo $row['product_category'];
+                echo "</td>";
+                echo "<td>";
+                  echo $row['product_pet'];
+                echo "</td>";
+                echo "<td>";
+                  echo $row['product_price'];
+                echo "</td>";
+                echo "<td>";
+                  echo $row['product_stock'];
+                echo "</td>";
+                echo "<td>";
+                  echo '<div class="dropdown textcenter">';
+                  echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                    echo "Actions";
+                  echo "</button>";
+                  echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
+                      echo "<a class='dropdown-item' href=\"product-edit.php?id=";
+                        echo $row['product_id'];
+                      echo "\">Edit</a>";
+                      echo "<a class='dropdown-item' href=\"delete-product.php?id="; //hyperlink to delete.php page with ‘id’ parameter
                       echo $row['product_id'];
-                    echo "\">Edit</a>";
-                    echo "<a class='dropdown-item' href=\"delete-product.php?id="; //hyperlink to delete.php page with ‘id’ parameter
-                    echo $row['product_id'];
-                    echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
-                    echo $row['product_name'];
-                    echo " details?')";
-                  echo "\">Delete</a>";
+                      echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
+                      echo $row['product_name'];
+                      echo " details?')";
+                    echo "\">Delete</a>";
+                  echo "</div>";
                 echo "</div>";
-              echo "</div>";
-              echo"</td>";
-            echo"</tr>";
-          }
-          mysqli_close($con);//to close the database connection
-        ?>
-      </table>
+                echo"</td>";
+              echo"</tr>";
+            }
+            mysqli_close($con);//to close the database connection
+          ?>
+        </table>
+      </div>
     </div>
     <?php include '../shared/footer.php';?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
