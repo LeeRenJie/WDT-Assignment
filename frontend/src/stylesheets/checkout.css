@@ -1,82 +1,82 @@
 img{
-	height: 180px;
-	width: 180px;
-	margin-left: 10px;
-	margin-bottom: 10px;
-	margin-top: 15px;
-	float: left;
+  height: 180px;
+  width: 180px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  float: left;
 }
 
 .empty{
-	height: 420px;
-	align-items: center;
-	display: flex;
-	background-color: #fff;
+  height: 420px;
+  align-items: center;
+  display: flex;
+  background-color: #fff;
 }
 
 .product_label{
-	float: left;
-	margin-top: 60px;
+  float: left;
+  margin-top: 60px;
 }
 
 .pdImg {
-	background-color: #fff;
-	border: 1px solid #dee2e6;
-	border-radius: 0.25rem;
-	height: 180px;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  height: 180px;
 }
 
 .header {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 button{
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 .header_text {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .text_margin, .buttons {
-	margin-top: 60px;
-	margin-bottom: 50px;
+  margin-top: 60px;
+  margin-bottom: 50px;
 }
 
 .text_design {
-	font-weight: 300;
-	font-size: 18px;
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .empty_box {
-	display: none;
+  display: none;
 }
 
 .first_row{
-	margin-bottom: 1px;
+  margin-bottom: 1px;
 }
 
 .footer_row{
-	margin-bottom: 1px;
+  margin-bottom: 1px;
 }
 
 .header_row, .first_row, .footer_row{
-	background-color: #ffffff;
-	border:1px solid #e8e8e8;
+  background-color: #ffffff;
+  border:1px solid #e8e8e8;
 }
 
 .whole_page {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 @media only screen and (max-width: 768px) {
-	img{
-		height: auto;
-		width: auto;
-	}
-	.productlabel{
-		margin-top: -10px;
-		margin-left: 20px;
-		float: none;
-	}
+  img{
+    height: auto;
+  	width: auto;
+  }
+  .productlabel{
+  	margin-top: -10px;
+  	margin-left: 20px;
+  	float: none;
+  }
 }

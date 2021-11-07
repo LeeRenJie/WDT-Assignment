@@ -1,32 +1,32 @@
 .bimg {
-	background-image: linear-gradient(#F5E8C7, #DEBA9D);
-	padding: 20px 0;
-	text-align: center;
+  background-image: linear-gradient(#F5E8C7, #DEBA9D);
+  padding: 20px 0;
+  text-align: center;
 }
 
 .bwhite {
-	background-color: white;
-	border-radius: 20px;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .imagecontainer {
-	max-width: 100%;
-	max-height: 100%;
-	text-align : center;
-	padding-top: 30px;
+  max-width: 100%;
+  max-height: 100%;
+  text-align : center;
+  padding-top: 30px;
 }
 
 .imge {
-	max-width: 100%;
-	max-height: 100%;
-	border-radius: 5px;
-	border: black solid 1px;
-	object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+  border: black solid 1px;
+  object-fit: cover;
 }
 
 .opcon {
-	padding: 20px 0;
-	text-align: center;
+  padding: 20px 0;
+  text-align: center;
 }
 
 
