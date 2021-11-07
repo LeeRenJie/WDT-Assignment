@@ -12,7 +12,7 @@ $sql =  (
   FROM shopping_cart AS ct
   JOIN product AS pd ON ct.product_id = pd.product_id
   JOIN user AS u ON ct.user_id = u.user_id
-  WHERE ct.user_id = '$user_id' AND ct.checkout = '1'
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '1' AND ct.paid = '0'
   ORDER BY ct.cart_id ASC"
 );
 $result = mysqli_query($con, $sql);
@@ -26,7 +26,7 @@ $total_sql = (
   FROM shopping_cart AS ct
   JOIN product AS pd ON ct.product_id = pd.product_id
   JOIN user AS u ON ct.user_id = u.user_id
-  WHERE ct.user_id = '$user_id' AND ct.checkout = '1'"
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '1' AND ct.paid='0'"
 );
 $total_result = mysqli_query($con, $total_sql);
 $total_row = mysqli_fetch_assoc($total_result);
@@ -50,37 +50,25 @@ if (isset($_POST['addressBtn'])) {
 if (isset($_POST['paymentBtn'])) {
   $date = date("Y-m-d");
   $order_status = 'Preparing your order';
-  $query = "INSERT IGNORE INTO customer_order (cart_id, order_date, status_of_delivery)
-  SELECT sc.cart_id, '$date', '$order_status'
-  FROM shopping_cart AS sc
-  WHERE sc.checkout = 1 AND user_id = $user_id";
-
-  $run_query = mysqli_query($con, $query);
-  if (mysqli_query($con,$run_query))
+  $query = (
+    "INSERT INTO customer_order (cart_id, order_date, status_of_delivery)
+    SELECT ct.cart_id, '$date', '$order_status'
+    FROM shopping_cart AS ct
+    WHERE ct.checkout='1' AND user_id=$user_id AND paid='0';
+    UPDATE shopping_cart SET paid='1' WHERE user_id=$user_id;"
+  );
+  if($con -> multi_query($query))
   {
-    echo(
-      '<script>
-        var myModal = new bootstrap.Modal(document.getElementById("payment"), {
-          keyboard: false,
-          backdrop: "static",
-          show: true
-        });
-        $(document).ready(function(e){
-          e.preventDefault();
-          setTimeout(function() {
-            $(\'#loading\').hide();
-            $(\'#completed\').show();
-            setTimeout(function(){
-              window.location = \'history.php\'},4000);
-            },3000);
-            return false"
-        });
-      </script>'
-    );
+    do {
+      if ($payment_result = $con->store_result()) {
+        var_dump($payment_result->fetch_all(MYSQLI_ASSOC));
+        $payment_result->free();
+      }
+    } while ($con->more_results() && $con->next_result());
+    $showModal = "true";
   }
-  else
-  {
-  die('Error: ' . mysqli_error($con));
+  else{
+    die('Error: ' . mysqli_error($con));
   }
   mysqli_close($con);
   }
@@ -244,17 +232,29 @@ if (isset($_POST['paymentBtn'])) {
         }
       ?>
       <!-- Bootstrap modal -->
-      <div class="modal fade" id="payment" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal fade" id="loading" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="paymentLabel">Payment</h5>
             </div>
             <div class="modal-body text-center">
-              <div class="spinner-border my-5 text-success" role="status" id="loading">
+              <div class="spinner-border my-5 text-success" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-              <div class="" id="completed" style="display:none;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bootstrap modal completed-->
+      <div class="modal fade" id="completed" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="paymentLabel">Payment</h5>
+            </div>
+            <div class="modal-body text-center">
+              <div class="">
                 <i class="fas fa-check-circle text-success fa-5x my-3"></i>
                 <p>Payment Completed</p>
               </div>
@@ -266,5 +266,20 @@ if (isset($_POST['paymentBtn'])) {
   <?php include '../shared/footer.php';?>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <?php
+    if(!empty($showModal)){
+      echo '<script>
+      $(document).ready(function(){
+        $("#loading").modal("show");
+        setTimeout(function(){
+          $("#loading").modal("hide");
+          $("#completed").modal("show");
+          setTimeout(function(){
+            window.location = \'history.php\'},3000);
+        }, 3000);
+      });
+      </script>';
+    }
+  ?>
 </body>
 </html>

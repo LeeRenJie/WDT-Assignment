@@ -15,7 +15,7 @@ if (isset($_POST['signupBtn'])) {
   $check_number = $_POST['phoneNumber'];
   $num_length = strlen($check_number);
   $check_mail = $_POST['email'];
-  $mail_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^"; 
+  $mail_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
 
 
   #form validation for mail to prevent same email address to register twice
@@ -25,8 +25,6 @@ if (isset($_POST['signupBtn'])) {
     {
       if($row['user_email'] == $check_mail)
       {
-        echo $row['user_email'];
-        echo $check_mail;
         $message = "Email already exists";
         /*
         echo'<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">';
@@ -43,18 +41,18 @@ if (isset($_POST['signupBtn'])) {
       {
         echo("<script>alert('Username already exists!')</script>");
       }
-      
+
       #form validation for phone number and email
       else if(!preg_match("/^[0-9]*$/", $check_number)){
         echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
       }
-    
+
       #form validation for input length
       else if($num_length < 12 OR $num_length > 12){
         $message = "Phone number must be 12 digits";
         #echo("<script>alert('Phone number must have 12 digits!!')</script>");
       }
-    
+
       else{
         $username = strtolower($_POST['username']);
         $email = strtolower($_POST['email']);
@@ -62,11 +60,11 @@ if (isset($_POST['signupBtn'])) {
         $name = $_POST['name'];
         $phonenumber = $_POST['phoneNumber'];
         $address = $_POST['address'];
-    
-    
-        $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
-        $result = mysqli_query($con, $sql);
-    
+
+
+        // $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
+        // $result = mysqli_query($con, $sql);
+
         if($result){
           $message = "Signup successful!";
           /*echo("<script>alert('Your Registration is Successfully!')</script>");*/
@@ -78,13 +76,8 @@ if (isset($_POST['signupBtn'])) {
       }
     }
   }
-
-
-
-  
-
   mysqli_close($con);
-  
+
 }
 ?>
 
@@ -108,7 +101,7 @@ if (isset($_POST['signupBtn'])) {
     <div class="container-fluid">
       <!-- Use a button to open the snackbar -->
       <button onclick="myFunction()">Show Snackbar</button>
-      
+
       <!-- The actual snackbar -->
       <div id="snackbar"><?= $message ?></div>
       <form class="form-signup text-center my-4" action="signup.php" method="post" enctype="multipart/form-data">
