@@ -45,7 +45,6 @@ if ($_SESSION['privilege'] == "user") {
       <div class="container mb-5">
         <table id="customer" class="text-center">
           <tr>
-            <th class="text-center"><input id="checkbox" type="checkbox"></th>
             <th class="text-center">Username</th>
             <th class="text-center">Name</th>
             <th class="text-center">Email</th>
@@ -57,9 +56,6 @@ if ($_SESSION['privilege'] == "user") {
           <?php
             while($row=mysqli_fetch_array($_SESSION['privilege'] == "owner" ? $owner_result : $result)){
               echo "<tr>";
-                echo "<td>";
-                  echo "<input id='' type='checkbox'>";
-                echo "</td>";
                 echo "<td>";
                   echo $row['user_username'];
                 echo "</td>";

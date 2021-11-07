@@ -1,7 +1,10 @@
 <?php
 include("../../../../backend/conn.php");
-$userid = intval($_GET['id']); //get user id
-$result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid"); 
+if(!isset($_SESSION)) {
+  session_start();
+}
+$userid = $_SESSION['user_id']; //get user id
+$result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
 $row = mysqli_fetch_assoc($result);
 
 if (isset($_POST['saveInfoBtn'])) {
@@ -33,7 +36,7 @@ if (isset($_POST['saveInfoBtn'])) {
   user_phone_number = '$_POST[phoneNumber]'
   WHERE user_id=$_POST[id];";
   }
-  
+
   if (mysqli_query($con,$sql)) {
     mysqli_close($con);
     echo'<script>alert("Your Details Had Changed Successfully!");</script>';
@@ -157,7 +160,7 @@ if (isset($_POST['saveInfoBtn'])) {
         }
     }
     </script>
-    <?php 
+    <?php
     mysqli_close($con);
     ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

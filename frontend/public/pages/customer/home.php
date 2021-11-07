@@ -50,14 +50,14 @@
         <div class="row">
           <div class="col mb-5 img-container">
             <a href="home-product.php?2">
-              <img src="../../images/food.jpg" class="img" alt="Food Picture">
+              <img src="../../images/food.jpg" class="img img-thumbnail" alt="Food Picture">
               <div class="caption">Food</div>
             </a>
           </div>
 
           <div class="col mb-5 img-container">
             <a href="home-product.php?1">
-              <img src="../../images/toys.jpg" class="img" alt="Toys Picture">
+              <img src="../../images/toys.jpg" class="img img-thumbnail" alt="Toys Picture">
               <div class="caption">Toys</div>
             </a>
           </div>
@@ -66,64 +66,18 @@
         <div class="row">
           <div class="col mb-5 img-container">
             <a href="home-product.php?3">
-              <img src="../../images/healthcare.jpg" class="img" alt="">
+              <img src="../../images/healthcare.jpg" class="img img-thumbnail" alt="Healthcare Picture">
               <div class="caption">Healthcare</div>
             </a>
           </div>
           <div class="col mb-5 img-container">
             <a href="home-product.php?4">
-              <img src="../../images/gear.jpg" class="img" alt="">
+              <img src="../../images/gear.jpg" class="img img-thumbnail" alt="Gear Picture">
               <div class="caption">Gear</div>
             </a>
           </div>
         </div>
       </div>
-
-      <section id="faqs">
-        <div class="row light-coloured-section">
-          <div class="col-12 pt-5">
-            <h1 class="text-center"><u>Frequently Asked Questions</u></h1>
-          </div>
-          <div class="accordion py-5 px-5" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                  Accordion Item #1
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                <div class="accordion-body">
-                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                  Accordion Item #2
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                <div class="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                  Accordion Item #3
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                <div class="accordion-body">
-                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
     <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#F5E8C7" fill-opacity="1" d="M0,192L80,197.3C160,203,320,213,480,192C640,171,800,117,960,85.3C1120,53,1280,43,1360,37.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
     <?php include '../shared/footer.php';?>
