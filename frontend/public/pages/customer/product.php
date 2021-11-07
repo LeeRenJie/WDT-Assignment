@@ -14,6 +14,7 @@
 
     <div class="container-fluid bg-color" id="search">
       <form action="" method="post">
+      <!--(Mark Otto, 2021) -->
       <div class="row">
         <div class="col-2">
           <button class="btn btn-outline-dark mt-4 mb-4 ml-4 float-right btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><h5>Filter</h5></button>
@@ -138,7 +139,7 @@
 
 
         <div class="container">   
-          <div class="col-15 whiteBg">
+          <div class="col-15 whiteBg"> 
             <div class="row row-cols-4 justify-content-center mt-2 pt-4">
 
             <?php

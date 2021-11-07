@@ -86,6 +86,7 @@ if (isset($_POST['paymentBtn'])) {
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
+    <!--(Mark Otto, 2021) -->
     <div class="container-fluid whole_page">
       <?php
         if ($number_row == 0)
