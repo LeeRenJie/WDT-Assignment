@@ -41,8 +41,9 @@
   display: initial;
 }
 
-.img-container:hover {
+.img-thumbnail:hover {
   cursor: pointer;
+  opacity: 0.4;
 }
 
 .light-coloured-section {
