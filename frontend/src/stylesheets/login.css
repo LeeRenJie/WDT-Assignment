@@ -1,21 +1,25 @@
+.size {
+  height: 500px;
+  padding-top: 50px;
+  background-color: #FFEFDE;
+}
+
 .form-login {
-  display: -ms-flexbox;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 20px 15px 15px;
-  background-image: linear-gradient(#F5E8C7, #DEBA9D);
   border-radius: 25px;
   width: 100%;
   max-width: 400px;
   margin: auto;
+  align-items: center;
+  padding: 20px 15px 15px;
+  background-image: linear-gradient(#F5E8C7, #DEBA9D);
 }
 
 .form-login .form-control {
-  position: relative;
-  box-sizing: border-box;
   height: auto;
   padding: 10px;
   font-size: 16px;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .form-login .form-control:focus {
@@ -24,43 +28,43 @@
 }
 
 .form-login input[type="text"] {
-  margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  margin-bottom: -1px;
 }
 
 .form-login input[type="password"] {
+  border-top-right-radius: 0;
   margin-bottom: 10px;
   border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 .btn-login {
+  border-radius: 5px;
   text-align: center;
   background-size: 200% auto;
-  border-radius: 5px;
   background-color: #F5E8C7;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .375rem .75rem;
-  font-size: 1rem;
   line-height: 1.5;
   border-radius: .25rem;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid transparent;
+  vertical-align: middle;
+  user-select: none;
+  padding: .375rem .75rem;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .btn-login:hover {
-  transform: scale(1.05);
   cursor: pointer;
   text-decoration: none;
+  transform: scale(1.05);
 }
 
 p > a:hover {
-  transform: scale(1.05);
   cursor: pointer;
   text-decoration: none;
+  transform: scale(1.05);
 }
 
