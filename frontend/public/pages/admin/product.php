@@ -23,6 +23,10 @@
     </div>
 
     <?php
+    if ($_SESSION['privilege'] == "user") {
+      echo("<script>alert('Username already exists!')</script>");
+      header("Location: ../../../customer/home.php");
+    };
     include("../../../../backend/conn.php");
     $search_key = "";
 

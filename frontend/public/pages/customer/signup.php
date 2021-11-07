@@ -6,7 +6,7 @@ if (isset($_POST['signupBtn'])) {
 	$defaultImg = base64_encode(file_get_contents($defaultPic));
   $image = 'data:image/'.$imageFileType.';base64,'.$defaultImg;
   $privilege = 'user';
-  $validation_query = "SELECT * FROM user";
+  $validation_query = "SELECT * FROM user WHERE privilege = 'user' ";
   $validation_query_run = mysqli_query($con, $validation_query);
 
 
@@ -25,19 +25,7 @@ if (isset($_POST['signupBtn'])) {
     {
       if($row['user_email'] == $check_mail)
       {
-        echo $row['user_email'];
-        echo $check_mail;
-        $message = "Email already exists";
-        /*
-        echo'<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">';
-          echo"<div class=\"d-flex\">";
-            echo"<div class=\"toast-body\">";
-              echo"Hello, world! This is a toast message.";
-            echo"</div>";
-            echo"<button type=\"button\" class=\"btn-close me-2 m-auto\" data-bs-dismiss=\"toast\" aria-label=\"Close\"></button>";
-          echo'</div>';
-        echo'</div>';
-        */
+        echo("<script>alert('Email already exists')</script>");
       }
       else if($row['user_username'] == $check_username)
       {
@@ -51,8 +39,7 @@ if (isset($_POST['signupBtn'])) {
     
       #form validation for input length
       else if($num_length < 12 OR $num_length > 12){
-        $message = "Phone number must be 12 digits";
-        #echo("<script>alert('Phone number must have 12 digits!!')</script>");
+        echo("<script>alert('Phone number must have 12 digits!!')</script>");
       }
     
       else{
@@ -68,8 +55,7 @@ if (isset($_POST['signupBtn'])) {
         $result = mysqli_query($con, $sql);
     
         if($result){
-          $message = "Signup successful!";
-          /*echo("<script>alert('Your Registration is Successfully!')</script>");*/
+          echo("<script>alert('Your Registration is Successfully!')</script>");
           echo("<script>window.location = '../shared/login.php'</script>");
         }
         else{
@@ -106,11 +92,6 @@ if (isset($_POST['signupBtn'])) {
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid">
-      <!-- Use a button to open the snackbar -->
-      <button onclick="myFunction()">Show Snackbar</button>
-      
-      <!-- The actual snackbar -->
-      <div id="snackbar"><?= $message ?></div>
       <form class="form-signup text-center my-4" action="signup.php" method="post" enctype="multipart/form-data">
         <h1 class="h3 mb-3 font-weight-normal">Sign Up to Exclusive Pet Mart</h1>
         <!-- username -->
@@ -132,7 +113,7 @@ if (isset($_POST['signupBtn'])) {
         <label for="signupPhonenumber" class="sr-only">Phone Number</label>
         <input type="tel" id="signupPhonenumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required="required" autofocus>
         <!-- signup button -->
-        <button class="signup-btn mt-3" name="signupBtn" type="submit" onclick="myFunction()">Sign up</button>
+        <button class="signup-btn mt-3" name="signupBtn" type="submit">Sign up</button>
         <p class="mt-2 mb-3 text-muted">Already have an account? Log in <a href="../shared/login.php">here</a></p>
       </form>
     </div>

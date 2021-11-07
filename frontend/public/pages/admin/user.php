@@ -4,7 +4,7 @@ if(!isset($_SESSION)) {
 };
 
 if ($_SESSION['privilege'] == "user") {
-
+  echo("<script>alert('Username already exists!')</script>");
   header("Location: ../../../customer/home.php");
 };
 ?>
