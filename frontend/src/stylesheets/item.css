@@ -2,6 +2,10 @@
   background-image: linear-gradient(#F5E8C7, #DEBA9D);
 }
 
+body {
+  background-color: #F5E8C7;
+}
+
 .imgContainer{
   padding: 3rem 6rem;
   display: inline-block;

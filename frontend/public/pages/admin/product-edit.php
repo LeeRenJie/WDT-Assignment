@@ -80,7 +80,7 @@ if (isset($_POST['editProductBtn'])){
       <div class = "col-15 bwhite">
         <div class = "row justify-content-center">
           <!--profile-->
-          <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
+          <div class= "col-2 mt-4 ml-2">
             <div class = "imagecontainer">
               <image class="imge" id="img" name="img" src="<?php echo $prodImg?>" alt="Profile Pic" />
             </div>
@@ -89,7 +89,7 @@ if (isset($_POST['editProductBtn'])){
             </div>
           </div>
           <!--label-->
-          <div class = "col-2 icon opcon ml-5 pl-5"> <!--icon for js-->
+          <div class = "col-2 opcon ml-5 pl-5">
             <div class="form-group row">
               <label for="name" class="col-form-label">Product Name :</label>
             </div>
@@ -110,7 +110,7 @@ if (isset($_POST['editProductBtn'])){
             </div>
           </div>
           <!--input-->
-          <div class = "col-7 tcon opcon"> <!--tcon for js-->
+          <div class = "col-7 opcon">
             <div class="col-sm-10 form-group row">
               <input type="text" maxlength="50" class="form-control" name="name" value="<?php echo $row['product_name']?>" required="required">
             </div>
@@ -200,8 +200,6 @@ if (isset($_POST['editProductBtn'])){
     </div>
     </form>
     <?php include '../shared/footer.php';?>
-    <!--js to resize-->
-    <script src="product-edit.js"></script>
     <!--js to preview image-->
     <script>
     function preimg(event) {

@@ -1,8 +1,8 @@
 <?php
 if (isset($_POST['addProductBtn'])) {
   include("../../../../backend/conn.php");
-  $target_dir = "../../images/";
-  $target_file = $target_dir . basename($_FILES['productPic']['name']);
+  $file_path = "../../images/";
+  $target_file = $file_path . basename($_FILES['productPic']['name']);
   $check_number = $_POST['price'];
   $category = $_POST['category'];
   switch ($category) {
@@ -31,13 +31,9 @@ if (isset($_POST['addProductBtn'])) {
     if(!preg_match("/^[0-9]*$/", $check_number)){
       echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
     }
-  
     else{
-      $sql="INSERT INTO
-      product (product_image, product_desc, product_name, category_id, pet_id, product_price, product_stock)
-      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]','$_POST[stock]'
-      )";
-    
+      $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price, product_stock)
+      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]','$_POST[stock]')";
       if (!mysqli_query($con,$sql)){
         die('Error: ' . mysqli_error($con));
       }
@@ -46,8 +42,7 @@ if (isset($_POST['addProductBtn'])) {
         echo("<script>window.location = 'product.php'</script>");
       }
     }
-  
-      mysqli_close($con);
+    mysqli_close($con);
   }
 }
 ?>
