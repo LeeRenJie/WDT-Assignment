@@ -1,122 +1,120 @@
 html {
 	overflow: scroll;
 	overflow-x: hidden;
-	font-family: 'Mochiy Pop One', sans-serif !important;
 }
 
-
 ::-webkit-scrollbar {
-	width: 0;  /* Remove scrollbar space */
-	background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 .logo {
-	width: 65px;
-	height: 65px;
+  width: 65px;
+  height: 65px;
 }
 
 .nav-color {
-	background-color: #F5E8C7;
+  background-color: #F5E8C7;
 }
 
 .navbar-brand {
-	font-family: "Ubuntu", sans-serif;
-	font-size: 2.5rem;
-	font-weight: bold;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .nav-item {
-	padding: 0 18px;
-	color: black;
+  padding: 0 18px;
+  color: black;
 }
 
 .nav-link {
-	font-size: 1.2rem;
-	font-family: "Montserrat", sans-serif;
-	font-weight: 200;
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
 }
 
 .margin-right {
-	margin-right:50px;
+  margin-right:50px;
 }
 
 .login-btn {
-	text-align: center;
-	transition: 0.5s;
-	background-size: 200% auto;
-	box-shadow: 0 0 20px #eee;
-	border: 1px solid transparent;
-	border-radius: 5px;
-	background-image: linear-gradient(to right, #FEDA6E 0%, #FFCE78 51%, #FFDFB0 100%);
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  box-shadow: 0 0 20px #eee;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(to right, #FEDA6E 0%, #FFCE78 51%, #FFDFB0 100%);
 }
 
 .login-btn:hover {
-	background-position: right center;
-	transform: scale(1.05);
-	cursor: pointer;
-	text-decoration: none;
-	color: black;
+  background-position: right center;
+  transform: scale(1.05);
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 .btn-sub {
-	text-align: center;
-	background-size: 200% auto;
-	border-radius: 5px;
-	background-color: #E3C5A7;
-	display: inline-block;
-	font-weight: 400;
-	text-align: center;
-	vertical-align: middle;
-	user-select: none;
-	border: 1px solid transparent;
-	padding: .375rem .75rem;
-	font-size: 1rem;
-	line-height: 1.5;
-	border-radius: .25rem;
-	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  text-align: center;
+  background-size: 200% auto;
+  border-radius: 5px;
+  background-color: #E3C5A7;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .full-screen {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(0,0,0,0.8);
-	color : black;
-	z-index: 3;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.8);
+  color : black;
+  z-index: 3;
 }
 
 .form-container {
-	position: relative;
-	top: 25%;
-	left: 32%;
-	max-width: 500px;
-	background: rgba( 245, 232, 199, 0.9 );
-	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-	backdrop-filter: blur( 20px );
-	-webkit-backdrop-filter: blur( 20px );
-	border-radius: 10px;
-	border: 1px solid rgba( 255, 255, 255, 0.18 );
+  position: relative;
+  top: 25%;
+  left: 32%;
+  max-width: 500px;
+  background: rgba( 245, 232, 199, 0.9 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .symbol {
-	justify-content: center;
-	color: #F20000;
-	font-size: 2rem;
+  justify-content: center;
+  color: #F20000;
+  font-size: 2rem;
 }
 
 .pswInput {
-	width: 100%;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .maxHeight {
-	max-height: 91px;
+  max-height: 91px;
 }

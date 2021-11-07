@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 	$sql="SELECT * FROM user WHERE user_username='$username' and user_password='$password'";
 	if ($result=mysqli_query($con,$sql))  {
 	  // Return the number of rows in result set
-	  $rownum=mysqli_num_rows($result);
+    $rownum=mysqli_num_rows($result);
 	}
 
 	while($row=mysqli_fetch_array($result)){
@@ -53,8 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid text-center">
-      <div class="p-3 m-5">
+    <div class="container-fluid text-center size">
+      <div class="px-3 pt-5">
         <div class="row">
           <div class="col-md">
             <form class="form-login" method="post">

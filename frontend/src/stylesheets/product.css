@@ -1,29 +1,29 @@
 img {
-	height: 180px;
-	width: auto;
+  height: 180px;
+  width: auto;
 }
 
 .pointer:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .prodName:hover{
-	cursor: pointer;
-	text-decoration: none;
-	color: #000;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 
 .textDesign {
-	font-weight: 300;
-	font-size: 18px;
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .bg-color {
-	background-image: linear-gradient(#F5E8C7, #DEBA9D);
+  background-image: linear-gradient(#F5E8C7, #DEBA9D);
 }
 
 .whiteBg {
-	background-color: white;
-	border-radius: 20px;
-	min-height: 400px;
+  background-color: white;
+  border-radius: 20px;
+  min-height: 400px;
 }
