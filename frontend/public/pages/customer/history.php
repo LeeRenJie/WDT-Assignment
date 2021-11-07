@@ -83,7 +83,7 @@ $number_row = mysqli_num_rows($result);
               echo'</div>';
 
               echo'<div class="col-2 .col-md-4">';
-                echo'<p class="text_margin text_design text-center">';
+                echo'<p class="text_margin text_design text-center"> RM';
                   echo $row['product_price'] * $row['amount'];
                 echo'</p>';
               echo'</div>';
