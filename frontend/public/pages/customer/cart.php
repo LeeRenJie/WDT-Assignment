@@ -15,6 +15,16 @@ $sql =  (
 $result = mysqli_query($con, $sql);
 $number_row = mysqli_num_rows($result);
 
+$total_sql = (
+  "SELECT SUM(pd.product_price * ct.product_quantity_added) AS total
+  FROM shopping_cart AS ct
+  JOIN product AS pd ON ct.product_id = pd.product_id
+  JOIN user AS u ON ct.user_id = u.user_id
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '0' AND ct.paid='0'"
+);
+$total_result = mysqli_query($con, $total_sql);
+$total_row = mysqli_fetch_assoc($total_result);
+
 if (isset($_POST['checkout'])) {
   if(!empty($_POST['check_list']))
   {
@@ -60,7 +70,7 @@ if (isset($_POST['checkout'])) {
             To Pay
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               <?php
-                $checkout = ("SELECT * FROM shopping_cart WHERE checkout = '1' AND user_id = '$user_id'");
+                $checkout = ("SELECT * FROM shopping_cart WHERE checkout = '1' AND user_id = '$user_id' AND paid='0'");
                 $checkout_result = mysqli_query($con, $checkout);
                 $number_row_checkout = mysqli_num_rows($checkout_result);
                 echo $number_row_checkout
@@ -169,7 +179,7 @@ if (isset($_POST['checkout'])) {
               echo '<div class="col-8"></div>';
               echo '<div class="col-2">';
                 echo '<p class="text_margin text_design text-center">';
-                  // TOTAL HERE
+                  echo "RM {$total_row['total']}";
                 echo'</p>';
               echo '</div>';
               echo '<div class="col-2 text-center">';

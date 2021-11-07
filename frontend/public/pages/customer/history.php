@@ -1,3 +1,25 @@
+<?php
+if(!isset($_SESSION)) {
+  session_start();
+}
+
+include("../../../../backend/conn.php");
+$user_id = $_SESSION['user_id'];
+$admin_user_id = intval($_SERVER['QUERY_STRING']);
+
+$sql =  (
+  "SELECT od.*, pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price,
+  ct.product_quantity_added AS amount
+  FROM customer_order AS od
+  JOIN shopping_cart AS ct ON od.cart_id = ct.cart_id
+  JOIN product AS pd ON ct.product_id = pd.product_id
+  WHERE (ct.user_id = '$user_id' OR '$admin_user_id') AND ct.checkout = '1' AND ct.paid = '1'
+  ORDER BY od.order_id DESC"
+);
+$result = mysqli_query($con, $sql);
+$number_row = mysqli_num_rows($result);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,75 +28,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../src/stylesheets/history.css">
-    <title>history Page</title>
+    <title>History Page</title>
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
-      <!--row-->
-      <div class="row mb-1 bgcolor">
-        <div class="col-4">
-          <p class="header text_design header_text pl-3">Products Ordered</p>
-        </div>
-        <div class="col-2">
-          <p class="text_design header_text text-center">Unit Price</p>
-        </div>
-        <div class="col-2">
-          <p class="text_design header_text text-center">Amount</p>
-        </div>
-        <div class="col-2">
-          <p class="text_design header_text text-center">Total Price</p>
-        </div>
-        <div class="col-2">
-          <p class="text_design header_text text-center">Status of delivery</p>
-        </div>
-      </div>
-      <!--row-->
-      <div class="row mb-1">
-        <div class="col-4 text-center">
-          <p class="float-left text-secondary font-weight-bold pt-3 pl-4">Order Date:</p>
-        </div>
-        <div class="col-2 text-center pt-3">
-          <p class="">10 March 2021</p>
-        </div>
-      </div>
-      <div class="row first_row mb-1 bgcolor">
-        <div class="col-4">
-          <img src="../../images/food.jpg" alt="..." class="img-thumbnail mr-3 p-2">
-          <div class="mt-5 pt-3 label_text">
-            <p class="product_label text_design"><label for="DogFood200g">Dog Food 200g</label> </p>
-          </div>
-        </div>
-        <div class="col-2">
-          <p class="text_margin text_design text-center">RM50</p>
-        </div>
-        <div class="col-2 text-center">
-          <p class="text_margin text_design text-center">3</p>
-        </div>
-        <div class="col-2">
-          <p class="text_margin text_design text-center">RM150</p>
-        </div>
-        <div class="col-2 text-center">
-          <p class="text_margin text_design text-center">Completed</p>
-        </div>
-      </div>
-      <!--row-->
-      <div class="row bgcolor">
-        <div class="col-6">
-          <!--emptied column for design purpose-->
-          <p class="text_margin text_design empty_box">test</p>
-        </div>
-        <div class="col-2">
-          <p class="text_margin text_design text-center">Subtotal :</p>
-        </div>
-        <div class="col-2">
-          <p class="text_margin text_design text-center">RM150</p>
-        </div>
-        <div class="col-2 text-center">
-          <!--Button to buy again-->
-          <button type="button" class="btn btn-outline-success buttons">Buy Again</button>
-        </div>
-      </div>
+      <?php
+        if ($number_row == 0)
+        {
+          echo '<div class="empty text-center py-5">';
+            echo '<div class="card-body">';
+              echo '<h5 class="card-title">You have no purchase history!</h5>';
+              echo '<p class="card-text">Head over to our shop and buy some items today!</p>';
+              echo '<a href="product.php" class="btn btn-lg btn-primary"><i class="fas fa-shopping-bag pr-2"></i>Shop</a>';
+            echo '</div>';
+          echo '</div>';
+        }
+        else
+        {
+          echo'<div class="row mb-1 bgcolor py-4">';
+            echo'<div class="col-4">';
+              echo'<p class="header text_design header_text text-center">Products Ordered</p>';
+            echo'</div>';
+            echo' <div class="col-2">';
+              echo'<p class="text_design header_text text-center">Amount</p>';
+            echo'</div>';
+            echo'<div class="col-2">';
+              echo'<p class="text_design header_text text-center">Total Price</p>';
+            echo'</div>';
+            echo'<div class="col-2">';
+              echo'<p class="text_design header_text text-center">Order Date</p>';
+            echo'</div>';
+            echo'<div class="col-2">';
+              echo'<p class="text_design header_text text-center">Status of delivery</p>';
+            echo'</div>';
+          echo'</div>';
+          while($row=mysqli_fetch_array($result)){
+            echo'<div class="row first_row py-3 bgcolor">';
+
+              echo'<div class="col-2 .col-md-4 justify-content-center">';
+                echo "<img src='../../images/{$row['product_img']}'  alt='...' class='pdImg mr-3 p-2'>";
+              echo'</div>';
+
+              echo'<div class="col-2 .col-md-4 justify-content-center">';
+                echo'<p class="product_label text_design text-center text_margin"><label for="product_image">';
+                  echo $row['product_name'];
+                echo '</label> </p>';
+              echo'</div>';
+
+              echo'<div class="col-2 .col-md-4 text-center">';
+                echo'<p class="text_margin text_design text-center">';
+                  echo $row['amount'];
+                echo'</p>';
+              echo'</div>';
+
+              echo'<div class="col-2 .col-md-4">';
+                echo'<p class="text_margin text_design text-center">';
+                  echo $row['product_price'] * $row['amount'];
+                echo'</p>';
+              echo'</div>';
+
+
+              echo'<div class="col-2 .col-md-4">';
+              echo'<p class="text_margin text_design text-center">';
+                echo $row['order_date'];
+              echo'</p>';
+            echo'</div>';
+
+            echo'<div class="col-2 .col-md-4">';
+            echo'<p class="text_margin text_design text-center">';
+              echo $row['status_of_delivery'];
+            echo'</p>';
+          echo'</div>';
+            echo'</div>';
+          }
+        }
+      ?>
     </div>
     <?php include '../shared/footer.php';?>
     <script src="history.js"></script>

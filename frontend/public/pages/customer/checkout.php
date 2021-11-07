@@ -12,7 +12,7 @@ $sql =  (
   FROM shopping_cart AS ct
   JOIN product AS pd ON ct.product_id = pd.product_id
   JOIN user AS u ON ct.user_id = u.user_id
-  WHERE ct.user_id = '$user_id' AND ct.checkout = '1'
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '1' AND ct.paid = '0'
   ORDER BY ct.cart_id ASC"
 );
 $result = mysqli_query($con, $sql);
@@ -20,22 +20,24 @@ $user_result = mysqli_query($con, $sql);
 $number_row = mysqli_num_rows($result);
 $user_row = mysqli_fetch_assoc($user_result);
 
+// SQL for calculating total of all products
 $total_sql = (
   "SELECT SUM(pd.product_price * ct.product_quantity_added) AS total
   FROM shopping_cart AS ct
   JOIN product AS pd ON ct.product_id = pd.product_id
   JOIN user AS u ON ct.user_id = u.user_id
-  WHERE ct.user_id = '$user_id' AND ct.checkout = '1'"
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '1' AND ct.paid='0'"
 );
 $total_result = mysqli_query($con, $total_sql);
 $total_row = mysqli_fetch_assoc($total_result);
+
+// SQL for address change
 if (isset($_POST['addressBtn'])) {
   $address_result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $user_id");
   $address_row = mysqli_fetch_assoc($address_result);
   $address_sql = "UPDATE user SET user_address = '$_POST[address]' WHERE user_id = $user_id";
   if (mysqli_query($con,$address_sql))
   {
-    mysqli_close($con);
     echo'<script>alert("Your address has been updated.");</script>';
   }
   else
@@ -44,23 +46,32 @@ if (isset($_POST['addressBtn'])) {
   }
 };
 
+// SQL to update customer order from cart
 if (isset($_POST['paymentBtn'])) {
-  $query = "SELECT * FROM shopping_cart WHERE user_id = $user_id AND checkout = '1'";
-  $run_query = mysqli_query($con, $query);
-  if(mysqli_num_rows($run_query) > 0)
+  $date = date("Y-m-d");
+  $order_status = 'Preparing your order';
+  $query = (
+    "INSERT INTO customer_order (cart_id, order_date, status_of_delivery)
+    SELECT ct.cart_id, '$date', '$order_status'
+    FROM shopping_cart AS ct
+    WHERE ct.checkout='1' AND user_id=$user_id AND paid='0';
+    UPDATE shopping_cart SET paid='1' WHERE user_id=$user_id;"
+  );
+  if($con -> multi_query($query))
   {
-    foreach($run_query as $row)
-    {
-      $cart_id = $row['cart_id'];
-      $date = date("d-m-Y");
-      $status_of_delivery = "Preparing your order";
-      $payment_sql="INSERT INTO customer_order (cart_id, order_date, status_of_delivery) VALUES ('$cart_id', '$date','$status_of_delivery')";
-      $run_payment_sql = mysqli_query($con, $payment_sql);
-    }
-  
+    do {
+      if ($payment_result = $con->store_result()) {
+        var_dump($payment_result->fetch_all(MYSQLI_ASSOC));
+        $payment_result->free();
+      }
+    } while ($con->more_results() && $con->next_result());
+    $showModal = "true";
+  }
+  else{
+    die('Error: ' . mysqli_error($con));
+  }
   mysqli_close($con);
   }
-}
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +90,7 @@ if (isset($_POST['paymentBtn'])) {
       <?php
         if ($number_row == 0)
         {
-          echo '<div class="empty text-center pb-5">';
+          echo '<div class="empty text-center py-5">';
             echo '<div class="card-body">';
               echo '<h5 class="card-title">You have no items to pay!</h5>';
               echo '<p class="card-text">Head over to our shop and add some items to your cart!</p>';
@@ -179,65 +190,71 @@ if (isset($_POST['paymentBtn'])) {
           echo '</div>';
           echo'</div>';
         }
-        echo'<div class="row footer_row">';
-          echo'<div class="col-8 .col-md-4 pt-5">';
-            echo'<div class="row text_margin text_design">';
-              echo'<label for="credit_card_num" class="col-sm-4">Credit Card Number :</label>';
-              echo'<div class="col-sm-8 input-group">';
-                echo'<input type="text" class="form-control w-50"
-                id="credit_card_num" placeholder="Credit Card Number"
-                maxlength="16" aria-label="Credit Card Number" required>';
+        echo'<form method="post">';
+          echo'<div class="row footer_row">';
+            echo'<div class="col-8 .col-md-4 pt-5">';
+              echo'<div class="row text_margin text_design">';
+                echo'<label for="credit_card_num" class="col-sm-4">Credit Card Number :</label>';
+                echo'<div class="col-sm-8 input-group">';
+                  echo'<input type="text" class="form-control w-50"
+                  id="credit_card_num" placeholder="Credit Card Number"
+                  maxlength="16" aria-label="Credit Card Number" required>';
 
-                echo'<input type="text" class="form-control w-25"
-                id="monthyear" placeholder="MM/YY"
-                maxlength="5" aria-label="month and year" required>';
+                  echo'<input type="text" class="form-control w-25"
+                  id="monthyear" placeholder="MM/YY"
+                  maxlength="5" aria-label="month and year" required>';
 
-                echo'<input type="text" class="form-control w-25"
-                id="cvc" placeholder="CVC"
-                maxlength="3" aria-label="cvc" required>';
+                  echo'<input type="text" class="form-control w-25"
+                  id="cvc" placeholder="CVC"
+                  maxlength="3" aria-label="cvc" required>';
+                echo'</div>';
               echo'</div>';
             echo'</div>';
+            echo'<div class="col-2 .col-md-4">';
+              echo'<p class="text_margin text_design text-center">Subtotal :</p>';
+            echo'</div>';
+            echo'<div class="col-2 .col-md-4 text-center">';
+              echo'<p class="text_margin text_design text-center">';
+                echo "RM {$total_row['total']}";
+              echo'</p>';
+            echo'</div>';
           echo'</div>';
-          echo'<div class="col-2 .col-md-4">';
-            echo'<p class="text_margin text_design text-center">Subtotal :</p>';
-          echo'</div>';
-          echo'<div class="col-2 .col-md-4 text-center">';
-            echo'<p class="text_margin text_design text-center">';
-              echo "RM {$total_row['total']}";
-            echo'</p>';
-          echo'</div>';
-        echo'</div>';
 
-        echo'<div class="row footer_row">';
-          echo'<div class="col-10 .col-md-4"></div>';
-          echo'<div class="col-2 .col-md-4 text-center">';
-            echo'<form method="post"
-                  onsubmit="setTimeout(function() {
-                    $(\'#loading\').hide();
-                    $(\'#completed\').show();
-                    setTimeout(function(){window.location = \'history.php\';},4000);}
-                  ,3000);return false">';
-              echo'<button type="submit" name="paymentBtn" class="btn btn-success buttons"
-                  data-bs-toggle="modal" data-bs-target="#payment">';
-                echo'Place Order';
-              echo'</button>';
-            echo'</form>';
+          echo'<div class="row footer_row">';
+            echo'<div class="col-10 .col-md-4"></div>';
+            echo'<div class="col-2 .col-md-4 text-center">';
+            echo'<button type="submit" name="paymentBtn" class="btn btn-success buttons">';
+              echo'Place Order';
+            echo'</button>';
+            echo'</div>';
           echo'</div>';
-        echo'</div>';
+        echo'</form>';
         }
       ?>
       <!-- Bootstrap modal -->
-      <div class="modal fade" id="payment" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal fade" id="loading" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="paymentLabel">Payment</h5>
             </div>
             <div class="modal-body text-center">
-              <div class="spinner-border my-5 text-success" role="status" id="loading">
+              <div class="spinner-border my-5 text-success" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-              <div class="" id="completed" style="display:none;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bootstrap modal completed-->
+      <div class="modal fade" id="completed" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="paymentLabel">Payment</h5>
+            </div>
+            <div class="modal-body text-center">
+              <div class="">
                 <i class="fas fa-check-circle text-success fa-5x my-3"></i>
                 <p>Payment Completed</p>
               </div>
@@ -249,5 +266,20 @@ if (isset($_POST['paymentBtn'])) {
   <?php include '../shared/footer.php';?>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <?php
+    if(!empty($showModal)){
+      echo '<script>
+      $(document).ready(function(){
+        $("#loading").modal("show");
+        setTimeout(function(){
+          $("#loading").modal("hide");
+          $("#completed").modal("show");
+          setTimeout(function(){
+            window.location = \'history.php\'},3000);
+        }, 3000);
+      });
+      </script>';
+    }
+  ?>
 </body>
 </html>

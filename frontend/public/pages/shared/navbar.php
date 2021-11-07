@@ -44,7 +44,7 @@ if (isset($_POST['pswBtn'])) {
     <section id="navbar">
       <div class="container-fluid nav-color">
         <div class = "container">
-          <nav class="navbar navbar-expand-lg navbar-light nav-color text-center">
+          <nav class="navbar maxHeight navbar-expand-lg navbar-light nav-color text-center">
             <a class="navbar-brand" href="../customer/home.php">
               <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
             </a>

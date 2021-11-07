@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-6">
-          <img class="rounded float-right mr-5 footer-img" src="../../images/logo-png.png" alt="" style="width:200px;height:200px;">
+          <img class="rounded float-right mr-5 footer-img" src="../../images/footer_gif" alt="" style="width:150px;height:150px;">
         </div>
       </div>
 
