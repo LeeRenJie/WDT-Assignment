@@ -72,11 +72,11 @@ button{
 @media only screen and (max-width: 768px) {
   img{
     height: auto;
-  	width: auto;
+    width: auto;
   }
   .productlabel{
-  	margin-top: -10px;
-  	margin-left: 20px;
-  	float: none;
+    margin-top: -10px;
+    margin-left: 20px;
+    float: none;
   }
 }
