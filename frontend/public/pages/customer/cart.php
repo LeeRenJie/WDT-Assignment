@@ -63,6 +63,7 @@ if (isset($_POST['checkout'])) {
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
+    <!--(Mark Otto, 2021) -->
     <div class="container-fluid whole_page">
       <div class="row py-3 text-center">
         <div class="col-10"></div>

@@ -23,6 +23,7 @@ if (isset($_POST['signupBtn'])) {
   {
     foreach($validation_query_run as $row)
     {
+      #("Form Validation in PHP - javatpoint", 2021);
       if($row['user_email'] == $check_mail)
       {
         echo("<script>alert('Email already exists')</script>");
@@ -51,8 +52,8 @@ if (isset($_POST['signupBtn'])) {
         $address = $_POST['address'];
 
 
-        // $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
-        // $result = mysqli_query($con, $sql);
+        $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
+        $result = mysqli_query($con, $sql);
 
         if($result){
           echo("<script>alert('Your Registration is Successfully!')</script>");
