@@ -13,8 +13,8 @@
           <h3><u>Contact Us</u></h3>
           <ul class="nav flex-column">
             <li class="nav-item mb-2">
-              <a class="nav-link p-0 text-muted">
-                <i class="far fa-envelope"></i> xxx@example.com
+              <a class="nav-link p-0 text-muted" href="mailto:e.petmart@gmail.com">
+                <i class="far fa-envelope"></i> e.petmart@gmail.com
               </a>
             </li>
             <li class="nav-item mb-2">
