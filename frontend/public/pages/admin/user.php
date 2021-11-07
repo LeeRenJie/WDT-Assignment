@@ -85,7 +85,9 @@ if ($_SESSION['privilege'] == "user") {
                     echo "</button>";
                     echo '<div class="dropdown-menu text-center" aria-labelledby="quantity_dropdown">';
                       if ($row['privilege'] == "user"){
-                      echo '<a class="dropdown-item" href="../customer/history.php">Order History</a>';
+                      echo '<a class="dropdown-item" href="../customer/history.php?';
+                        echo $row['user_id'];
+                      echo'">Order History</a>';
                       }
                       if ($_SESSION['privilege'] == "owner"){
                       echo "<a class='dropdown-item' href=\"user-del.php?id="; //hyperlink to delete.php page with ‘id’ parameter
