@@ -101,9 +101,7 @@ if (isset($_POST['pswBtn'])) {
                       );
                     }
                     else{
-                        echo "<a class='dropdown-item' href=\"profile.php?id=";
-                        echo $_SESSION['user_id'];
-                        echo "\">Profile</a>";
+                        echo "<a class='dropdown-item' href=\"profile.php\">Profile</a>";
                         echo('
                         <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
                         <a class="dropdown-item" href="../customer/history.php">Purchase History</a>

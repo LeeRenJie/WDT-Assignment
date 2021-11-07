@@ -38,7 +38,7 @@ if (isset($_POST['signupBtn'])) {
       }
 
       #form validation for input length
-      else if($num_length < 12 OR $num_length > 12){
+      else if($num_length != 12){
         echo("<script>alert('Phone number must have 12 digits!!')</script>");
       }
 
