@@ -18,7 +18,7 @@
               </a>
             </li>
             <li class="nav-item mb-2">
-              <a class="nav-link p-0 text-muted">
+              <a class="nav-link p-0 text-muted" href="tel:+6012-3456789">
                 <i class="fab fa-whatsapp"></i> +6012-3456789
               </a>
             </li>
