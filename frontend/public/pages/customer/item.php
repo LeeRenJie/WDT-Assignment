@@ -11,20 +11,17 @@
     JOIN pet ON pd.pet_id = pet.pet_id
     WHERE pd.product_id = $product_id");
   $row = mysqli_fetch_assoc($result);
-
   $user_id = $_SESSION['user_id'];
   if (isset($_POST['addCartBtn'])) {
-    include("../../../../backend/conn.php");
-
-    $sql="INSERT INTO shopping_cart (user_id, product_id, product_quantity_added) VALUES ('$user_id', '$product_id','$_POST[quantity]')";
-
+    $sql="INSERT INTO shopping_cart (user_id, product_id, product_quantity_added) 
+    VALUES ('$user_id', '$product_id','$_POST[quantity]')";
     if (!mysqli_query($con,$sql)){
       die('Error: ' . mysqli_error($con));
     }
     else {
       echo("<script>alert('Item Successfully Added To Cart')</script>");
+      echo("<script>window.location = 'cart.php'</script>");
     }
-
     mysqli_close($con);
   }
 ?>
