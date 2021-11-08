@@ -9,12 +9,11 @@ $userdata = mysqli_fetch_assoc($result);
 
 if (isset($_POST['saveInfoBtn'])) {
   //get file
-  //https://newbedev.com/html-image-uploading-in-php-and-mysql-code-example
   $userProPic = $_FILES['profilePic']['tmp_name'];
   //check either got image or not
   if ($_FILES['profilePic']['size'] > 0){
     //get image type
-    $imageFileType = strtolower(pathinfo($userProPic,PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($userProPic,PATHINFO_EXTENSION)); //(Newbedev, 2021)
     //encode image into base64
     $base64_Img = base64_encode(file_get_contents($userProPic));
     //set image content with type and base64
@@ -44,7 +43,8 @@ if (isset($_POST['saveInfoBtn'])) {
     echo("<script>window.location = 'home.php'</script>");
   }
   else {
-    die('Error: ' . mysqli_error($con));
+    echo('<script>alert("This username had been registered!");</script>');
+    echo("<script>window.location = 'profile.php'</script>");
   }
   mysqli_close($con);
 }
@@ -128,15 +128,14 @@ if (isset($_POST['saveInfoBtn'])) {
               </div>
                 <input id="imageUpload" type="file" name="profilePic" onchange="preimg(event)" capture>
             </div>
-          </div> <!--row-->
-        </div> <!--col-15-->
-      </div> <!--container-->
+          </div>
+        </div>
+      </div>
     </form>
     <?php include '../shared/footer.php';?>
     <!--js function-->
     <script>
-
-    //this sctipt use to preview image before upload
+    //this script use to preview image before upload
     //https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
     function preimg(event) { 
       document.getElementById('img').src="<?php echo $userdata['user_image']?>";
@@ -151,7 +150,7 @@ if (isset($_POST['saveInfoBtn'])) {
       }
     }
 
-    //button disable
+    //this script disable button when the modify unchange
     // https://flexiple.com/disable-button-javascript/
     let input = document.querySelector(".modify");
     let button = document.getElementById('button');

@@ -72,6 +72,7 @@
                   echo'</button>';
                 echo'</div>';
               echo'</form>';
+            }
             ?>
           </div>
         </div>

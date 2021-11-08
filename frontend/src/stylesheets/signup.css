@@ -1,3 +1,8 @@
+.size {
+  min-height: 500px;
+  background-image: linear-gradient(#ffffff,#F5E8C7, #DEBA9D);
+}
+
 .form-signup {
   display: -ms-flexbox;
   -ms-flex-align: center;

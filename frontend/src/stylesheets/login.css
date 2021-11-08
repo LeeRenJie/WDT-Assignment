@@ -1,6 +1,6 @@
 .size {
   min-height: 500px;
-  background-color: #FFEFDE;
+  background-image: linear-gradient(#ffffff,#F5E8C7, #DEBA9D);
 }
 
 .form-login {

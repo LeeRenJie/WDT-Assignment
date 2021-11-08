@@ -2,7 +2,7 @@
 if (isset($_POST['signupBtn'])) {
   include("../../../../backend/conn.php");
   $defaultPic = "../../images/default.jpg";
-  $imageFileType = strtolower(pathinfo($defaultPic,PATHINFO_EXTENSION));
+  $imageFileType = strtolower(pathinfo($defaultPic,PATHINFO_EXTENSION)); //(Newbedev, 2021)
 	$defaultImg = base64_encode(file_get_contents($defaultPic));
   $image = 'data:image/'.$imageFileType.';base64,'.$defaultImg;
   $privilege = 'user';
@@ -87,7 +87,7 @@ if (isset($_POST['signupBtn'])) {
   </head>
   <body>
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid">
+    <div class="container-fluid size">
       <form class="form-signup text-center my-4" action="signup.php" method="post" enctype="multipart/form-data">
         <h1 class="h3 mb-3 font-weight-normal">Sign Up to Exclusive Pet Mart</h1>
         <!-- username -->
