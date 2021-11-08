@@ -53,23 +53,26 @@
             <span class="badge badgeColor text-white"><?php echo $row['product_pet'];?></span>
             <h1 class="price pt-2">RM <?php echo $row['product_price'];?></h1>
             <p class="lead py-4 desc"><?php echo $row['product_desc'];?></p>
-            <form method="post">
-              <div>
-                <span class="quantityTitle text-muted row pl-3 pb-2">Quantity:</span>
-                <div class="quantity buttons_added">
-                  <input type="button" value="-" class="minus">
-                  <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="1">
-                  <input type="button" value="+" class="plus">
-                </div>
-              </div>
-              <div class="my-4">
-                <div class="text-muted ship py-2"><i class="fas fa-truck pr-2"></i>Free Malaysia shipping and a risk-free quality gurantee</div>
-                <button type="submit" name="addCartBtn" class="btn-lg btn-block btn btn-success">
-                  <i class="fas fa-shopping-cart pr-2"></i>
-                  Add to Cart
-                </button>
-              </div>
-            </form>
+            <?php
+            if($_SESSION['privilege'] == "user") {
+              echo'<form method="post">';
+                echo'<div>';
+                  echo'<span class="quantityTitle text-muted row pl-3 pb-2">Quantity:</span>';
+                  echo'<div class="quantity buttons_added">';
+                    echo'<input type="button" value="-" class="minus">';
+                    echo'<input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="1">';
+                    echo'<input type="button" value="+" class="plus">';
+                  echo'</div>';
+                echo'</div>';
+                echo'<div class="my-4">';
+                  echo'<div class="text-muted ship py-2"><i class="fas fa-truck pr-2"></i>Free Malaysia shipping and a risk-free quality gurantee</div>';
+                  echo'<button type="submit" name="addCartBtn" class="btn-lg btn-block btn btn-success">';
+                    echo'<i class="fas fa-shopping-cart pr-2"></i>';
+                    echo'Add to Cart';
+                  echo'</button>';
+                echo'</div>';
+              echo'</form>';
+            ?>
           </div>
         </div>
       </div>
