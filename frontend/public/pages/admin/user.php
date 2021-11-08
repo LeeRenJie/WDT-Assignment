@@ -25,17 +25,16 @@ if ($_SESSION['privilege'] == "user") {
         <input type="text" class="form-control w-25 d-inline"name="search_key" placeholder="Search user..">
         <button class="btn btn-success" name="searchBtn" type="submit">Search</button>
       </form>
-
       <?php
       include("../../../../backend/conn.php");
       $search_key = "";
-
       if(isset($_POST['searchBtn'])){
         $search_key = $_POST['search_key'];
       }
-
-      $result=mysqli_query($con,"SELECT * FROM user WHERE privilege='user' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
-      $owner_result=mysqli_query($con,"SELECT * FROM user WHERE NOT privilege='owner' and (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
+      $result=mysqli_query($con,"SELECT * FROM user WHERE privilege='user' and 
+      (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
+      $owner_result=mysqli_query($con,"SELECT * FROM user WHERE NOT privilege='owner' and 
+      (user_name LIKE '%$search_key%' or user_username LIKE '%$search_key%') ORDER BY user_id, user_name, user_username");
       ?>
       <div class="px-5 pb-5">
         <table id="customer" class="text-center">

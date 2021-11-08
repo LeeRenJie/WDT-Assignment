@@ -5,10 +5,11 @@ if(!isset($_SESSION)) {
 }
 $userid = $_SESSION['user_id']; //get user id
 $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
-$row = mysqli_fetch_assoc($result);
+$userdata = mysqli_fetch_assoc($result);
 
 if (isset($_POST['saveInfoBtn'])) {
   //get file
+  //https://newbedev.com/html-image-uploading-in-php-and-mysql-code-example
   $userProPic = $_FILES['profilePic']['tmp_name'];
   //check either got image or not
   if ($_FILES['profilePic']['size'] > 0){
@@ -63,11 +64,11 @@ if (isset($_POST['saveInfoBtn'])) {
     <?php include '../shared/navbar.php';?>
     <form method="post" ENCTYPE="multipart/form-data">
       <!--get user id-->
-      <input type = "hidden" name = "id" value ="<?php echo $row['user_id']?>">
+      <input type = "hidden" name = "id" value ="<?php echo $userdata['user_id']?>">
       <div class="container-fluid cont px-5 modify">
         <div class = "col-15 background-white">
           <div class = "row box-container">
-            <h2><strong><?php echo $row["user_name"]?></strong> Profile</h2>
+            <h2><strong><?php echo $userdata["user_name"]?></strong> Profile</h2>
           </div>
           <div class="row justify-content-center ml-2">
             <div class="col-9">
@@ -75,35 +76,35 @@ if (isset($_POST['saveInfoBtn'])) {
               <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username :</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="username" name="username" value="<?php echo $row['user_username']?>" required="required">
+                  <input type="text" class="form-control" id="username" name="username" value="<?php echo $userdata['user_username']?>" required="required">
                 </div>
               </div>
               <!--change name-->
               <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name :</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" name="name" value="<?php echo $row['user_name']?>" required="required">
+                  <input type="text" class="form-control" id="name" name="name" value="<?php echo $userdata['user_name']?>" required="required">
                 </div>
               </div>
               <!--change email-->
               <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email :</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['user_email']?>" required="required">
+                  <input type="email" class="form-control" id="email" name="email" value="<?php echo $userdata['user_email']?>" required="required">
                 </div>
               </div>
               <!--change phone number-->
               <div class="form-group row">
                 <label for="number" class="col-sm-2 col-form-label">Phone Number :</label>
                 <div class="col-sm-10">
-                  <input type="tel" class="form-control" id="number" name="phoneNumber" value="<?php echo $row['user_phone_number']?>" pattern="+60[0-9]{2}-[0-9]{3}-[0-9]{4}" required="required">
+                  <input type="tel" class="form-control" id="number" name="phoneNumber" value="<?php echo $userdata['user_phone_number']?>" pattern="+60[0-9]{2}-[0-9]{3}-[0-9]{4}" required="required">
                 </div>
               </div>
               <!--change address-->
               <div class="form-group row">
                 <label for="address" class="col-sm-2 col-form-label">Address :</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="address" name="address" value="<?php echo $row['user_address']?>" required="required">
+                  <input type="text" class="form-control" id="address" name="address" value="<?php echo $userdata['user_address']?>" required="required">
                 </div>
               </div>
               <!--Display user password with ** only-->
@@ -111,7 +112,7 @@ if (isset($_POST['saveInfoBtn'])) {
                 <div class="form-group row">
                   <label for="password" class="col-sm-2 col-form-label">Password :</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control-plaintext" id="password" name="password" value="<?php echo $row['user_password']?>">
+                    <input type="password" class="form-control-plaintext" id="password" name="password" value="<?php echo $userdata['user_password']?>">
                   </div>
                 </div>
               </fieldset>
@@ -123,7 +124,7 @@ if (isset($_POST['saveInfoBtn'])) {
             <!--Profile Picture-->
             <div class="col-3 justify-content-center pl-5">
               <div class="profile-container">
-                <image class="imge" id="img" name="img" src=<?php echo ($row['user_image'])?> alt="Profile Pic" />
+                <image class="imge" id="img" name="img" src=<?php echo ($userdata['user_image'])?> alt="Profile Pic" />
               </div>
                 <input id="imageUpload" type="file" name="profilePic" onchange="preimg(event)" capture>
             </div>
@@ -134,9 +135,11 @@ if (isset($_POST['saveInfoBtn'])) {
     <?php include '../shared/footer.php';?>
     <!--js function-->
     <script>
-    //preview image
-    function preimg(event) { //https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
-      document.getElementById('img').src="<?php echo $row['user_image']?>";
+
+    //this sctipt use to preview image before upload
+    //https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+    function preimg(event) { 
+      document.getElementById('img').src="<?php echo $userdata['user_image']?>";
       var picture = new FileReader();
       if (picture) {
         picture.onload = function()
@@ -147,6 +150,7 @@ if (isset($_POST['saveInfoBtn'])) {
         picture.readAsDataURL(event.target.files[0]);
       }
     }
+
     //button disable
     // https://flexiple.com/disable-button-javascript/
     let input = document.querySelector(".modify");
