@@ -55,8 +55,8 @@ if ($_SESSION['privilege'] == "user") {
                   echo $row['user_username'];
                 echo "</td>";
                 echo "<td>";
-                echo $row['user_name'];
-              echo "</td>";
+                  echo $row['user_name'];
+                echo "</td>";
                 echo "<td>";
                   echo "<a href=\"mailto:".$row['user_email']."\">".$row['user_email']."</a> "; // Hyperlink
                 echo "</td>";
@@ -68,7 +68,7 @@ if ($_SESSION['privilege'] == "user") {
                 echo "</td>";
                 echo "<td>";
                   echo $row['privilege'];
-              echo "</td>";
+                echo "</td>";
                 echo "<td>";
                   echo '<div class="dropdown textcenter">';
                     echo '<button class="btn btn-secondary dropdown-toggle buttons" type="button" id="quantity_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';

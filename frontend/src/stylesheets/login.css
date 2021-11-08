@@ -1,6 +1,5 @@
 .size {
-  height: 500px;
-  padding-top: 50px;
+  min-height: 500px;
   background-color: #FFEFDE;
 }
 

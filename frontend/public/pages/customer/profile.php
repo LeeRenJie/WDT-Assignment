@@ -64,7 +64,7 @@ if (isset($_POST['saveInfoBtn'])) {
     <form method="post" ENCTYPE="multipart/form-data">
       <!--get user id-->
       <input type = "hidden" name = "id" value ="<?php echo $row['user_id']?>">
-      <div class="container-fluid cont px-5  modify">
+      <div class="container-fluid cont px-5 modify">
         <div class = "col-15 background-white">
           <div class = "row box-container">
             <h2><strong><?php echo $row["user_name"]?></strong> Profile</h2>
@@ -135,9 +135,9 @@ if (isset($_POST['saveInfoBtn'])) {
     <!--js function-->
     <script>
     //preview image
-    function preimg(event) {
-        document.getElementById('img').src="<?php echo $row['user_image']?>";
-        var picture = new FileReader();
+    function preimg(event) { //https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+      document.getElementById('img').src="<?php echo $row['user_image']?>";
+      var picture = new FileReader();
       if (picture) {
         picture.onload = function()
           {
@@ -148,16 +148,17 @@ if (isset($_POST['saveInfoBtn'])) {
       }
     }
     //button disable
+    // https://flexiple.com/disable-button-javascript/
     let input = document.querySelector(".modify");
     let button = document.getElementById('button');
     button.disabled = true;
     input.addEventListener("change", disField);
     function disField() {
-        if(document.querySelector(".modify").value === "") {
-            button.disabled = true;
-        } else {
-            button.disabled = false;
-        }
+      if(document.querySelector(".modify").value === "") {
+          button.disabled = true;
+      } else {
+          button.disabled = false;
+      }
     }
     </script>
     <?php
