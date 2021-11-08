@@ -53,19 +53,20 @@ if (isset($_POST['pswBtn'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto ">
-                <li class="nav-item">
-                  <a class="nav-link" href="../customer/product.php">
-                    <i class="fas fa-shopping-bag"></i> Shop
-                  </a>
-                </li>
                 <?php
                   if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
                     echo('
-                        <li class="nav-item">
-                          <a class="nav-link" href="../customer/cart.php">
-                          <i class="fas fa-shopping-cart"></i> Cart
-                          </a>
-                        </li>'
+                      <li class="nav-item">
+                        <a class="nav-link" href="../customer/product.php">
+                          <i class="fas fa-shopping-bag"></i> Shop
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="../customer/cart.php">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        </a>
+                      </li>'
                     );
                   }
                 ?>
