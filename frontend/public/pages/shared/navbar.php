@@ -54,14 +54,16 @@ if (isset($_POST['pswBtn'])) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto ">
                 <?php
+                  if(!isset($_SESSION['username']) OR (isset($_SESSION['username']) && $_SESSION['privilege'] == "user")) {
+                      echo'<li class="nav-item">';
+                        echo'<a class="nav-link" href="../customer/product.php">';
+                          echo'<i class="fas fa-shopping-bag"></i> Shop';
+                        echo'</a>';
+                      echo'</li>';
+                  }
+
                   if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
                     echo('
-                      <li class="nav-item">
-                        <a class="nav-link" href="../customer/product.php">
-                          <i class="fas fa-shopping-bag"></i> Shop
-                        </a>
-                      </li>
-
                       <li class="nav-item">
                         <a class="nav-link" href="../customer/cart.php">
                         <i class="fas fa-shopping-cart"></i> Cart

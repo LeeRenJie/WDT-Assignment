@@ -4,11 +4,6 @@
   background-color: #FFEFDE;
 }
 
-.img{
-  height: 180px;
-  width: 180px;
-}
-
 #product {
   border-collapse: collapse;
   width: 100%;
@@ -22,8 +17,12 @@
 
 #product tr:nth-child(even){background-color: #f1f1f1;}
 #product tr:nth-child(odd){background-color: #ffffff;}
-
 #product tr:hover {background-color: #ddd;}
+
+.img{
+  height: 180px;
+  width: 180px;
+}
 
 #product th {
   text-align: center;

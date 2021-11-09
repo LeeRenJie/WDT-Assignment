@@ -69,7 +69,7 @@ if (isset($_POST['addProductBtn'])) {
                 <image class="imge" id="img" name="img" src="../../images/default.jpg" alt="Profile Pic" />
               </div>
               <div class = "opcon">
-                <input id="imageUpload" type="file" name="productPic" onchange="preimg(event)" required="" capture>
+                <input id="imageUpload" type="file" name="productPic" onchange="preimg()" required="" capture>
               </div>
             </div>
             <!--label-->
@@ -137,7 +137,8 @@ if (isset($_POST['addProductBtn'])) {
     <script src="product-edit.js"></script>
     <!--js to preview image-->
     <script>
-    function preimg(event) {
+    // (Nkron, 2014)
+    function preimg() {
       document.getElementById('img').src="../../images/default.jpg";
       var picture = new FileReader();
       if (picture){

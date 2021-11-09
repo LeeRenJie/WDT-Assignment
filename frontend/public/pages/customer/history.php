@@ -13,7 +13,7 @@ $sql =  (
   FROM customer_order AS od
   JOIN shopping_cart AS ct ON od.cart_id = ct.cart_id
   JOIN product AS pd ON ct.product_id = pd.product_id
-  WHERE (ct.user_id = '$user_id' OR '$admin_user_id') AND ct.checkout = '1' AND ct.paid = '1'
+  WHERE (ct.user_id = '$user_id' OR ct.user_id = '$admin_user_id') AND ct.checkout = '1' AND ct.paid = '1'
   ORDER BY od.order_id DESC"
 );
 $result = mysqli_query($con, $sql);
@@ -36,7 +36,7 @@ $number_row = mysqli_num_rows($result);
       <?php
         if ($number_row == 0)
         {
-          echo '<div class="empty text-center py-5">';
+          echo '<div class="text-center padding">';
             echo '<div class="card-body">';
               echo '<h5 class="card-title">You have no purchase history!</h5>';
               echo '<p class="card-text">Head over to our shop and buy some items today!</p>';

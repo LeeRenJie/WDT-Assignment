@@ -85,7 +85,7 @@ if (isset($_POST['editProductBtn'])){
               <image class="imge" id="img" name="img" src="<?php echo $prodImg?>" alt="Profile Pic" />
             </div>
             <div class = "opcon">
-              <input id="imageUpload" type="file" name="productPic" onchange="preimg(event)" capture>
+              <input id="imageUpload" type="file" name="productPic" onchange="preimg()" capture>
             </div>
           </div>
           <!--label-->
@@ -202,7 +202,8 @@ if (isset($_POST['editProductBtn'])){
     <?php include '../shared/footer.php';?>
     <!--js to preview image-->
     <script>
-    function preimg(event) {
+    // (Nkron, 2014)
+    function preimg() {
       document.getElementById('img').src="<?php echo $prodImg?>";
       var picture = new FileReader();
       if (picture){
