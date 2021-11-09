@@ -59,13 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
           <div class="col-md">
             <form class="form-login" method="post">
               <h1 class="h3 mb-4 font-weight-normal">Log in to Exclusive Pet Mart</h1>
-
-              <label for="username" class="sr-only">User's Username</label>
               <input type="text" id="username" name="username" class="form-control mb-1" placeholder="Enter your username..." required autofocus>
-
-              <label for="password" class="sr-only">Password</label>
               <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password..." required>
-
               <button class="btn-login mt-2" type="submit" name="loginBtn">Log in</button>
               <p class="mt-2 text-muted">Don't have an account? Sign up <a href = "../customer/signup.php">here</a></p>
             </form>

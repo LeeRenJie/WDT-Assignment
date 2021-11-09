@@ -91,23 +91,17 @@ if (isset($_POST['signupBtn'])) {
       <form class="form-signup text-center my-4" action="signup.php" method="post" enctype="multipart/form-data">
         <h1 class="h3 mb-3 font-weight-normal">Sign Up to Exclusive Pet Mart</h1>
         <!-- username -->
-        <label for="signupUsername" class="sr-only">Username</label>
         <input type="text" id="signupUsername" name="username" class="form-control mb-1" placeholder="Username" required="required" autofocus>
         <!-- name -->
-        <label for="signupName" class="sr-only">Name</label>
-        <input type="text" id="signupName" name="name" class="form-control mb-1" placeholder="Name" required="required" autofocus>
+        <input type="text" id="signupName" name="name" class="form-control mb-1" placeholder="Name" required="required">
         <!-- email -->
-        <label for="signupEmail" class="sr-only">Email address</label>
-        <input type="email" id="signupEmail" name="email" class="form-control mb-1" placeholder="Email address" required="required" autofocus>
+        <input type="email" id="signupEmail" name="email" class="form-control mb-1" placeholder="Email address" required="required">
         <!-- password -->
-        <label for="signupPassword" class="sr-only">Password</label>
         <input type="password" id="signupPassword" name="password" class="form-control mb-1" placeholder="Password" required="required" minlength="5">
         <!-- address -->
-        <label for="signupAddress" class="sr-only">Address</label>
-        <input type="text" id="signupAddress" name="address" class="form-control mb-1" placeholder="Address" required="required" autofocus>
+        <input type="text" id="signupAddress" name="address" class="form-control mb-1" placeholder="Address" required="required">
         <!-- phone number -->
-        <label for="signupPhonenumber" class="sr-only">Phone Number</label>
-        <input type="tel" id="signupPhonenumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required="required" autofocus>
+        <input type="tel" id="signupPhonenumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required="required">
         <!-- signup button -->
         <button class="signup-btn mt-3" name="signupBtn" type="submit">Sign up</button>
         <p class="mt-2 mb-3 text-muted">Already have an account? Log in <a href="../shared/login.php">here</a></p>
