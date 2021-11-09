@@ -57,7 +57,7 @@ if (isset($_POST['paymentBtn'])) {
     SELECT ct.cart_id, '$date', '$order_status'
     FROM shopping_cart AS ct
     WHERE ct.checkout='1' AND user_id=$user_id AND paid='0';
-    UPDATE shopping_cart SET paid='1' WHERE user_id=$user_id;"
+    UPDATE shopping_cart SET paid='1' WHERE user_id=$user_id AND checkout='1' ;"
   );
   if($con -> multi_query($query))
   {

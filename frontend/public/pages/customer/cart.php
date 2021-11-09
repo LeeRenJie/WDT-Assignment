@@ -11,7 +11,7 @@ $sql =  (
   pd.product_name AS product_name,pd.product_price AS product_price,
   ct.product_quantity_added AS product_quantity_added, ct.cart_id AS cart_id
   FROM shopping_cart AS ct JOIN product AS pd ON ct.product_id = pd.product_id
-  WHERE ct.user_id = '$user_id' AND ct.checkout = '0'
+  WHERE ct.user_id = '$user_id' AND ct.checkout = '0' AND ct.paid = '0'
   ORDER BY ct.cart_id ASC"
 );
 $result = mysqli_query($con, $sql);

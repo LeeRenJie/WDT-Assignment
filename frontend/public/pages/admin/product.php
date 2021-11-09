@@ -48,7 +48,7 @@ if ($_SESSION['privilege'] == "user") {
       JOIN pet ON pd.pet_id = pet.pet_id
       WHERE product_name LIKE '%$search_key%'
       or product_category LIKE '%$search_key%' or product_pet LIKE '%$search_key%'
-      ORDER BY product_id, product_name, product_category, product_pet");
+      ORDER BY product_id");
       ?>
       <div class="pb-5 px-5">
         <table id="product" class="text-center">
