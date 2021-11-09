@@ -40,12 +40,12 @@
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid bg-color pb-5">
       <div class="row">
-        <div class="col-md-6 p-5">
+        <div class="col-md-5 py-5 pl-5">
           <div class="imgContainer">
             <img src="../../images/<?php echo $row['product_image'];?>" alt="product image" class="img-fluid">
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <div class="container">
             <h1 class="text-capitalize itemName"><?php echo $row['product_name'];?></h1>
             <span class="stock mr-2 text-muted"><?php echo $row['product_stock'];?> left</span>

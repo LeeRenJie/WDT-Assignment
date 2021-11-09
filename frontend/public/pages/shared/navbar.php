@@ -43,105 +43,103 @@ if (isset($_POST['pswBtn'])) {
   <body>
     <section id="navbar">
       <div class="container-fluid nav-color">
-        <div class = "container">
-          <nav class="navbar maxHeight navbar-expand-lg navbar-light nav-color text-center">
-            <a class="navbar-brand" href="../customer/home.php">
-              <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto ">
-                <?php
-                  if(!isset($_SESSION['username']) OR (isset($_SESSION['username']) && $_SESSION['privilege'] == "user")) {
-                      echo'<li class="nav-item">';
-                        echo'<a class="nav-link" href="../customer/product.php">';
-                          echo'<i class="fas fa-shopping-bag"></i> Shop';
-                        echo'</a>';
-                      echo'</li>';
-                  }
+        <nav class="navbar maxHeight navbar-expand-lg navbar-light nav-color text-center px-5">
+          <a class="navbar-brand" href="../customer/home.php">
+            <img src="../../images/transparent-logo-svg.svg" alt="logo" class="logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto ">
+              <?php
+                if(!isset($_SESSION['username']) OR (isset($_SESSION['username']) && $_SESSION['privilege'] == "user")) {
+                    echo'<li class="nav-item">';
+                      echo'<a class="nav-link" href="../customer/product.php">';
+                        echo'<i class="fas fa-shopping-bag"></i> Shop';
+                      echo'</a>';
+                    echo'</li>';
+                }
 
-                  if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
-                    echo('
-                      <li class="nav-item">
-                        <a class="nav-link" href="../customer/cart.php">
-                        <i class="fas fa-shopping-cart"></i> Cart
-                        </a>
-                      </li>'
-                    );
-                  }
-                ?>
-                <?php
-                  if(!isset($_SESSION['username'])) {
-                    echo(
-                    '<li class="nav-item">
-                      <a class="nav-link login-btn" href="../shared/login.php">Login</a>
-                    </li>');
-                  }
-                ?>
-                <?php
-                  if(isset($_SESSION['username'])) {
-                    echo('
-                      <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-user mr-1"></i>'
-                    );
-                    if($_SESSION['privilege'] == "admin") {
-                      echo "Admin ";
-                    }elseif ($_SESSION['privilege'] == "owner"){
-                      echo "Owner ";
-                    }
-                    echo($_SESSION['username']);
-                    echo('</a>
-                    <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">'
-                    );
-                    if($_SESSION['privilege'] != "user"){
-                      echo('
-                      <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
-                      <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
-                      <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
-                      <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
-                      );
-                    }
-                    else{
-                        echo "<a class='dropdown-item' href=\"profile.php\">Profile</a>";
-                        echo('
-                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
-                        <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
-                        <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
-                      );
-                    }
-                  }
-                  echo('</div>
+                if(isset($_SESSION['username']) && $_SESSION['privilege'] == "user") {
+                  echo('
+                    <li class="nav-item">
+                      <a class="nav-link" href="../customer/cart.php">
+                      <i class="fas fa-shopping-cart"></i> Cart
+                      </a>
+                    </li>'
+                  );
+                }
+              ?>
+              <?php
+                if(!isset($_SESSION['username'])) {
+                  echo(
+                  '<li class="nav-item">
+                    <a class="nav-link login-btn" href="../shared/login.php">Login</a>
                   </li>');
-                ?>
-              </ul>
-            </div>
-          </nav>
-          <!-- // Password edit window -->
-          <form  method="post">
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pswWindow" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <p class="modal-title" id="pswWindow">Edit Password</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <input type="password" class="form-control mb-2" name="currentpsw" placeholder="Current Password">
-                    <input type="password" class="form-control mb-2" name="newpsw" placeholder="New Password">
-                    <input type="password" class="form-control mb-2" name="confirmpsw" placeholder="Confirm New Password">
-                  </div>
-                  <div class="modal-footer">
-                    <input type="submit" name="pswBtn" class="btn btn-primary" value="Confirm"></input>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
+                }
+              ?>
+              <?php
+                if(isset($_SESSION['username'])) {
+                  echo('
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user mr-1"></i>'
+                  );
+                  if($_SESSION['privilege'] == "admin") {
+                    echo "Admin ";
+                  }elseif ($_SESSION['privilege'] == "owner"){
+                    echo "Owner ";
+                  }
+                  echo($_SESSION['username']);
+                  echo('</a>
+                  <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">'
+                  );
+                  if($_SESSION['privilege'] != "user"){
+                    echo('
+                    <a class="dropdown-item" href="../admin/user.php">Manage Users</a>
+                    <a class="dropdown-item" href="../admin/product.php">Manage Products</a>
+                    <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
+                    <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
+                    );
+                  }
+                  else{
+                      echo "<a class='dropdown-item' href=\"profile.php\">Profile</a>";
+                      echo('
+                      <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit Password</a>
+                      <a class="dropdown-item" href="../customer/history.php">Purchase History</a>
+                      <a class="dropdown-item" href="../../../../backend/logout.php">Logout</a>'
+                    );
+                  }
+                }
+                echo('</div>
+                </li>');
+              ?>
+            </ul>
+          </div>
+        </nav>
+        <!-- // Password edit window -->
+        <form  method="post">
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pswWindow" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <p class="modal-title" id="pswWindow">Edit Password</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="password" class="form-control mb-2" name="currentpsw" placeholder="Current Password">
+                  <input type="password" class="form-control mb-2" name="newpsw" placeholder="New Password">
+                  <input type="password" class="form-control mb-2" name="confirmpsw" placeholder="Confirm New Password">
+                </div>
+                <div class="modal-footer">
+                  <input type="submit" name="pswBtn" class="btn btn-primary" value="Confirm"></input>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
