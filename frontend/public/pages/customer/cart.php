@@ -32,16 +32,16 @@ if (isset($_POST['checkout'])) {
   {
     foreach($_POST['check_list'] as $check) {
       $update_sql="UPDATE shopping_cart SET checkout='1' WHERE cart_id='$check'";
-
-      if (!mysqli_query($con, $update_sql)){
-        die('Error: ' . mysqli_error($con));
-      }
-      else {
-        echo("<script>alert('Item Successfully Checked Out')</script>");
-        echo("<script>window.location = 'checkout.php'</script>");
-      }
-      mysqli_close($con);
+      $update_result = mysqli_query($con, $update_sql);
     }
+    if (!$update_result) {
+      die('Error: ' . mysqli_error($con));
+    }
+    else{
+      echo("<script>alert('Item Successfully Checked Out')</script>");
+      echo("<script>window.location = 'checkout.php'</script>");
+    }
+    mysqli_close($con);
   }
   else
   {
@@ -86,7 +86,7 @@ if (isset($_POST['checkout'])) {
       <?php
         if ($number_row == 0)
         {
-          echo '<div class="empty text-center pb-5">';
+          echo '<div class="empty text-center">';
             echo '<div class="card-body">';
               echo '<h5 class="card-title">Your cart is empty!</h5>';
               echo '<p class="card-text">Head over to our shop and add some items to your cart!</p>';

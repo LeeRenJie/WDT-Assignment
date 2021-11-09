@@ -1,5 +1,12 @@
 <?php
 include("../../../../backend/conn.php");
+if(!isset($_SESSION)) {
+  session_start();
+};
+
+if ($_SESSION['privilege'] == "user") {
+  header("Location: ../customer/home.php");
+};
 $id = intval($_GET['id']); //get int value of the variable
 $result = mysqli_query($con, "
   SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
@@ -46,8 +53,8 @@ if (isset($_POST['editProductBtn'])){
   product_image = '$file_name',
   product_desc = '$_POST[desc]',
   category_id = '$category',
-  product_price = '$_POST[price]',
-  WHERE product_id = $_POST[id];";
+  product_price = '$_POST[price]'
+  WHERE product_id = '$_POST[id]';";
 
   if (mysqli_query($con,$sql)) {
     mysqli_close($con);
@@ -76,7 +83,7 @@ if (isset($_POST['editProductBtn'])){
     <form method="post" ENCTYPE="multipart/form-data">
     <input type = "hidden" name = "id" value = "<?php echo $row['product_id'] ?>">
     <div class= "container-fluid bimg">
-      <div class = "col-15 bwhite">
+      <div class = "col-15 bwhite py-5">
         <div class = "row justify-content-center">
           <!--profile-->
           <div class= "col-2 mt-4 ml-2">
@@ -172,20 +179,12 @@ if (isset($_POST['editProductBtn'])){
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <textarea type="textarea" rows="3" column="3" maxlength="200" class="form-control" name="desc"
+              <textarea type="textarea" rows="4" column="3" maxlength="200" class="form-control" name="desc"
               required="required"><?php echo $row['product_desc'] ?></textarea>
             </div>
             <div class="tleft">
               <!--button-->
               <input class="btn-sub mr-2" type="submit" value="Confirm" name="editProductBtn">
-              <?php
-              echo "<a class='btn-sub' href=\"delete-product.php?id=";
-                  echo $id;
-                  echo "\" onClick=\"return confirm('Delete ";
-                  echo $row['product_name'];
-                  echo " details?')";
-                echo "\">Delete</a>";
-              ?>
             </div>
           </div>
         </div>

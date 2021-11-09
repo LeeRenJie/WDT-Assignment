@@ -36,13 +36,24 @@ $number_row = mysqli_num_rows($result);
       <?php
         if ($number_row == 0)
         {
-          echo '<div class="text-center padding">';
-            echo '<div class="card-body">';
-              echo '<h5 class="card-title">You have no purchase history!</h5>';
-              echo '<p class="card-text">Head over to our shop and buy some items today!</p>';
-              echo '<a href="product.php" class="btn btn-lg btn-primary"><i class="fas fa-shopping-bag pr-2"></i>Shop</a>';
+          if ($_SESSION['privilege'] != "user"){
+            echo '<div class="text-center padding">';
+              echo '<div class="card-body">';
+                echo '<h5 class="card-title">This customer has no purchase history!</h5>';
+                echo '<p class="card-text">Head back to view other users</p>';
+                echo '<a href="../admin/user.php" class="btn btn-lg btn-primary">Back</a>';
+              echo '</div>';
             echo '</div>';
-          echo '</div>';
+          }
+          else{
+            echo '<div class="text-center padding">';
+              echo '<div class="card-body">';
+                echo '<h5 class="card-title">You have no purchase history!</h5>';
+                echo '<p class="card-text">Head over to our shop and buy some items today!</p>';
+                echo '<a href="product.php" class="btn btn-lg btn-primary"><i class="fas fa-shopping-bag pr-2"></i>Shop</a>';
+              echo '</div>';
+            echo '</div>';
+          }
         }
         else
         {

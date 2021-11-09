@@ -1,3 +1,12 @@
+<?php
+if(!isset($_SESSION)) {
+  session_start();
+};
+
+if ($_SESSION['privilege'] == "user") {
+  header("Location: ../customer/home.php");
+};
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -84,11 +93,11 @@
                       echo "<a class='dropdown-item' href=\"product-edit.php?id=";
                         echo $row['product_id'];
                       echo "\">Edit</a>";
-                      echo "<a class='dropdown-item' href=\"delete-product.php?id="; //hyperlink to delete.php page with ‘id’ parameter
-                      echo $row['product_id'];
-                      echo "\" onClick=\"return confirm('Delete "; //JavaScript to confirm the deletion of the record
-                      echo $row['product_name'];
-                      echo " details?')";
+                      echo "<a class='dropdown-item' href=\"delete-product.php?id=";
+                        echo $row['product_id'];
+                        echo "\" onClick=\"return confirm('Delete ";
+                        echo $row['product_name'];
+                        echo " details?')";
                     echo "\">Delete</a>";
                   echo "</div>";
                 echo "</div>";

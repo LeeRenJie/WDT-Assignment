@@ -14,6 +14,7 @@ if (isset($_POST['saveInfoBtn'])) {
   $userProPic = $_FILES['profilePic']['tmp_name'];
   //get user's newly typed username
   $check_username = strtolower($_POST['username']);
+  $_SESSION['username'] = $check_username;
   //check either got image or not
   if ($_FILES['profilePic']['size'] > 0){
     //get image type
@@ -76,7 +77,7 @@ if (isset($_POST['saveInfoBtn'])) {
       <!--get user id-->
       <input type = "hidden" name = "id" value ="<?php echo $userdata['user_id']?>">
       <div class="container-fluid cont px-5 modify">
-        <div class = "col-15 background-white">
+        <div class = "col-15 background-white py-5">
           <div class = "row box-container">
             <h2><strong><?php echo $userdata["user_name"]?></strong> Profile</h2>
           </div>
@@ -147,7 +148,7 @@ if (isset($_POST['saveInfoBtn'])) {
     <script>
     //this script use to preview image before upload
     // (Nkron, 2014)
-    function preimg() { 
+    function preimg() {
       document.getElementById('img').src="<?php echo $userdata['user_image']?>";
       var picture = new FileReader();
       if (picture) {

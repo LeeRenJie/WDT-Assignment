@@ -90,7 +90,7 @@ if (isset($_POST['paymentBtn'])) {
       <?php
         if ($number_row == 0)
         {
-          echo '<div class="empty text-center py-5">';
+          echo '<div class="empty text-center">';
             echo '<div class="card-body">';
               echo '<h5 class="card-title">You have no items to pay!</h5>';
               echo '<p class="card-text">Head over to our shop and add some items to your cart!</p>';
@@ -173,7 +173,7 @@ if (isset($_POST['paymentBtn'])) {
             echo'</div>';
 
             echo '<div class="col-2 .col-md-4 text-center">';
-            echo "<a class='btn btn-danger buttons' href=\"delete-cart.php?id=";
+            echo "<a class='btn btn-danger buttons' href=\"delete-checkout.php?id=";
               echo $row['cart_id'];
               echo "\" onClick=\"return confirm('Remove ";
               echo $row['product_name'];

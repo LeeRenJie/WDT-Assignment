@@ -1,4 +1,12 @@
 <?php
+if(!isset($_SESSION)) {
+  session_start();
+};
+
+if ($_SESSION['privilege'] == "user") {
+  header("Location: ../customer/home.php");
+};
+
 if (isset($_POST['addProductBtn'])) {
   include("../../../../backend/conn.php");
   $file_path = "../../images/";
@@ -61,7 +69,7 @@ if (isset($_POST['addProductBtn'])) {
     <?php include '../shared/navbar.php';?>
     <div class= "container-fluid opcon bimg">
       <form action="product-new.php" method="post" ENCTYPE="multipart/form-data">
-        <div class = "bwhite">
+        <div class = "bwhite py-5">
           <div class = "row justify-content-center">
             <!--profile-->
             <div class= "col-2 profile mt-4 ml-2"> <!--profile for js-->
@@ -115,7 +123,7 @@ if (isset($_POST['addProductBtn'])) {
                 </select>
               </div>
               <div class="col-sm-10 form-group row">
-                <textarea type="textarea" rows="3" maxlength="60" class="form-control" name="desc" placeholder="Enter Product Description.." required="required"></textarea>
+                <textarea type="textarea" rows="4" maxlength="60" class="form-control" name="desc" placeholder="Enter Product Description.." required="required"></textarea>
               </div>
               <div class="tleft">
                 <input class="btn-sub mr-2" type="submit" name="addProductBtn" value="Add">

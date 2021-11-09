@@ -1,4 +1,12 @@
 <?php
+	if(!isset($_SESSION)) {
+		session_start();
+	};
+
+	if ($_SESSION['privilege'] == "user") {
+		header("Location: ../customer/home.php");
+	};
+
 	include("../../../../backend/conn.php");
 	$id = intval($_GET['id']); //get id in int
 	$action = "DELETE FROM user WHERE user_id=$id";

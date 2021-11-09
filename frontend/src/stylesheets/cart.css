@@ -1,8 +1,6 @@
 .empty{
-  height: 450px;
-  align-items: center;
-  display: flex;
-  background-color: #fff;
+  min-height: 500px;
+  padding-top: 100px;
 }
 
 img{
@@ -71,7 +69,7 @@ button{
 }
 
 .whole_page {
-  background-color: #fff;
+  background-color: #FFEFDE;
 }
 
 .pdImg {

@@ -5,10 +5,9 @@ img{
 }
 
 .empty{
-  height: 420px;
+  padding-top: 150px;
+  min-height: 500px;
   align-items: center;
-  display: flex;
-  background-color: #fff;
 }
 
 .product_label{
@@ -63,7 +62,7 @@ button{
 }
 
 .whole_page {
-  background-color: #fff;
+  background-color: #FFEFDE;
 }
 
 @media only screen and (max-width: 768px) {
