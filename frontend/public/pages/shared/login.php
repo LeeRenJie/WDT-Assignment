@@ -2,8 +2,7 @@
 session_start();
 include("../../../../backend/conn.php");
 
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 	// username and password sent from Form
 	$username=mysqli_real_escape_string($con,$_POST['username']);
 	$password=mysqli_real_escape_string($con,$_POST['password']);
@@ -59,7 +58,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
           <div class="col-md">
             <form class="form-login" method="post">
               <h1 class="h3 mb-4 font-weight-normal">Log in to Exclusive Pet Mart</h1>
-              <input type="text" id="username" name="username" class="form-control mb-1" placeholder="Enter your username..." required autofocus>
+              <input type="text" id="username" name="username" class="form-control mb-1" 
+              placeholder="Enter your username..." required autofocus>
               <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password..." required>
               <button class="btn-login mt-2" type="submit" name="loginBtn">Log in</button>
               <p class="mt-2 text-muted">Don't have an account? Sign up <a href = "../customer/signup.php">here</a></p>
