@@ -41,7 +41,7 @@ body {
   font-weight: bold;
 }
 
-.stock,.shipTitle, .quantity {
+.shipTitle, .quantity {
   font-size: 0.9rem;
 }
 

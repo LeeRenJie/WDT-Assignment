@@ -48,7 +48,6 @@
         <div class="col-md-7">
           <div class="container">
             <h1 class="text-capitalize itemName"><?php echo $row['product_name'];?></h1>
-            <span class="stock mr-2 text-muted"><?php echo $row['product_stock'];?> left</span>
             <span class="badge badgeColor text-white text-capitalize"><?php echo $row['product_category'];?></span>
             <span class="badge badgeColor text-white"><?php echo $row['product_pet'];?></span>
             <h1 class="price pt-2">RM <?php echo $row['product_price'];?></h1>

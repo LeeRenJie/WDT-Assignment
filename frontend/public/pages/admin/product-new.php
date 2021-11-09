@@ -19,21 +19,21 @@ if (isset($_POST['addProductBtn'])) {
       $category = 4;
       break;
   }
-  
+
   $pet = $_POST['pet'];
   $pet == "Cat" ? $pet=1 : $pet=2;
-  
+
   if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) {
     //To get file name
     $file_name= basename($_FILES["productPic"]["name"]);
     //To store the file name & file title into the database
-  
+
     if(!preg_match("/^[0-9]*$/", $check_number)){
       echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
     }
     else{
-      $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price, product_stock)
-      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]','$_POST[stock]')";
+      $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price)
+      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]'";
       if (!mysqli_query($con,$sql)){
         die('Error: ' . mysqli_error($con));
       }
@@ -81,9 +81,6 @@ if (isset($_POST['addProductBtn'])) {
                 <label for="price" class="col-form-label">Price :</label>
               </div>
               <div class="form-group row">
-                <label for="stock" class="col-form-label">Stock :</label>
-              </div>
-              <div class="form-group row">
                 <label for="pet" class="col-form-label">Pet :</label>
               </div>
               <div class="form-group row">
@@ -100,9 +97,6 @@ if (isset($_POST['addProductBtn'])) {
               </div>
               <div class="col-sm-10 form-group row">
                 <input type="int" class="form-control" name="price" placeholder="Enter Product Price.. (RM)" required="required">
-              </div>
-              <div class="col-sm-10 form-group row">
-                <input type="int" class="form-control" name="stock" placeholder="Enter Product Stock Available.." required="required">
               </div>
               <div class="col-sm-10 form-group row">
                 <select name="pet" required="required" name="pet" class="form-control form-control-md">

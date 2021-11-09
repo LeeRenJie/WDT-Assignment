@@ -50,7 +50,6 @@
             <th>Category</th>
             <th>Pet</th>
             <th>Price</th>
-            <th>Stock</th>
             <th>Actions</th>
           </tr>
           <?php
@@ -75,9 +74,6 @@
                 echo "</td>";
                 echo "<td>";
                   echo $row['product_price'];
-                echo "</td>";
-                echo "<td>";
-                  echo $row['product_stock'];
                 echo "</td>";
                 echo "<td>";
                   echo '<div class="dropdown textcenter">';

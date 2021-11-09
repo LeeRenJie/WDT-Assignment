@@ -47,7 +47,6 @@ if (isset($_POST['editProductBtn'])){
   product_desc = '$_POST[desc]',
   category_id = '$category',
   product_price = '$_POST[price]',
-  product_stock = '$_POST[stock]'
   WHERE product_id = $_POST[id];";
 
   if (mysqli_query($con,$sql)) {
@@ -97,9 +96,6 @@ if (isset($_POST['editProductBtn'])){
               <label for="price" class = "col-form-label">Price :</label>
             </div>
             <div class="form-group row">
-              <label for="stock" class = "col-form-label">Stock :</label>
-            </div>
-            <div class="form-group row">
               <label for="pet" class = "col-form-label">Pet :</label>
             </div>
             <div class="form-group row">
@@ -116,9 +112,6 @@ if (isset($_POST['editProductBtn'])){
             </div>
             <div class="col-sm-10 form-group row">
               <input type="number" class="form-control" name="price" id="price" value="<?php echo $row['product_price']?>" required="required">
-            </div>
-            <div class="col-sm-10 form-group row">
-              <input type="number" class="form-control" name="stock" id="stock" value="<?php echo $row['product_stock']?>" required="required">
             </div>
             <div class="col-sm-10 form-group row">
               <select name="pet" required="required" class= "form-control form-control-md">
