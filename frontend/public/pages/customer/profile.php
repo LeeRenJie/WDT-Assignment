@@ -126,7 +126,7 @@ if (isset($_POST['saveInfoBtn'])) {
               <div class="profile-container">
                 <image class="imge" id="img" name="img" src=<?php echo ($userdata['user_image'])?> alt="Profile Pic" />
               </div>
-                <input id="imageUpload" type="file" name="profilePic" onchange="preimg(event)" capture>
+                <input id="imageUpload" type="file" name="profilePic" onchange="preimg()" capture>
             </div>
           </div>
         </div>
@@ -136,8 +136,8 @@ if (isset($_POST['saveInfoBtn'])) {
     <!--js function-->
     <script>
     //this script use to preview image before upload
-    //https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
-    function preimg(event) { 
+    // (Nkron, 2014)
+    function preimg() { 
       document.getElementById('img').src="<?php echo $userdata['user_image']?>";
       var picture = new FileReader();
       if (picture) {
@@ -151,7 +151,7 @@ if (isset($_POST['saveInfoBtn'])) {
     }
 
     //this script disable button when the modify unchange
-    // https://flexiple.com/disable-button-javascript/
+    // (Flexiple, n.d.)
     let input = document.querySelector(".modify");
     let button = document.getElementById('button');
     button.disabled = true;
