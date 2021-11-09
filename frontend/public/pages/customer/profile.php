@@ -152,15 +152,15 @@ if (isset($_POST['saveInfoBtn'])) {
 
     //this script disable button when the modify unchange
     // (Flexiple, n.d.)
-    let input = document.querySelector(".modify");
-    let button = document.getElementById('button');
-    button.disabled = true;
-    input.addEventListener("change", disField);
+    let change = document.querySelector(".modify");
+    let disBut = document.getElementById('button');
+    disBut.disabled = true;
+    change.addEventListener("change", disField);
     function disField() {
       if(document.querySelector(".modify").value === "") {
-          button.disabled = true;
+        disBut.disabled = true;
       } else {
-          button.disabled = false;
+        disBut.disabled = false;
       }
     }
     </script>
