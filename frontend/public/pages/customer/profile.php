@@ -6,10 +6,14 @@ if(!isset($_SESSION)) {
 $userid = $_SESSION['user_id']; //get user id
 $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
 $userdata = mysqli_fetch_assoc($result);
+$validation_query = "SELECT * FROM user WHERE privilege = 'user' ";
+$validation_query_run = mysqli_query($con, $validation_query);
 
 if (isset($_POST['saveInfoBtn'])) {
   //get file
   $userProPic = $_FILES['profilePic']['tmp_name'];
+  //get user's newly typed username
+  $check_username = strtolower($_POST['username']);
   //check either got image or not
   if ($_FILES['profilePic']['size'] > 0){
     //get image type
@@ -37,14 +41,20 @@ if (isset($_POST['saveInfoBtn'])) {
   WHERE user_id=$_POST[id];";
   }
 
-  if (mysqli_query($con,$sql)) {
-    mysqli_close($con);
-    echo'<script>alert("Your Details Had Changed Successfully!");</script>';
-    echo("<script>window.location = 'home.php'</script>");
-  }
-  else {
-    echo('<script>alert("This username had been registered!");</script>');
-    echo("<script>window.location = 'profile.php'</script>");
+  foreach($validation_query_run as $row)
+  {
+    //check if username is already taken
+    if($row['user_username'] == $check_username)
+    {
+      echo("<script>alert('This username had been registered!')</script>");
+      echo("<script>window.location = 'profile.php'</script>");
+    }
+    else{
+      if (mysqli_query($con,$sql)){
+        echo'<script>alert("Your Details Had Changed Successfully!");</script>';
+        echo("<script>window.location = 'home.php'</script>");
+      }
+    }
   }
   mysqli_close($con);
 }

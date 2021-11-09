@@ -72,7 +72,13 @@ if (isset($_POST['pswBtn'])) {
                 ?>
                 <?php
                   if(!isset($_SESSION['username'])) {
-                    echo('<li class="nav-item">
+                    echo(
+                    '<li class="nav-item">
+                    <a class="nav-link" href="../customer/product.php">
+                      <i class="fas fa-shopping-bag"></i> Shop
+                    </a>
+                    </li>
+                    <li class="nav-item">
                       <a class="nav-link login-btn" href="../shared/login.php">Login</a>
                     </li>');
                   }
