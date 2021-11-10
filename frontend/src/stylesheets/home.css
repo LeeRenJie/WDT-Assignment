@@ -7,6 +7,9 @@
   background-image: linear-gradient(to right, #DEBA9D 0%, #eec784 51%, #f0e3d0 100%);
 }
 
+.graback {
+  background-image: linear-gradient(#F5E8C7, #DEBA9D);
+}
 .btn-1:hover, .btn-2:hover {
   background-position: right center;
   transform: scale(1.05);
