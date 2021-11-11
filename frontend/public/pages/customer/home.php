@@ -12,7 +12,7 @@
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid">
       <section id="about">
-        <div class="row px-5 py-3 dark-coloured-section about-container">
+        <div class="row px-5 py-3 graback about-container">
           <div class="col-6 title">
             <h1 class="mt-4 mb-4">About Exclusive Pet Mart</h1>
             <p class="mt-4 text-justify desc">In our online pet supply store, Exclusive Pet Mart (EPM), we sell all kinds of necessities for pets including dogs and cats such as toys, treats, food, bed, and anything else related to the pet's health and wellness.  We ensure our customers' pets could get the best nutrition and best gear from our store to improve their quality of life.</p>
