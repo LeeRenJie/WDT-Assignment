@@ -56,7 +56,7 @@ if (isset($_POST['signupBtn'])) {
         $result = mysqli_query($con, $sql);
 
         if($result){
-          echo("<script>alert('Your Registration is Successfully!')</script>");
+          echo("<script>alert('You have registered successfully!')</script>");
           echo("<script>window.location = '../shared/login.php'</script>");
         }
         else{

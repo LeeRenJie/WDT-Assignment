@@ -41,7 +41,7 @@ if (isset($_POST['addProductBtn'])) {
     }
     else{
       $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price)
-      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]'";
+      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]')";
       if (!mysqli_query($con,$sql)){
         die('Error: ' . mysqli_error($con));
       }
