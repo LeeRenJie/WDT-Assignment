@@ -37,11 +37,11 @@ if (isset($_POST['addProductBtn'])) {
     //To store the file name & file title into the database
 
     if(!preg_match("/^[0-9]*$/", $check_number)){
-      echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
+      echo("<script>alert('Only numeric value is allowed for Price!')</script>");
     }
     else{
       $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price)
-      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]'";
+      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]')";
       if (!mysqli_query($con,$sql)){
         die('Error: ' . mysqli_error($con));
       }
