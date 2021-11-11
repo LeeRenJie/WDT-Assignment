@@ -19,7 +19,7 @@
       die('Error: ' . mysqli_error($con));
     }
     else {
-      echo("<script>alert('Item Successfully Added To Cart')</script>");
+      echo("<script>alert('Product Successfully Added To Cart')</script>");
       echo("<script>window.location = 'cart.php'</script>");
     }
     mysqli_close($con);

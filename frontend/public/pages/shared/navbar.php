@@ -4,29 +4,27 @@ if(!isset($_SESSION)) {
 }
 include("../../../../backend/conn.php");
 if (isset($_POST['pswBtn'])) {
-    $userid = $_SESSION['user_id']; //get user id
-    $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
-    $row = mysqli_fetch_assoc($result);
-    if($row['user_password'] == $_POST['currentpsw']) {
-        if($_POST['newpsw'] == $_POST['confirmpsw']){
-            $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $userid";
-            if (mysqli_query($con,$sql)) {
-                mysqli_close($con);
-                echo'<script>alert("Your Password Had Changed Successfully!");</script>';
-                echo("<script>window.location = 'home.php'</script>");
-                }
-                else {
-                die('Error: ' . mysqli_error($con));
-                }
-                mysqli_close($con);
-            }
-        else {
-            echo'<script>alert("New Password not match with confirm password.");</script>';
-        }
+  $userid = $_SESSION['user_id']; //get user id
+  $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
+  $row = mysqli_fetch_assoc($result);
+  if($row['user_password'] == $_POST['currentpsw']) {
+    if($_POST['newpsw'] == $_POST['confirmpsw']){
+      $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $userid";
+      if (mysqli_query($con,$sql)) {
+        echo'<script>alert("Your Password Had Changed Successfully!");</script>';
+      }
+      else {
+      die('Error: ' . mysqli_error($con));
+      }
+      mysqli_close($con);
+      }
+    else {
+      echo'<script>alert("New Password not match with confirm password.");</script>';
     }
-    else{
-        echo'<script>alert("Current password not match.");</script>';
-    }
+  }
+  else{
+    echo'<script>alert("Current password not match.");</script>';
+  }
 }
 ?>
 

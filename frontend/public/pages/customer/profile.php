@@ -47,12 +47,12 @@ if (isset($_POST['saveInfoBtn'])) {
     //check if username is already taken
     if($row['user_username'] == $check_username)
     {
-      echo("<script>alert('This username had been registered!')</script>");
+      echo("<script>alert('This username is used!')</script>");
       echo("<script>window.location = 'profile.php'</script>");
     }
     else{
       if (mysqli_query($con,$sql)){
-        echo'<script>alert("Your Details Had Changed Successfully!");</script>';
+        echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
         echo("<script>window.location = 'home.php'</script>");
       }
     }

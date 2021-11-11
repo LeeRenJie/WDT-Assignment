@@ -38,14 +38,14 @@ if (isset($_POST['checkout'])) {
       die('Error: ' . mysqli_error($con));
     }
     else{
-      echo("<script>alert('Item Successfully Checked Out')</script>");
+      echo("<script>alert('Successfully Checked Out')</script>");
       echo("<script>window.location = 'checkout.php'</script>");
     }
     mysqli_close($con);
   }
   else
   {
-    echo("<script>alert('Please select at least one item')</script>");
+    echo("<script>alert('Please select at least one product to checkout')</script>");
     echo("<script>window.location = 'cart.php'</script>");
   }
 }
