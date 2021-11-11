@@ -1,23 +1,23 @@
 <?php
-if(!isset($_SESSION)) {
-  session_start();
-}
+  if(!isset($_SESSION)) {
+    session_start();
+  }
 
-include("../../../../backend/conn.php");
-$user_id = $_SESSION['user_id'];
-$admin_user_id = intval($_SERVER['QUERY_STRING']);
+  include("../../../../backend/conn.php");
+  $user_id = $_SESSION['user_id'];
+  $admin_user_id = intval($_SERVER['QUERY_STRING']);
 
-$sql =  (
-  "SELECT od.*, pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price,
-  ct.product_quantity_added AS amount
-  FROM customer_order AS od
-  JOIN shopping_cart AS ct ON od.cart_id = ct.cart_id
-  JOIN product AS pd ON ct.product_id = pd.product_id
-  WHERE (ct.user_id = '$user_id' OR ct.user_id = '$admin_user_id') AND ct.checkout = '1' AND ct.paid = '1'
-  ORDER BY od.order_id DESC"
-);
-$result = mysqli_query($con, $sql);
-$number_row = mysqli_num_rows($result);
+  $sql =  (
+    "SELECT od.*, pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price,
+    ct.product_quantity_added AS amount
+    FROM customer_order AS od
+    JOIN shopping_cart AS ct ON od.cart_id = ct.cart_id
+    JOIN product AS pd ON ct.product_id = pd.product_id
+    WHERE (ct.user_id = '$user_id' OR ct.user_id = '$admin_user_id') AND ct.checkout = '1' AND ct.paid = '1'
+    ORDER BY od.order_id DESC"
+  );
+  $result = mysqli_query($con, $sql);
+  $number_row = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +31,7 @@ $number_row = mysqli_num_rows($result);
     <title>History Page</title>
   </head>
   <body>
+    <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
       <?php
@@ -116,9 +117,12 @@ $number_row = mysqli_num_rows($result);
         }
       ?>
     </div>
+    <!-- Include Footer -->
     <?php include '../shared/footer.php';?>
-    <script src="history.js"></script>
+    <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- Execute history.js  -->
+    <script src="history.js"></script>
   </body>
 </html>

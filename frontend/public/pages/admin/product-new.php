@@ -1,58 +1,68 @@
 <?php
-if(!isset($_SESSION)) {
-  session_start();
-};
+  // start the session
+  if(!isset($_SESSION)) {
+    session_start();
+  };
 
-if ($_SESSION['privilege'] == "user") {
-  header("Location: ../customer/home.php");
-};
+  // Restrict customer to access this page
+  if ($_SESSION['privilege'] == "user") {
+    header("Location: ../customer/home.php");
+  };
 
-if (isset($_POST['addProductBtn'])) {
-  include("../../../../backend/conn.php");
-  $file_path = "../../images/";
-  $target_file = $file_path . basename($_FILES['productPic']['name']);
-  $check_number = $_POST['price'];
-  $category = $_POST['category'];
-  switch ($category) {
-    case 'Toys':
-      $category = 1;
-      break;
-    case 'Food':
-      $category = 2;
-      break;
-    case 'Healthcare':
-      $category = 3;
-      break;
-    case 'Gears':
-      $category = 4;
-      break;
-  }
 
-  $pet = $_POST['pet'];
-  $pet == "Cat" ? $pet=1 : $pet=2;
-
-  if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) {
-    //To get file name
-    $file_name= basename($_FILES["productPic"]["name"]);
-    //To store the file name & file title into the database
-
-    if(!preg_match("/^[0-9]*$/", $check_number)){
-      echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
+  if (isset($_POST['addProductBtn'])) {
+    // include the database connection
+    include("../../../../backend/conn.php");
+    $file_path = "../../images/";
+    $target_file = $file_path . basename($_FILES['productPic']['name']);
+    $check_number = $_POST['price'];
+    $category = $_POST['category'];
+    // Get category information
+    switch ($category) {
+      case 'Toys':
+        $category = 1;
+        break;
+      case 'Food':
+        $category = 2;
+        break;
+      case 'Healthcare':
+        $category = 3;
+        break;
+      case 'Gears':
+        $category = 4;
+        break;
     }
-    else{
-      $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price)
-      VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]')";
-      if (!mysqli_query($con,$sql)){
-        die('Error: ' . mysqli_error($con));
+    // Get pet information
+    $pet = $_POST['pet'];
+    $pet == "Cat" ? $pet=1 : $pet=2;
+
+    if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)) {
+      // To get file name
+      $file_name= basename($_FILES["productPic"]["name"]);
+      // To store the file name & file title into the database
+
+      // Validation
+      if(!preg_match("/^[0-9]*$/", $check_number)){
+        echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
       }
       else{
-        echo("<script>alert('Product Successfully Added!')</script>");
-        echo("<script>window.location = 'product.php'</script>");
+        // Insert the product into the database
+        $sql="INSERT INTO product (product_image, product_desc, product_name, category_id, pet_id, product_price)
+        VALUES ('$file_name','$_POST[desc]','$_POST[name]','$category','$pet','$_POST[price]')";
+        // execute query and display error if unsuccessful
+        if (!mysqli_query($con,$sql)){
+          die('Error: ' . mysqli_error($con));
+        }
+        else{
+          // Show alert if product is added successfully and redirect to product list page
+          echo("<script>alert('Product Successfully Added!')</script>");
+          echo("<script>window.location = 'product.php'</script>");
+        }
       }
+      // Close the database connection
+      mysqli_close($con);
     }
-    mysqli_close($con);
   }
-}
 ?>
 
 <!DOCTYPE html>
@@ -153,6 +163,7 @@ if (isset($_POST['addProductBtn'])) {
       }
     }
     </script>
+    <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>

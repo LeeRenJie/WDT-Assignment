@@ -1,71 +1,82 @@
 <?php
-include("../../../../backend/conn.php");
-if(!isset($_SESSION)) {
-  session_start();
-};
-
-if ($_SESSION['privilege'] == "user") {
-  header("Location: ../customer/home.php");
-};
-$id = intval($_GET['id']); //get int value of the variable
-$result = mysqli_query($con, "
-  SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
-  FROM product AS pd JOIN category AS cat ON pd.category_id = cat.category_id
-  JOIN pet ON pd.pet_id = pet.pet_id
-  WHERE pd.product_id = $id
-");
-$row = mysqli_fetch_assoc($result);
-//get image store in images folder
-$file_path = "../../images/";
-$prodImg = $file_path . basename($row["product_image"]);
-if (isset($_POST['editProductBtn'])){
-	$target_file = $file_path . basename($_FILES['productPic']['name']);
-	if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file))
-	{
-		$file_name= basename($_FILES["productPic"]["name"]);
-	}
-  else{
-    $file_name = basename($row["product_image"]);
+	// Connect to database
+  include("../../../../backend/conn.php");
+  if(!isset($_SESSION)){
+    session_start();
   };
 
-  $category = $_POST['category'];
-  switch ($category) {
-    case 'Toys':
-      $category = 1;
-      break;
-    case 'Food':
-      $category = 2;
-      break;
-    case 'Healthcare':
-      $category = 3;
-      break;
-    case 'Gears':
-      $category = 4;
-      break;
+  // Restrict customer to access this page
+  if ($_SESSION['privilege'] == "user") {
+    header("Location: ../customer/home.php");
   };
 
-  $pet = $_POST['pet'];
-  $pet == "Cat" ? $pet=1 : $pet=2;
+  // Get product id from url
+  $id = intval($_GET['id']);
 
-  $sql = "UPDATE product SET
-  pet_id = '$pet',
-  product_name = '$_POST[name]',
-  product_image = '$file_name',
-  product_desc = '$_POST[desc]',
-  category_id = '$category',
-  product_price = '$_POST[price]'
-  WHERE product_id = '$_POST[id]';";
+  // Get product details from database
+  $result = mysqli_query($con, "
+    SELECT pd.*, cat.product_category as product_category, pet.product_pet as product_pet
+    FROM product AS pd JOIN category AS cat ON pd.category_id = cat.category_id
+    JOIN pet ON pd.pet_id = pet.pet_id
+    WHERE pd.product_id = $id
+  ");
+  $row = mysqli_fetch_assoc($result);
+  //get image store in images folder
+  $file_path = "../../images/";
+  $prodImg = $file_path . basename($row["product_image"]);
+  if (isset($_POST['editProductBtn'])){
+    $target_file = $file_path . basename($_FILES['productPic']['name']);
+    if (move_uploaded_file($_FILES["productPic"]["tmp_name"], $target_file)){
+      $file_name= basename($_FILES["productPic"]["name"]);
+    }
+    else{
+      $file_name = basename($row["product_image"]);
+    };
 
-  if (mysqli_query($con,$sql)) {
+    // Get category information
+    $category = $_POST['category'];
+    switch ($category) {
+      case 'Toys':
+        $category = 1;
+        break;
+      case 'Food':
+        $category = 2;
+        break;
+      case 'Healthcare':
+        $category = 3;
+        break;
+      case 'Gears':
+        $category = 4;
+        break;
+    };
+
+    $pet = $_POST['pet'];
+    // Get pet information
+    $pet == "Cat" ? $pet=1 : $pet=2;
+    // Update product details in database
+    $sql = "UPDATE product SET
+    pet_id = '$pet',
+    product_name = '$_POST[name]',
+    product_image = '$file_name',
+    product_desc = '$_POST[desc]',
+    category_id = '$category',
+    product_price = '$_POST[price]'
+    WHERE product_id = '$_POST[id]';";
+
+    // Execute query to update product details
+    if (mysqli_query($con,$sql)) {
+      mysqli_close($con);
+      // Show alert if product is updated successfully and redirect to product list page
+      echo'<script>alert("Product Details Had Changed Successfully!");</script>';
+      echo("<script>window.location = 'product.php'</script>");
+    }
+    else {
+      // Display Error
+      die('Error: ' . mysqli_error($con));
+    }
+    // Close connection
     mysqli_close($con);
-    echo'<script>alert("Product Details Had Changed Successfully!");</script>';
-    echo("<script>window.location = 'product.php'</script>");
-  }
-  else {
-    die('Error: ' . mysqli_error($con));
-  }
-  mysqli_close($con);
-}
+  };
 ?>
 
 <!DOCTYPE html>
@@ -209,8 +220,10 @@ if (isset($_POST['editProductBtn'])){
     }
     </script>
     <?php
+      //close database connection
       mysqli_close($con);
     ?>
+    <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>

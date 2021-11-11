@@ -51,6 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="../../../src/stylesheets/login.css" rel="stylesheet">
   </head>
   <body>
+    <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid text-center size">
       <div class="px-3 pt-5">
@@ -58,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="col-md">
             <form class="form-login" method="post">
               <h1 class="h3 mb-4 font-weight-normal">Log in to Exclusive Pet Mart</h1>
-              <input type="text" id="username" name="username" class="form-control mb-1" 
+              <input type="text" id="username" name="username" class="form-control mb-1"
               placeholder="Enter your username..." required autofocus>
               <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password..." required>
               <button class="btn-login mt-2" type="submit" name="loginBtn">Log in</button>
@@ -68,7 +69,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
     </div>
+    <!-- Include Footer -->
     <?php include '../shared/footer.php';?>
+    <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>

@@ -1,3 +1,4 @@
+// Responsive website functionality
 $(window).on('resize', function() {
   if($(window).width() <= 768) {
     $('.label_text').addClass('ml-4');
