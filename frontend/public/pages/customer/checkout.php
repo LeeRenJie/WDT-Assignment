@@ -177,7 +177,7 @@ if (isset($_POST['paymentBtn'])) {
               echo $row['cart_id'];
               echo "\" onClick=\"return confirm('Remove ";
               echo $row['product_name'];
-              echo " from cart?')";
+              echo " from checkout?')";
               echo "\">Remove";
             echo "</a>";
           echo '</div>';
