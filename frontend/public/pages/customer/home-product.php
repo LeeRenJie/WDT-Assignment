@@ -9,6 +9,7 @@
     <title>Search Page</title>
   </head>
   <body>
+    <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
     <?php include("../../../../backend/conn.php")?>
 
@@ -43,7 +44,7 @@
                 <?php
                   $pet_query = "SELECT * FROM pet";
                   $pet_query_run = mysqli_query($con, $pet_query);
-  
+
                   if(mysqli_num_rows($pet_query_run) > 0)
                   {
                     foreach($pet_query_run as $pet_list)
@@ -55,7 +56,7 @@
                       }
                       ?>
                         <li>
-                          <input id="c1" type="checkbox" name="pet_value[]" value="<?=  $pet_list['pet_id']; ?>" 
+                          <input id="c1" type="checkbox" name="pet_value[]" value="<?=  $pet_list['pet_id']; ?>"
                             <?php if(in_array($pet_list['pet_id'], $checked)){echo "checked";} ?>
                           >
                           <?php echo"<label for='c1'>" . $pet_list['product_pet'] . "</label>"; ?>
@@ -67,7 +68,7 @@
                   {
                     echo"No Products";
                   }
-                ?> 
+                ?>
               </ul>
             </div>
             <div class="row shadow p-3 mb-5 bg-body rounded">
@@ -80,7 +81,7 @@
                 <?php
                   $category_query = "SELECT * FROM category";
                   $category_query_run = mysqli_query($con, $category_query);
-  
+
                   if(mysqli_num_rows($category_query_run) > 0)
                   {
                     foreach($category_query_run as $category_list)
@@ -92,7 +93,7 @@
                       }
                       ?>
                         <li>
-                          <input id="c1" type="checkbox" name="category_value[]" value="<?=  $category_list['category_id']; ?>" 
+                          <input id="c1" type="checkbox" name="category_value[]" value="<?=  $category_list['category_id']; ?>"
                             <?php if(in_array($category_list['category_id'], $checked)){echo "checked";} ?>
                           >
                           <?php echo"<label for='c1'>" . $category_list['product_category'] . "</label>"; ?>
@@ -104,7 +105,7 @@
                   {
                     echo"No Products";
                   }
-                ?> 
+                ?>
               </ul>
             </div>
             <div class="row shadow p-3 mb-5 bg-body rounded">
@@ -131,21 +132,21 @@
                 <lable for="maxprice">Max </lable>
                 <input type="number" id="maxprice" name="high_price" min="1" max="101" value="<?php if(isset($_POST['high_price'])){echo $_POST['high_price']; } else{echo "100";}?>" class="rounded form-control">
               </div>
-            </div>  
+            </div>
           </div>
         </div>
       </div>
 
 
-        <div class="container ">   
+        <div class="container ">
           <div class="col-15 whiteBg">
             <div class="row row-cols-4 justify-content-center mt-2 pt-4">
             <?php
-              $category_check = '' ; 
+              $category_check = '' ;
               #echo 'hi' . $_SERVER['QUERY_STRING'];
               $category_check = $_SERVER['QUERY_STRING'];
-      
-      
+
+
               $categories = "SELECT * FROM product WHERE category_id IN ($category_check)";
               $categories_run = mysqli_query($con, $categories);
               if(mysqli_num_rows($categories_run) > 0)
@@ -174,8 +175,10 @@
         </div>
       </form>
     </div>
+    <!-- Include Footer -->
     <?php include '../shared/footer.php';?>
     <script src="search.js"></script>
+    <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">

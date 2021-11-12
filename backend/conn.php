@@ -1,4 +1,5 @@
 <?php
+// Connect with the database named pet_mart
 $con=mysqli_connect("localhost","root","","pet_mart");
 
 // Check connection

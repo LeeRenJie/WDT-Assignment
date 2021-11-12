@@ -1,64 +1,64 @@
 <?php
-include("../../../../backend/conn.php");
-if(!isset($_SESSION)) {
-  session_start();
-}
-$userid = $_SESSION['user_id']; //get user id
-$result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
-$userdata = mysqli_fetch_assoc($result);
-$validation_query = "SELECT * FROM user WHERE privilege = 'user' ";
-$validation_query_run = mysqli_query($con, $validation_query);
+  include("../../../../backend/conn.php");
+  if(!isset($_SESSION)) {
+    session_start();
+  }
+  $userid = $_SESSION['user_id']; //get user id
+  $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
+  $userdata = mysqli_fetch_assoc($result);
+  $validation_query = "SELECT * FROM user WHERE privilege = 'user' ";
+  $validation_query_run = mysqli_query($con, $validation_query);
 
-if (isset($_POST['saveInfoBtn'])) {
-  //get file
-  $userProPic = $_FILES['profilePic']['tmp_name'];
-  //get user's newly typed username
-  $check_username = strtolower($_POST['username']);
-  $_SESSION['username'] = $check_username;
-  //check either got image or not
-  if ($_FILES['profilePic']['size'] > 0){
-    //get image type
-    $imageFileType = strtolower(pathinfo($userProPic,PATHINFO_EXTENSION)); //(Newbedev, 2021)
-    //encode image into base64
-    $base64_Img = base64_encode(file_get_contents($userProPic));
-    //set image content with type and base64
-    $image = 'data:image/'.$imageFileType.';base64,'.$base64_Img;
+  if (isset($_POST['saveInfoBtn'])) {
+    //get file
+    $userProPic = $_FILES['profilePic']['tmp_name'];
+    //get user's newly typed username
+    $check_username = strtolower($_POST['username']);
+    $_SESSION['username'] = $check_username;
+    //check either got image or not
+    if ($_FILES['profilePic']['size'] > 0){
+      //get image type
+      $imageFileType = strtolower(pathinfo($userProPic,PATHINFO_EXTENSION)); //(Newbedev, 2021)
+      //encode image into base64
+      $base64_Img = base64_encode(file_get_contents($userProPic));
+      //set image content with type and base64
+      $image = 'data:image/'.$imageFileType.';base64,'.$base64_Img;
+      $sql = "UPDATE user SET
+      user_username = LOWER('$_POST[username]'),
+      user_name = '$_POST[name]',
+      user_image = '$image',
+      user_email = '$_POST[email]',
+      user_address = '$_POST[address]',
+      user_phone_number = '$_POST[phoneNumber]'
+      WHERE user_id=$_POST[id];";
+    }
+    else {
     $sql = "UPDATE user SET
     user_username = LOWER('$_POST[username]'),
     user_name = '$_POST[name]',
-    user_image = '$image',
     user_email = '$_POST[email]',
     user_address = '$_POST[address]',
     user_phone_number = '$_POST[phoneNumber]'
     WHERE user_id=$_POST[id];";
-  }
-  else {
-  $sql = "UPDATE user SET
-  user_username = LOWER('$_POST[username]'),
-  user_name = '$_POST[name]',
-  user_email = '$_POST[email]',
-  user_address = '$_POST[address]',
-  user_phone_number = '$_POST[phoneNumber]'
-  WHERE user_id=$_POST[id];";
-  }
-
-  foreach($validation_query_run as $row)
-  {
-    //check if username is already taken
-    if($row['user_username'] == $check_username)
-    {
-      echo("<script>alert('This username is used!')</script>");
-      echo("<script>window.location = 'profile.php'</script>");
     }
-    else{
-      if (mysqli_query($con,$sql)){
-        echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
-        echo("<script>window.location = 'home.php'</script>");
+
+    foreach($validation_query_run as $row)
+    {
+      //check if username is already taken
+      if($row['user_username'] == $check_username)
+      {
+        echo("<script>alert('This username is used!')</script>");
+        echo("<script>window.location = 'profile.php'</script>");
+      }
+      else{
+        if (mysqli_query($con,$sql)){
+          echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
+          echo("<script>window.location = 'home.php'</script>");
+        }
       }
     }
+    mysqli_close($con);
   }
-  mysqli_close($con);
-}
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +72,7 @@ if (isset($_POST['saveInfoBtn'])) {
     <title>Profile Page</title>
   </head>
   <body>
+    <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
     <form method="post" ENCTYPE="multipart/form-data">
       <!--get user id-->
@@ -176,8 +177,12 @@ if (isset($_POST['saveInfoBtn'])) {
     }
     </script>
     <?php
-    mysqli_close($con);
+      // close connection
+      mysqli_close($con);
     ?>
+    <!-- Include Footer -->
+    <?php include '../shared/footer.php';?>
+    <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
