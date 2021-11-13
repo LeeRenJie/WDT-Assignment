@@ -41,6 +41,7 @@
       </div>
     </footer>
     <script>
+      // Responsive website functionality
       $(window).on('resize', function() {
         if($(window).width() <= 768) {
         $('.contact').addClass('col-lg-4 text-center mt-3');

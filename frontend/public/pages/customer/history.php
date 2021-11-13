@@ -1,12 +1,17 @@
 <?php
+  // start the session
   if(!isset($_SESSION)) {
     session_start();
   }
 
+  // include the database connection
   include("../../../../backend/conn.php");
+  // Get the logged in customer ID
   $user_id = $_SESSION['user_id'];
+  // Get the id from url when admin or owner view customer history
   $admin_user_id = intval($_SERVER['QUERY_STRING']);
 
+  // Get customer's order history
   $sql =  (
     "SELECT od.*, pd.product_image AS product_img, pd.product_name AS product_name, pd.product_price AS product_price,
     ct.product_quantity_added AS amount
@@ -16,7 +21,9 @@
     WHERE (ct.user_id = '$user_id' OR ct.user_id = '$admin_user_id') AND ct.checkout = '1' AND ct.paid = '1'
     ORDER BY od.order_id DESC"
   );
+  // Execute the query
   $result = mysqli_query($con, $sql);
+  // Get number of row of result from the query
   $number_row = mysqli_num_rows($result);
 ?>
 
@@ -35,8 +42,10 @@
     <?php include '../shared/navbar.php';?>
     <div class="container-fluid whole_page">
       <?php
+        // If the customer has no order history
         if ($number_row == 0)
         {
+          // Admin view
           if ($_SESSION['privilege'] != "user"){
             echo '<div class="text-center padding">';
               echo '<div class="card-body">';
@@ -46,6 +55,7 @@
               echo '</div>';
             echo '</div>';
           }
+          // Customer view
           else{
             echo '<div class="text-center padding">';
               echo '<div class="card-body">';
@@ -56,6 +66,7 @@
             echo '</div>';
           }
         }
+        // If there is order history
         else
         {
           echo'<div class="row mb-1 bgcolor py-4">';
@@ -75,6 +86,7 @@
               echo'<p class="text_design header_text text-center">Status of delivery</p>';
             echo'</div>';
           echo'</div>';
+          // Loop through the result and display the order history
           while($row=mysqli_fetch_array($result)){
             echo'<div class="row first_row py-3 bgcolor">';
 

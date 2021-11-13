@@ -11,6 +11,7 @@
   <body>
     <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
+    <!-- include the database connection -->
     <?php include("../../../../backend/conn.php")?>
 
     <div class="container-fluid bg-color" id="search">
@@ -20,17 +21,15 @@
           <button class="btn btn-outline-dark mt-4 mb-4 ml-4 float-right" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
         </div>
         <div class="col-10">
-          <p class="d-none">Empty</p>
         </div>
       </div>
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+        tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
           <div class= "container">
-          <!--<form action="" method="post"> -->
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search Product" name="search_key">
             <button type="submit" name="searchBtn">Search</button>
-          <!--</form>-->
           </div>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -177,6 +176,7 @@
     </div>
     <!-- Include Footer -->
     <?php include '../shared/footer.php';?>
+    <!-- Execute search.js  -->
     <script src="search.js"></script>
     <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
