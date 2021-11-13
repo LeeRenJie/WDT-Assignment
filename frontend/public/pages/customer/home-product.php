@@ -14,7 +14,7 @@
     <?php include("../../../../backend/conn.php")?>
 
     <div class="container-fluid bg-color" id="search">
-      <form action="" method="post">
+      <form action="product.php" method="post">
       <div class="row">
         <div class="col-2">
           <button class="btn btn-outline-dark mt-4 mb-4 ml-4 float-right" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
