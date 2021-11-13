@@ -43,6 +43,7 @@
           echo("<script>alert('Phone number must be 10-12 digits!')</script>");
         }
 
+        // if user passed all validation, then register user
         else{
           $username = strtolower($_POST['username']);
           $email = strtolower($_POST['email']);

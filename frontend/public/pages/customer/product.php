@@ -27,11 +27,9 @@
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
           <div class= "container">
-          <!--<form action="" method="post"> -->
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search Product" name="search_key">
             <button type="submit" name="searchBtn">Search</button>
-          <!--</form>-->
           </div>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -43,11 +41,13 @@
                   <h4>Pets </h4>
                 </li>
                 <?php
+                // Get all type of pets (cat/dog) from database
                   $pet_query = "SELECT * FROM pet";
                   $pet_query_run = mysqli_query($con, $pet_query);
 
                   if(mysqli_num_rows($pet_query_run) > 0)
-                  {
+                  { 
+                    // iterate and display all type of pets (cat/dog)
                     foreach($pet_query_run as $pet_list)
                     {
                       $checked =[];
@@ -57,17 +57,15 @@
                       }
                       ?>
                         <li>
+                          <!-- Check if the value of the pet is in the array of checked values -->
                           <input id="c1" type="checkbox" name="pet_value[]" value="<?=  $pet_list['pet_id']; ?>"
                             <?php if(in_array($pet_list['pet_id'], $checked)){echo "checked";} ?>
                           >
+                          <!-- Display the type of pet (cat/dog) as label for checkbox -->
                           <?php echo"<label for='c1'>" . $pet_list['product_pet'] . "</label>"; ?>
                         </li>
                       <?php
                     }
-                  }
-                  else
-                  {
-                    echo"No Products";
                   }
                 ?>
               </ul>
@@ -80,13 +78,16 @@
                   </h4>
                 </li>
                 <?php
+                  // Get all category from database
                   $category_query = "SELECT * FROM category";
                   $category_query_run = mysqli_query($con, $category_query);
 
                   if(mysqli_num_rows($category_query_run) > 0)
                   {
+                    // iterate and display all category
                     foreach($category_query_run as $category_list)
                     {
+                      // Check if the value of the category is in the array of checked values
                       $checked =[];
                       if(isset($_POST['category_value[]']))
                       {
@@ -97,14 +98,11 @@
                           <input id="c1" type="checkbox" name="category_value[]" value="<?=  $category_list['category_id']; ?>"
                             <?php if(in_array($category_list['category_id'], $checked)){echo "checked";} ?>
                           >
+                          <!-- Display the category as label for checkbox -->
                           <?php echo"<label for='c1'>" . $category_list['product_category'] . "</label>"; ?>
                         </li>
                       <?php
                     }
-                  }
-                  else
-                  {
-                    echo"No Products";
                   }
                 ?>
               </ul>
@@ -190,6 +188,7 @@
                             {
                               foreach($query_run as $prod_items)
                               {
+                                // Run SQL query and Display the product image, name, price, and link to product page
                                 ?>
                                   <div class="col">
                                     <a href="item.php?<?=$prod_items['product_id']?>">
@@ -223,6 +222,7 @@
                             if(mysqli_num_rows($products_run) > 0)
                             {
                               foreach($products_run as $prod_items) :
+                                // Run SQL query and Display the product image, name, price, and link to product page
                                 ?>
                                   <div class="col">
                                     <a href="item.php?<?=$prod_items['product_id']?>">
@@ -268,6 +268,7 @@
                             {
                               foreach($query_run as $prod_items)
                               {
+                                // Run SQL query and Display the product image, name, price, and link to product page
                                 ?>
                                   <div class="col">
                                     <a href="item.php?<?=$prod_items['product_id']?>">
@@ -301,6 +302,7 @@
                             if(mysqli_num_rows($products_run) > 0)
                             {
                               foreach($products_run as $prod_items) :
+                                //  Run SQL query and Display the product image, name, price, and link to product page
                                 ?>
                                   <div class="col">
                                     <a href="">
@@ -335,6 +337,7 @@
                           if(mysqli_num_rows($categories_run) > 0)
                           {
                             foreach($categories_run as $prod_items) :
+                              // Run SQL query and Display the product image, name, price, and link to product page
                               ?>
                                 <div class="col">
                                   <a href="item.php?<?=$prod_items['product_id']?>">
@@ -369,6 +372,7 @@
                       if(mysqli_num_rows($products_run) > 0)
                       {
                         foreach($products_run as $prod_items) :
+                          // Run SQL query and Display the product image, name, price, and link to product page
                           ?>
                             <div class="col">
                               <a href="item.php?<?=$prod_items['product_id']?>">
@@ -419,6 +423,7 @@
                         {
                           foreach($query_run as $prod_items)
                           {
+                            // Run SQL query and Display the product image, name, price, and link to product page
                             ?>
                               <div class="col">
                                 <a href="item.php?<?=$prod_items['product_id']?>">
@@ -452,6 +457,7 @@
                         {
                           foreach($query_run as $prod_items)
                           {
+                            // Run SQL query and Display the product image, name, price, and link to product page
                             ?>
                               <div class="col">
                                 <a href="item.php?<?=$prod_items['product_id']?>">
@@ -495,6 +501,7 @@
                           {
                             foreach($query_run as $prod_items)
                             {
+                              // Run SQL query and Display the product image, name, price, and link to product page
                               ?>
                                 <div class="col">
                                   <a href="item.php?<?=$prod_items['product_id']?>">
@@ -529,6 +536,7 @@
                         {
                           foreach($query_run as $prod_items)
                           {
+                            // Run SQL query and Display the product image, name, price, and link to product page
                             ?>
                               <div class="col">
                                 <a href="item.php?<?=$prod_items['product_id']?>">
@@ -566,6 +574,7 @@
                       {
                         foreach($query_run as $prod_items)
                         {
+                          // Run SQL query and Display the product image, name, price, and link to product page
                           ?>
                             <div class="col">
                               <a href="item.php?<?=$prod_items['product_id']?>">
@@ -600,6 +609,7 @@
                       if(mysqli_num_rows($categories_run) > 0)
                       {
                         foreach($categories_run as $prod_items) :
+                          // Run SQL query and Display the product image, name, price, and link to product page
                           ?>
                             <div class="col">
                               <a href="item.php?<?=$prod_items['product_id']?>">
@@ -639,6 +649,7 @@
                     {
                       foreach($query_run as $prod_items)
                       {
+                        // Run SQL query and Display the product image, name, price, and link to product page
                         ?>
                           <div class="col">
                             <a href="item.php?<?=$prod_items['product_id']?>">
@@ -670,6 +681,7 @@
                     if(mysqli_num_rows($products_run) > 0)
                     {
                       foreach($products_run as $prod_items) :
+                        // Run SQL query and Display the product image, name, price, and link to product page
                         ?>
                           <div class="col">
                             <a href="item.php?<?=$prod_items['product_id']?>">
@@ -706,6 +718,7 @@
                     {
                       foreach($query_run as $prod_items)
                       {
+                        // Run SQL query and Display the product image, name, price, and link to product page
                         ?>
                           <div class="col">
                             <a href="item.php?<?=$prod_items['product_id']?>">
@@ -733,6 +746,7 @@
                     if(mysqli_num_rows($products_run) > 0)
                     {
                       foreach($products_run as $prod_items) :
+                        // Run SQL query and Display the product image, name, price, and link to product page
                         ?>
                           <div class="col">
                             <a href="item.php?<?=$prod_items['product_id']?>">
@@ -771,6 +785,7 @@
                     {
                       foreach($query_run as $prod_items)
                       {
+                        // Run SQL query and Display the product image, name, price, and link to product page
                         ?>
                           <div class="col">
                             <a href="item.php?<?=$prod_items['product_id']?>">
@@ -789,7 +804,7 @@
                   }
                 }
               }
-              # Static, when user haven't click the button
+              # Static, when user haven't click the search button
               else
               {
                 $products = "SELECT * FROM product";
@@ -802,6 +817,7 @@
 
                   <?php
                   foreach($products_run as $prod_items) :
+                    // Run SQL query and Display the product image, name, price, and link to product page
                     ?>
                       <div class="col">
                         <a href="item.php?<?=$prod_items['product_id']?>">

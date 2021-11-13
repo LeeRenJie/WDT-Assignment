@@ -43,7 +43,7 @@
 
       // Validation
       if(!preg_match("/^[0-9]*$/", $check_number)){
-        echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
+        echo("<script>alert('Only numeric value is allowed for price!')</script>");
       }
       else{
         // Insert the product into the database
