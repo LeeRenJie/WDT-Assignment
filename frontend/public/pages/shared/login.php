@@ -11,6 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //Try to find is the user is exist or not
 	$sql="SELECT * FROM user WHERE user_username='$username' and user_password='$password'";
+  //If user exist
 	if ($result=mysqli_query($con,$sql))  {
 	  // Return the number of rows in result set
     $rownum=mysqli_num_rows($result);
@@ -38,9 +39,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     echo("<script>alert('Welcome Back User $name')</script>");
 		echo("<script>window.location = '../customer/home.php'</script>");
 	}
+  //If user not exist
 	else  {
 		echo "<script>alert('Your Login Details are invalid. Please try again');</script>";
 	}
+  //Close connection of database
 	mysqli_close($con);
 }
 ?>

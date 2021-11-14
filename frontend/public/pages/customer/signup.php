@@ -63,10 +63,12 @@
           $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
           $result = mysqli_query($con, $sql);
 
+          //If the sql run successful, notify the user
           if($result){
             echo("<script>alert('You have registered successfully!')</script>");
             echo("<script>window.location = '../shared/login.php'</script>");
           }
+          //If the sql fail, notify user
           else{
             echo("<script>alert('Error! pls try again')</script>");
           }
