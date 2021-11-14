@@ -133,7 +133,7 @@
                 </select>
               </div>
               <div class="col-sm-10 form-group row">
-                <textarea type="textarea" rows="4" maxlength="60" class="form-control" name="desc" placeholder="Enter Product Description.." required="required"></textarea>
+                <textarea type="textarea" rows="4" maxlength="700" class="form-control" name="desc" placeholder="Enter Product Description.." required="required"></textarea>
               </div>
               <div class="tleft">
                 <input class="btn-sub mr-2" type="submit" name="addProductBtn" value="Add">

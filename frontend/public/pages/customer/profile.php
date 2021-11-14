@@ -12,9 +12,6 @@
   if (isset($_POST['saveInfoBtn'])) {
     //get file
     $userProPic = $_FILES['profilePic']['tmp_name'];
-    //get user's newly typed username
-    $check_username = strtolower($_POST['username']);
-    $_SESSION['username'] = $check_username;
     //check either got image or not
     if ($_FILES['profilePic']['size'] > 0){
       //get image type
@@ -24,39 +21,33 @@
       //set image content with type and base64
       $image = 'data:image/'.$imageFileType.';base64,'.$base64_Img;
       $sql = "UPDATE user SET
-      user_username = LOWER('$_POST[username]'),
       user_name = '$_POST[name]',
       user_image = '$image',
       user_email = '$_POST[email]',
       user_address = '$_POST[address]',
       user_phone_number = '$_POST[phoneNumber]'
-      WHERE user_id=$_POST[id];";
+      WHERE user_id=$userid;";
     }
     else {
     $sql = "UPDATE user SET
-    user_username = LOWER('$_POST[username]'),
     user_name = '$_POST[name]',
     user_email = '$_POST[email]',
     user_address = '$_POST[address]',
     user_phone_number = '$_POST[phoneNumber]'
-    WHERE user_id=$_POST[id];";
+    WHERE user_id=$userid;";
     }
-
-    foreach($validation_query_run as $row)
-    {
-      //check if username is already taken
-      if($row['user_username'] == $check_username)
-      {
-        echo("<script>alert('This username is used!')</script>");
-        echo("<script>window.location = 'profile.php'</script>");
-      }
-      else{
-        if (mysqli_query($con,$sql)){
-          echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
-          echo("<script>window.location = 'home.php'</script>");
-        }
-      }
+    // Execute query to update user details
+    if (mysqli_query($con,$sql)) {
+      mysqli_close($con);
+      // Notify user details had updated
+      echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
+      echo("<script>window.location = 'home.php'</script>");
     }
+    else {
+      // Display Error
+      die('Error: ' . mysqli_error($con));
+    }
+    //Close connection for database
     mysqli_close($con);
   }
 ?>
@@ -85,12 +76,14 @@
           <div class="row justify-content-center ml-2">
             <div class="col-9">
               <!--change username-->
+              <fieldset disabled>
               <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username :</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="username" name="username" value="<?php echo $userdata['user_username']?>" required="required">
+                  <input type="text" class="form-control" value="<?php echo $userdata['user_username']?>" required="required">
                 </div>
               </div>
+              </fieldset>
               <!--change name-->
               <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name :</label>

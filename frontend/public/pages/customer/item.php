@@ -63,7 +63,7 @@
             <span class="badge badgeColor text-white text-capitalize"><?php echo $row['product_category'];?></span>
             <span class="badge badgeColor text-white"><?php echo $row['product_pet'];?></span>
             <h1 class="price pt-2">RM <?php echo $row['product_price'];?></h1>
-            <p class="lead py-4 desc"><?php echo $row['product_desc'];?></p>
+            <p class="text-justify lead py-4 desc"><?php echo $row['product_desc'];?></p>
             <?php
               // Check if user is customer
               if($_SESSION['privilege'] == "user") {
@@ -121,10 +121,8 @@
         a.trigger("change")
       });
     </script>
-    <!-- Include Footer -->
-    <?php include '../shared/footer.php';?>
     <!-- Jquery and Bootstrap CDN link for JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   </body>
 </html>

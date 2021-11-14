@@ -1,31 +1,46 @@
 <?php
-if(!isset($_SESSION)) {
-  session_start();
-}
-include("../../../../backend/conn.php");
-if (isset($_POST['pswBtn'])) {
-  $userid = $_SESSION['user_id']; //get user id
-  $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
-  $row = mysqli_fetch_assoc($result);
-  if($row['user_password'] == $_POST['currentpsw']) {
-    if($_POST['newpsw'] == $_POST['confirmpsw']){
-      $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $userid";
-      if (mysqli_query($con,$sql)) {
-        echo'<script>alert("Your Password Had Changed Successfully!");</script>';
-      }
+  //Start user session
+  if(!isset($_SESSION)) {
+    session_start();
+  }
+  //Connection to database
+  include("../../../../backend/conn.php");
+  //This is for edit password
+  if (isset($_POST['pswBtn'])) {
+    //Get user id
+    $userid = $_SESSION['user_id'];
+    //Get user details
+    $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
+    //Get result row
+    $row = mysqli_fetch_assoc($result);
+    //Check condition of password
+    if($row['user_password'] == $_POST['currentpsw']) {
+      //if first condition match
+      if($_POST['newpsw'] == $_POST['confirmpsw']){
+        //if second condition also match
+        //Update user passowrd
+        $sql = "UPDATE user SET user_password = '$_POST[newpsw]' WHERE user_id = $userid";
+        //Notify user sucess
+        if (mysqli_query($con,$sql)) {
+          echo'<script>alert("Your Password Had Changed Successfully!");</script>';
+        }
+        //Display error message for database
+        else {
+          die('Error: ' . mysqli_error($con));
+        }
+        //Close connection for database
+        mysqli_close($con);
+        }
       else {
-      die('Error: ' . mysqli_error($con));
+        //Notify user new password not match condition
+        echo'<script>alert("New Password not match with confirm password.");</script>';
       }
-      mysqli_close($con);
-      }
-    else {
-      echo'<script>alert("New Password not match with confirm password.");</script>';
+    }
+    else{
+      //Notify user current password not match
+      echo'<script>alert("Current password not match.");</script>';
     }
   }
-  else{
-    echo'<script>alert("Current password not match.");</script>';
-  }
-}
 ?>
 
 <!DOCTYPE html>

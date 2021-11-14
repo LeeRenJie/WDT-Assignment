@@ -1,42 +1,15 @@
-.btn-1 {
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background-image: linear-gradient(to right, #DEBA9D 0%, #eec784 51%, #f0e3d0 100%);
-}
-
 .graback {
   background-image: linear-gradient(#F5E8C7, #DEBA9D);
-}
-.btn-1:hover, .btn-2:hover {
-  background-position: right center;
-  transform: scale(1.05);
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-}
-
-.btn-2 {
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background-image: linear-gradient(to right, #F5E8C7 0%, #e7d1a9 51%, #fdebc7 100%);
 }
 
 .caption {
   display: none;
-  color: white;
-  font-size: 40px;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  color: white;
+  font-size: 40px;
   text-align: center;
 }
 

@@ -190,7 +190,7 @@
               </select>
             </div>
             <div class="col-sm-10 form-group row">
-              <textarea type="textarea" rows="4" column="3" maxlength="200" class="form-control" name="desc"
+              <textarea type="textarea" rows="4" column="3" maxlength="600" class="form-control" name="desc"
               required="required"><?php echo $row['product_desc'] ?></textarea>
             </div>
             <div class="tleft">

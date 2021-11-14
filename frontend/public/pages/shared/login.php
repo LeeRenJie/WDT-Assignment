@@ -1,5 +1,7 @@
 <?php
+//Start session
 session_start();
+//Connection to database
 include("../../../../backend/conn.php");
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -7,12 +9,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username=mysqli_real_escape_string($con,$_POST['username']);
 	$password=mysqli_real_escape_string($con,$_POST['password']);
 
+  //Try to find is the user is exist or not
 	$sql="SELECT * FROM user WHERE user_username='$username' and user_password='$password'";
+  //If user exist
 	if ($result=mysqli_query($con,$sql))  {
 	  // Return the number of rows in result set
     $rownum=mysqli_num_rows($result);
 	}
 
+  //Store user data into variable
 	while($row=mysqli_fetch_array($result)){
 		$id = $row['user_id'];
     $privilege = $row['privilege'];
@@ -22,6 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $row['user_phone_number'];
 	}
 
+  //Store user data into session
 	if($rownum==1)  {
 		$_SESSION['username']=$username;
 		$_SESSION['user_id']=$id;
@@ -33,9 +39,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     echo("<script>alert('Welcome Back User $name')</script>");
 		echo("<script>window.location = '../customer/home.php'</script>");
 	}
+  //If user not exist
 	else  {
 		echo "<script>alert('Your Login Details are invalid. Please try again');</script>";
 	}
+  //Close connection of database
 	mysqli_close($con);
 }
 ?>
@@ -53,12 +61,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
     <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid text-center size">
-      <div class="px-3 pt-5">
+    <div class="container-fluid text-center size justify-content-center">
+      <div class="px-3 padding-top">
         <div class="row">
           <div class="col-md">
             <form class="form-login" method="post">
-              <h1 class="h3 mb-4 font-weight-normal">Log in to Exclusive Pet Mart</h1>
+              <h1 class="h3 mb-4 font-weight-normal py-2">Log in to Exclusive Pet Mart</h1>
               <input type="text" id="username" name="username" class="form-control mb-1"
               placeholder="Enter your username..." required autofocus>
               <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password..." required>
