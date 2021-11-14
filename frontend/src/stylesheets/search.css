@@ -144,12 +144,6 @@ input[type=checkbox].switch:disabled:not(:checked):after {
   background-image: linear-gradient(#F5E8C7, #DEBA9D);
 }
 
-@media only screen and (max-width: 768px) {
-  .dash {
-    display: none;
-  }
-}
-
 img{
 	max-height: 180px;
 	width: auto;
