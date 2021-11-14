@@ -17,7 +17,7 @@
 	$action = "DELETE FROM user WHERE user_id=$id";
   // Show alert if user is deleted successfully and redirect to user list page
 	if (mysqli_query($con,$action)) {
-		echo'<script>alert("User Had been deleted !");</script>';
+		echo'<script>alert("User Has been deleted !");</script>';
 		echo("<script>window.location = 'user.php'</script>");
 	}
 	// Display Error
