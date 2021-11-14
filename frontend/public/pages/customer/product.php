@@ -130,7 +130,7 @@
               </div>
               <div class ="col-6">
                 <lable for="maxprice">Max </lable>
-                <input type="number" id="maxprice" name="high_price" min="1" max="101" value="<?php if(isset($_POST['high_price'])){echo $_POST['high_price']; } else{echo "100";}?>" class="rounded form-control">
+                <input type="number" id="maxprice" name="high_price" min="1" max="500" value="<?php if(isset($_POST['high_price'])){echo $_POST['high_price']; } else{echo "500";}?>" class="rounded form-control">
               </div>
             </div>
           </div>
