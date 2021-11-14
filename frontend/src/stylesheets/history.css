@@ -13,10 +13,6 @@ img {
   margin-left: 10px;
 }
 
-button{
-  margin-top: 30px;
-}
-
 .header_text {
   margin-top: 10px;
 }
@@ -30,11 +26,6 @@ button{
   font-weight: 300;
   font-size: 18px;
 }
-
-.empty_box {
-  display: none;
-}
-
 
 .header_row, .first_row, .footer_row, .bgcolor{
   background-color: #ffffff;

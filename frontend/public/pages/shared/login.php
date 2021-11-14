@@ -1,5 +1,7 @@
 <?php
+//Start session
 session_start();
+//Connection to database
 include("../../../../backend/conn.php");
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -7,12 +9,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username=mysqli_real_escape_string($con,$_POST['username']);
 	$password=mysqli_real_escape_string($con,$_POST['password']);
 
+  //Try to find is the user is exist or not
 	$sql="SELECT * FROM user WHERE user_username='$username' and user_password='$password'";
 	if ($result=mysqli_query($con,$sql))  {
 	  // Return the number of rows in result set
     $rownum=mysqli_num_rows($result);
 	}
 
+  //Store user data into variable
 	while($row=mysqli_fetch_array($result)){
 		$id = $row['user_id'];
     $privilege = $row['privilege'];
@@ -22,6 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $row['user_phone_number'];
 	}
 
+  //Store user data into session
 	if($rownum==1)  {
 		$_SESSION['username']=$username;
 		$_SESSION['user_id']=$id;
