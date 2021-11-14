@@ -36,8 +36,17 @@
     user_phone_number = '$_POST[phoneNumber]'
     WHERE user_id=$userid;";
     }
-    echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
-    echo("<script>window.location = 'home.php'</script>");
+    // Execute query to update user details
+    if (mysqli_query($con,$sql)) {
+      mysqli_close($con);
+      // Notify user details had updated
+      echo'<script>alert("Your Details Have Been Updated Successfully!");</script>';
+      echo("<script>window.location = 'home.php'</script>");
+    }
+    else {
+      // Display Error
+      die('Error: ' . mysqli_error($con));
+    }
     //Close connection for database
     mysqli_close($con);
   }
