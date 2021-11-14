@@ -1,10 +1,15 @@
 <?php
+  // include the database connection
   include("../../../../backend/conn.php");
+  // start the session
   if(!isset($_SESSION)) {
     session_start();
   }
-  $userid = $_SESSION['user_id']; //get user id
+  //get user id from url
+  $userid = $_SESSION['user_id'];
+  // get the user details
   $result = mysqli_query($con, "SELECT * FROM user WHERE user_id = $userid");
+  // fetch the result in array format
   $userdata = mysqli_fetch_assoc($result);
   $validation_query = "SELECT * FROM user WHERE privilege = 'user' ";
   $validation_query_run = mysqli_query($con, $validation_query);
@@ -67,11 +72,10 @@
           <div class="row justify-content-center ml-2">
             <div class="col-9">
               <!--change username-->
-              <fieldset disabled>
               <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label">Username :</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" value="<?php echo $userdata['user_username']?>" required="required">
+                  <p class="form-control-plaintext"><?php echo $userdata['user_username']?></p>
                 </div>
               </div>
               </fieldset>
