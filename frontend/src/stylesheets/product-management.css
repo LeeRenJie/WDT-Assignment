@@ -1,33 +1,33 @@
 .size {
-  min-height: 500px;
   padding-top: 30px;
   background-color: #FFEFDE;
+  min-height: 500px;
 }
 
 #product {
+  margin: 0 auto;
   border-collapse: collapse;
   width: 100%;
-  margin: 0 auto;
 }
 
 #product td, #product th {
-  border: 1px solid #ddd;
   padding: 8px;
+  border: 1px solid #ddd;
 }
 
-#product tr:nth-child(even){background-color: #f1f1f1;}
 #product tr:nth-child(odd){background-color: #ffffff;}
+#product tr:nth-child(even){background-color: #f1f1f1;}
 #product tr:hover {background-color: #ddd;}
 
-.img{
-  height: 180px;
+.img {
   width: 180px;
+  height: 180px;
 }
 
 #product th {
-  text-align: center;
-  background-color: #F5E8C7;
   padding-top: 12px;
   padding-bottom: 12px;
+  text-align: center;
+  background-color: #F5E8C7;
 }
 

@@ -61,12 +61,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
     <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
-    <div class="container-fluid text-center size">
-      <div class="px-3 pt-5">
+    <div class="container-fluid text-center size justify-content-center">
+      <div class="px-3 padding-top">
         <div class="row">
           <div class="col-md">
             <form class="form-login" method="post">
-              <h1 class="h3 mb-4 font-weight-normal">Log in to Exclusive Pet Mart</h1>
+              <h1 class="h3 mb-4 font-weight-normal py-2">Log in to Exclusive Pet Mart</h1>
               <input type="text" id="username" name="username" class="form-control mb-1"
               placeholder="Enter your username..." required autofocus>
               <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password..." required>

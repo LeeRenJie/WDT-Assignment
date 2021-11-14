@@ -1,20 +1,20 @@
-.empty{
+.empty {
   min-height: 500px;
   padding-top: 100px;
 }
 
-img{
+img {
   height: 180px;
   width: 180px;
   float: left;
 }
 
-.checkbox{
+.checkbox {
   margin-top: 80px;
   float: left;
 }
 
-.product_label{
+.product_label {
   float: left;
 }
 
@@ -27,7 +27,7 @@ img{
   margin-left: 10px;
 }
 
-button{
+button {
   margin-top: 30px;
 }
 
@@ -49,21 +49,21 @@ button{
   display: none;
 }
 
-.header_row{
+.header_row {
   margin-top: 1px;
   margin-bottom: 1px;
   margin-left: 20px;
 }
 
-.first_row{
+.first_row {
   margin-bottom: 1px;
 }
 
-.footer_row{
+.footer_row {
   margin-bottom: 1px;
 }
 
-.header_row, .first_row, .footer_row{
+.header_row, .first_row, .footer_row {
   background-color: #ffffff;
   border:1px solid #e8e8e8;
 }
