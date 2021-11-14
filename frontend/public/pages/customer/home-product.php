@@ -11,20 +11,22 @@
   <body>
     <!-- Include Navigation Bar -->
     <?php include '../shared/navbar.php';?>
-    <!-- include the database connection -->
+    <!--- Include Database connection -->
     <?php include("../../../../backend/conn.php")?>
 
     <div class="container-fluid bg-color" id="search">
       <form action="product.php" method="post">
       <div class="row">
+        <!-- Search Bar -->
         <div class="col-2">
           <button class="btn btn-outline-dark mt-4 mb-4 ml-4 float-right" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
         </div>
+        <!-- structure, empty space -->
         <div class="col-10">
+          <p class="d-none">Empty</p>
         </div>
       </div>
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
-        tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
           <div class= "container">
             <i class="fas fa-search"></i>
@@ -33,6 +35,7 @@
           </div>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <!-- Content inside the sitemenu search bar-->
         <div class="offcanvas-body">
           <div class="col">
             <div class="row shadow p-3 mb-5 bg-body rounded">
@@ -41,6 +44,7 @@
                   <h4>Pets </h4>
                 </li>
                 <?php
+                  // query to get data from database
                   $pet_query = "SELECT * FROM pet";
                   $pet_query_run = mysqli_query($con, $pet_query);
 
@@ -48,11 +52,14 @@
                   {
                     foreach($pet_query_run as $pet_list)
                     {
+                      //loop to get data from database
+                      //validate if checkbox is checked/functioning
                       $checked =[];
                       if(isset($_POST['pet_value[]']))
                       {
                         $checked = $_POST['pet_value[]'];
                       }
+                      //print checkboxes and its labels
                       ?>
                         <li>
                           <input id="c1" type="checkbox" name="pet_value[]" value="<?=  $pet_list['pet_id']; ?>"
@@ -78,6 +85,7 @@
                   </h4>
                 </li>
                 <?php
+                  // query to get data from database
                   $category_query = "SELECT * FROM category";
                   $category_query_run = mysqli_query($con, $category_query);
 
@@ -85,11 +93,14 @@
                   {
                     foreach($category_query_run as $category_list)
                     {
+                      //loop to get data from database
+                      //validate if the checkbox is checked/functioning
                       $checked =[];
                       if(isset($_POST['category_value[]']))
                       {
                         $checked = $_POST['category_value[]'];
                       }
+                      //print checkboxes and its labels
                       ?>
                         <li>
                           <input id="c1" type="checkbox" name="category_value[]" value="<?=  $category_list['category_id']; ?>"
@@ -141,18 +152,20 @@
           <div class="col-15 whiteBg">
             <div class="row row-cols-4 justify-content-center mt-2 pt-4">
             <?php
+              // use query string to fetch data from previous page --> "home.php" 
               $category_check = '' ;
-              #echo 'hi' . $_SERVER['QUERY_STRING'];
               $category_check = $_SERVER['QUERY_STRING'];
 
-
+              // query to get data from database
               $categories = "SELECT * FROM product WHERE category_id IN ($category_check)";
               $categories_run = mysqli_query($con, $categories);
               if(mysqli_num_rows($categories_run) > 0)
               {
+                //loop to get each product's data from database
                 foreach($categories_run as $prod_items) :
                   ?>
                     <div class="col">
+                      <!--hyperlink to "item.php" page to view each individual item-->
                       <a href="item.php?<?=$prod_items['product_id']?>">
                         <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
                         <p class="text_design mx-auto text-center">
@@ -176,7 +189,6 @@
     </div>
     <!-- Include Footer -->
     <?php include '../shared/footer.php';?>
-    <!-- Execute search.js  -->
     <script src="search.js"></script>
     <!-- Jquery and Bootstrap CDN link for JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

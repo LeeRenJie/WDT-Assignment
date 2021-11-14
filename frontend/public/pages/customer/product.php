@@ -29,7 +29,7 @@
           <div class= "container">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search Product" name="search_key">
-            <button type="submit" name="searchBtn">Search</button>
+            <button type="submit" name="searchBtn" class="btn btn-secondary">Search</button>
           </div>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -50,6 +50,7 @@
                     // iterate and display all type of pets (cat/dog)
                     foreach($pet_query_run as $pet_list)
                     {
+                      //validate if the checkboxes are checked/functioning
                       $checked =[];
                       if(isset($_POST['pet_value[]']))
                       {
@@ -87,7 +88,7 @@
                     // iterate and display all category
                     foreach($category_query_run as $category_list)
                     {
-                      // Check if the value of the category is in the array of checked values
+                      //validate if the checkboxes are checked/functioning
                       $checked =[];
                       if(isset($_POST['category_value[]']))
                       {
@@ -145,7 +146,7 @@
               # when user click the search button (regardless of checkboxes)
               if (isset($_POST['searchBtn']))
               {
-
+                // get the value of the search key
                 $search_key = "";
                 $search_key = $_POST['search_key'];
 
@@ -153,13 +154,13 @@
 
                 if(isset($_POST['pet_value']))
                 {
-
+                  // get the value of the pet checkboxes
                   $product_check = [] ;
                   $product_check = $_POST['pet_value'];
 
-
                   if (isset($_POST['category_value']))
                   {
+                    // get the value of the category checkboxes
                     $category_check = [] ;
                     $category_check = $_POST['category_value'];
 
@@ -168,14 +169,14 @@
 
                     if  (isset($_POST['least_expensive']))
                     {
-                      # IF user clicked everything (least expensive checkbox)
+                      # IF user clicked everything + (least expensive checkbox)
                       if(isset($_POST['low_price']) OR isset($_POST['high_price']))
                       {
                         $low_price = $_POST['low_price'];
                         $high_price = $_POST['high_price'];
 
 
-
+                        //loop through all the products to find the products that match the search key
                         foreach($product_check as $row_product)
                         {
                           foreach($category_check as $row_category)
@@ -213,6 +214,7 @@
                       # if user clicked everything (least expensive checkbox) except price range
                       else
                       {
+                        //loop through all the products to find the products that match the search key
                         foreach($product_check as $row_product)
                         {
                           foreach($category_check as $row_category)
@@ -247,15 +249,14 @@
 
                     elseif (isset($_POST['most_expensive']))
                     {
-
                       # IF user clicked everything (most expensive checkbox)
                       if(isset($_POST['low_price']) OR isset($_POST['high_price']))
                       {
+                        //get the values of the price range
                         $low_price = $_POST['low_price'];
                         $high_price = $_POST['high_price'];
 
-
-
+                        //loop through all the products to find the products that match the search key
                         foreach($product_check as $row_product)
                         {
                           foreach($category_check as $row_category)
@@ -293,10 +294,12 @@
                       # if user clicked everything (most expensive checkbox) except price range
                       else
                       {
+                        //loop through all the products to find the products that match the search key
                         foreach($product_check as $row_product)
                         {
                           foreach($category_check as $row_category)
                           {
+                            //SQL query to get the products that match the search key
                             $products = "SELECT * FROM product WHERE category_id IN ($row_category) AND pet_id IN ($row_product) AND product_name LIKE '%$search_key%' ORDER BY product_price DESC";
                             $products_run = mysqli_query($con, $products);
                             if(mysqli_num_rows($products_run) > 0)
@@ -328,10 +331,12 @@
                     # If user only checked cat,dog + category checkboxes then search
                     else
                     {
+                      //loop through all the products to find the products that match the search key
                       foreach($category_check as $row_category)
                       {
                         foreach($product_check as $row_product)
                         {
+                          //SQL query to get the products that match the search key
                           $categories = "SELECT * FROM product WHERE category_id IN ($row_category) AND pet_id IN ($row_product) AND product_name LIKE '%$search_key%'";
                           $categories_run = mysqli_query($con, $categories);
                           if(mysqli_num_rows($categories_run) > 0)
@@ -361,11 +366,136 @@
 
                   }
 
+                  # if user select any pet type + least expensive
+                  elseif  (isset($_POST['least_expensive']))
+                  {
+                    if(isset($_POST['low_price']) OR isset($_POST['high_price']))
+                    {
+                      //get the values of the price range
+                      $low_price = $_POST['low_price'];
+                      $high_price = $_POST['high_price'];
+
+                      //loop through all the products to find the products that match the search key
+                      foreach($product_check as $row_product)
+                      {
+                        $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND pet_id IN ($row_product) AND product_name LIKE '%$search_key%' ORDER BY product_price ASC";
+
+                        $query_run = mysqli_query($con, $query);
+
+                        if(mysqli_num_rows($query_run) > 0)
+                        {
+                          foreach($query_run as $prod_items)
+                          {
+                            // Run SQL query and Display the product image, name, price, and link to product page
+                            ?>
+                              <div class="col">
+                                <a href="item.php?<?=$prod_items['product_id']?>">
+                                  <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
+                                  <p class="text_design mx-auto text-center">
+                                  <!--label tag for UI purpose-->
+                                    <label><?= $prod_items['product_name'] ?></label>
+                                  </p>
+                                </a>
+                                <!--Price-->
+                                <p class="text-center text-muted mt-n2">
+                                  RM<?=$prod_items['product_price']?>
+                                </p>
+                              </div>
+                            <?php
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  # if user select any pet type + most expensive
+                  elseif (isset($_POST['most_expensive']))
+                  {
+                    if(isset($_POST['low_price']) OR isset($_POST['high_price']))
+                    {
+                      //get the values of the price range
+                      $low_price = $_POST['low_price'];
+                      $high_price = $_POST['high_price'];
+
+                      foreach($product_check as $row_product)
+                      {
+                        //SQL query to get the products that match the search key
+                        $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND pet_id IN ($row_product) AND product_name LIKE '%$search_key%' ORDER BY product_price DESC";
+  
+                        $query_run = mysqli_query($con, $query);
+  
+                        if(mysqli_num_rows($query_run) > 0)
+                        {
+                          foreach($query_run as $prod_items)
+                          {
+                            // Run SQL query and Display the product image, name, price, and link to product page
+                            ?>
+                              <div class="col">
+                                <a href="item.php?<?=$prod_items['product_id']?>">
+                                  <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
+                                  <p class="text_design mx-auto text-center">
+                                  <!--label tag for UI purpose-->
+                                    <label><?= $prod_items['product_name'] ?></label>
+                                  </p>
+                                </a>
+                                <!--Price-->
+                                <p class="text-center text-muted mt-n2">
+                                  RM<?=$prod_items['product_price']?>
+                                </p>
+                              </div>
+                            <?php
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  # if user select any pet type + price range
+                  elseif(isset($_POST['low_price']) OR isset($_POST['high_price']))
+                  {
+                    //get the values of the price range
+                    $low_price = $_POST['low_price'];
+                    $high_price = $_POST['high_price'];
+
+                    foreach($product_check as $row_product)
+                    {
+                      //SQL query to get the products that match the search key
+                      $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND pet_id IN ($row_product) AND product_name LIKE '%$search_key%'";
+
+                      $query_run = mysqli_query($con, $query);
+
+                      if(mysqli_num_rows($query_run) > 0)
+                      {
+                        foreach($query_run as $prod_items)
+                        {
+                          // Run SQL query and Display the product image, name, price, and link to product page
+                          ?>
+                            <div class="col">
+                              <a href="item.php?<?=$prod_items['product_id']?>">
+                                <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
+                                <p class="text_design mx-auto text-center">
+                                <!--label tag for UI purpose-->
+                                  <label><?= $prod_items['product_name'] ?></label>
+                                </p>
+                              </a>
+                              <!--Price-->
+                              <p class="text-center text-muted mt-n2">
+                                RM<?=$prod_items['product_price']?>
+                              </p>
+                            </div>
+                          <?php
+                        }
+                      }
+                    }
+                  }
+
                   #only checked cat or dog then search
                   else
                   {
+                    //loop through all the products to find the products that match the search key
                     foreach($product_check as $row_product)
                     {
+                      //SQL query to get the products that match the search key
                       $products = "SELECT * FROM product WHERE pet_id IN ($row_product) AND product_name LIKE '%$search_key%'";
                       $products_run = mysqli_query($con, $products);
 
@@ -397,6 +527,7 @@
                 # If user (no check cat,dog checkbox)
                 elseif (isset($_POST['category_value']))
                 {
+                  //get the value of the category
                   $category_check = [] ;
                   $category_check = $_POST['category_value'];
 
@@ -407,12 +538,11 @@
                     #if user check everything except cat or dog(least expensive)
                     if(isset($_POST['low_price']) OR isset($_POST['high_price']))
                     {
+                      //get the values of the price range
                       $low_price = $_POST['low_price'];
                       $high_price = $_POST['high_price'];
 
-
-
-
+                      //loop through all the products to find the products that match the search key
                       foreach($category_check as $row_category)
                       {
                         $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND category_id IN ($row_category) AND product_name LIKE '%$search_key%' ORDER BY product_price ASC";
@@ -447,8 +577,10 @@
                     else
                     {
 
+                      //loop through all the products to find the products that match the search key
                       foreach($category_check as $row_category)
                       {
+                        //SQL query to get the products that match the search key
                         $query = "SELECT * FROM product WHERE category_id IN ($row_category) AND product_name LIKE '%$search_key%' ORDER BY product_price ASC";
 
                         $query_run = mysqli_query($con, $query);
@@ -485,49 +617,47 @@
                     #if user check everything except cat or dog (most expensive)
                     if(isset($_POST['low_price']) OR isset($_POST['high_price']))
                     {
-                        $low_price = $_POST['low_price'];
-                        $high_price = $_POST['high_price'];
-
-
-
-
-                        foreach($category_check as $row_category)
+                      //get the values of the price range
+                      $low_price = $_POST['low_price'];
+                      $high_price = $_POST['high_price'];
+                      //loop through all the products to find the products that match the search key
+                      foreach($category_check as $row_category)
+                      {
+                        $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND category_id IN ($row_category) AND product_name LIKE '%$search_key%' ORDER BY product_price DESC";
+                        $query_run = mysqli_query($con, $query);
+                        if(mysqli_num_rows($query_run) > 0)
                         {
-                          $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND category_id IN ($row_category) AND product_name LIKE '%$search_key%' ORDER BY product_price DESC";
-
-                          $query_run = mysqli_query($con, $query);
-
-                          if(mysqli_num_rows($query_run) > 0)
+                          foreach($query_run as $prod_items)
                           {
-                            foreach($query_run as $prod_items)
-                            {
-                              // Run SQL query and Display the product image, name, price, and link to product page
-                              ?>
-                                <div class="col">
-                                  <a href="item.php?<?=$prod_items['product_id']?>">
-                                    <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
-                                    <p class="text_design mx-auto text-center">
-                                    <!--label tag for UI purpose-->
-                                      <label><?= $prod_items['product_name'] ?></label>
-                                    </p>
-                                  </a>
-                                  <!--Price-->
-                                  <p class="text-center text-muted mt-n2">
-                                    RM<?=$prod_items['product_price']?>
+                            // Run SQL query and Display the product image, name, price, and link to product page
+                            ?>
+                              <div class="col">
+                                <a href="item.php?<?=$prod_items['product_id']?>">
+                                  <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
+                                  <p class="text_design mx-auto text-center">
+                                  <!--label tag for UI purpose-->
+                                    <label><?= $prod_items['product_name'] ?></label>
                                   </p>
-                                </div>
-                              <?php
-                            }
+                                </a>
+                                <!--Price-->
+                                <p class="text-center text-muted mt-n2">
+                                  RM<?=$prod_items['product_price']?>
+                                </p>
+                              </div>
+                            <?php
                           }
                         }
+                      }
                     }
 
                     # If user checked category checkboxes + most expensive checkbox (no check cat,dog, price range checkbox)
                     else
                     {
 
+                      //loop through all the products to find the products that match the search key
                       foreach($category_check as $row_category)
                       {
+                        //SQL query to get the products that match the search key
                         $query = "SELECT * FROM product WHERE category_id IN ($row_category) AND product_name LIKE '%$search_key%' ORDER BY product_price DESC";
 
                         $query_run = mysqli_query($con, $query);
@@ -561,11 +691,14 @@
                   #category + price range only
                   elseif (isset($_POST['low_price']) OR isset($_POST['high_price']))
                   {
+                    //get the values of the price range
                     $low_price = $_POST['low_price'];
                     $high_price = $_POST['high_price'];
 
+                    //loop through all the products to find the products that match the search key
                     foreach($category_check as $row_category)
                     {
+                      //SQL query to get the products that match the search key
                       $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND category_id IN ($row_category) AND product_name LIKE '%$search_key%'";
 
                       $query_run = mysqli_query($con, $query);
@@ -599,11 +732,14 @@
                   # Only checked category checkboxes
                   else
                   {
+                    //get category checkboxes values
                     $category_check = [] ;
                     $category_check = $_POST['category_value'];
+
+                    //loop through all the products to find the products that match the search key
                     foreach($category_check as $row_category)
                     {
-                      //echo $row_product;
+                      //SQL query to find the products that match the search key
                       $categories = "SELECT * FROM product WHERE category_id IN ($row_category)";
                       $categories_run = mysqli_query($con, $categories);
                       if(mysqli_num_rows($categories_run) > 0)
@@ -637,10 +773,11 @@
                   # least expensive + price range
                   if(isset($_POST['low_price']) OR isset($_POST['high_price']))
                   {
+                    //get the values of the price range
                     $low_price = $_POST['low_price'];
                     $high_price = $_POST['high_price'];
 
-
+                    //SQL query to find the products that match the search key
                     $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND product_name LIKE '%$search_key%' ORDER BY product_price ASC";
 
                     $query_run = mysqli_query($con, $query);
@@ -673,9 +810,7 @@
                   # If user only check least expensive checkboxes (no check cat,dog and category checkbox)
                   else
                   {
-                    $product_check = [] ;
-                    $product_check = $_POST['least_expensive'];
-
+                    //SQL query to find the products that match the search key
                     $products = "SELECT * FROM product ORDER BY product_price ASC";
                     $products_run = mysqli_query($con, $products);
                     if(mysqli_num_rows($products_run) > 0)
@@ -706,10 +841,11 @@
                   # most expensive + price range
                   if(isset($_POST['low_price']) OR isset($_POST['high_price']))
                   {
+                    //take the price range from the user
                     $low_price = $_POST['low_price'];
                     $high_price = $_POST['high_price'];
 
-
+                    //SQL query to find the products that match the search key
                     $query = "SELECT * FROM product WHERE (product_price BETWEEN $low_price AND $high_price) AND product_name LIKE '%$search_key%' ORDER BY product_price DESC";
 
                     $query_run = mysqli_query($con, $query);
@@ -741,6 +877,7 @@
                   # If user only check most expensive checkboxes
                   else
                   {
+                    //SQL query to find the products that match the search key
                     $products = "SELECT * FROM product ORDER BY product_price DESC";
                     $products_run = mysqli_query($con, $products);
                     if(mysqli_num_rows($products_run) > 0)
@@ -767,46 +904,41 @@
                   }
                 }
 
-                # if user only select price range (WRONG)
+                # if user only select price range checkboxes
                 else
                 {
-                  $products = "SELECT * FROM product";
-                  $products_run = mysqli_query($con, $products);
-                  if(mysqli_num_rows($products_run) > 0)
+                  //take the price range from the user
+                  $low_price = $_POST['low_price'];
+                  $high_price = $_POST['high_price'];
+                  //loop through all the products to find the products that match the search key
+                  $query = "SELECT * FROM product WHERE product_price BETWEEN $low_price AND $high_price";
+                  $query_run = mysqli_query($con, $query);
+                  if(mysqli_num_rows($query_run) > 0)
                   {
-                    $low_price = $_POST['low_price'];
-                    $high_price = $_POST['high_price'];
-
-                    $query = "SELECT * FROM product WHERE product_price BETWEEN $low_price AND $high_price";
-
-                    $query_run = mysqli_query($con, $query);
-
-                    if(mysqli_num_rows($query_run) > 0)
+                    foreach($query_run as $prod_items)
                     {
-                      foreach($query_run as $prod_items)
-                      {
-                        // Run SQL query and Display the product image, name, price, and link to product page
-                        ?>
-                          <div class="col">
-                            <a href="item.php?<?=$prod_items['product_id']?>">
-                              <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
-                              <p class="text_design mx-auto text-center">
-                                <label><?= $prod_items['product_name'] ?></label>
-                              </p>
-                            </a>
-                            <p class="text-center text-muted mt-n2">
-                              RM<?=$prod_items['product_price']?>
+                      // Run SQL query and Display the product image, name, price, and link to product page
+                      ?>
+                        <div class="col">
+                          <a href="item.php?<?=$prod_items['product_id']?>">
+                            <img src='../../images/<?=$prod_items['product_image']?>' class='img-thumbnail mr-3 ml-2 mb-2 mt-2 rounded mx-auto d-block'>
+                            <p class="text_design mx-auto text-center">
+                              <label><?= $prod_items['product_name'] ?></label>
                             </p>
-                          </div>
-                        <?php
-                      }
+                          </a>
+                          <p class="text-center text-muted mt-n2">
+                            RM<?=$prod_items['product_price']?>
+                          </p>
+                        </div>
+                      <?php
                     }
                   }
                 }
               }
-              # Static, when user haven't click the search button
+              # Static, when user haven't click the search button (Display all products)
               else
               {
+                //SQL query to get all product data from database
                 $products = "SELECT * FROM product";
                 $products_run = mysqli_query($con, $products);
                 if(mysqli_num_rows($products_run) > 0)

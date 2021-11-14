@@ -63,7 +63,7 @@
             <span class="badge badgeColor text-white text-capitalize"><?php echo $row['product_category'];?></span>
             <span class="badge badgeColor text-white"><?php echo $row['product_pet'];?></span>
             <h1 class="price pt-2">RM <?php echo $row['product_price'];?></h1>
-            <p class="lead py-4 desc"><?php echo $row['product_desc'];?></p>
+            <p class="text-justify lead py-4 desc"><?php echo $row['product_desc'];?></p>
             <?php
               // Check if user is customer
               if($_SESSION['privilege'] == "user") {
