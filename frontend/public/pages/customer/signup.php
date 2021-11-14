@@ -1,14 +1,21 @@
 <?php
   if (isset($_POST['signupBtn'])) {
+    //Include connection for database
     include("../../../../backend/conn.php");
+    //Set default image
     $defaultPic = "../../images/default.jpg";
+    //Read default image file type (as jpg)
     $imageFileType = strtolower(pathinfo($defaultPic,PATHINFO_EXTENSION)); //(Newbedev, 2021)
+    //Encode default image into base 64
     $defaultImg = base64_encode(file_get_contents($defaultPic));
+    //create a format of blob image (base64)
     $image = 'data:image/'.$imageFileType.';base64,'.$defaultImg;
+    //Set sign up privilege as user privilege
     $privilege = 'user';
+
+    //Get all user data
     $validation_query = "SELECT * FROM user WHERE privilege = 'user' ";
     $validation_query_run = mysqli_query($con, $validation_query);
-
 
     // form validation for signup
     $check_username = strtolower($_POST['username']);
