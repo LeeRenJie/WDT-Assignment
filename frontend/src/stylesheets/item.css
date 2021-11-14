@@ -44,7 +44,6 @@ body {
   border-radius: 1% 1% 2% 4%/2% 6% 5% 4%;
 }
 
-
 .quantity.buttons_added .deduct {
   border-right: 0;
 }
@@ -61,7 +60,7 @@ body {
   position: relative;
   white-space: nowrap;
   text-align: left;
-  vertical-align: top; 
+  vertical-align: top;
 }
 
 .itemName {
@@ -81,7 +80,7 @@ body {
   display: inline-block;
 }
 
-.quantity .input-text.qty {
+.quantity .input-text.quantity {
   padding: 0 5px;
   text-align: center;
   width: 50px;
@@ -102,4 +101,17 @@ body {
 .quantity.buttons_added .deduct:focus,
 .quantity.buttons_added .add:focus {
   outline: none;
+}
+
+/* Remove Up down button for number input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
