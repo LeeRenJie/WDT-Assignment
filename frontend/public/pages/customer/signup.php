@@ -34,20 +34,24 @@
         if($row['user_email'] == $check_mail)
         {
           echo("<script>alert('Email already exists')</script>");
+          break;
         }
         else if($row['user_username'] == $check_username)
         {
           echo("<script>alert('Username already exists!')</script>");
+          break;
         }
 
         // form validation for phone number and email
         else if(!preg_match("/^[0-9]*$/", $check_number)){
           echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
+          break;
         }
 
         // form validation for input length
         else if($num_length <10 AND $num_length >12){
           echo("<script>alert('Phone number must be 10-12 digits!')</script>");
+          break;
         }
 
         // if user passed all validation, then register user
@@ -67,10 +71,12 @@
           if($result){
             echo("<script>alert('You have registered successfully!')</script>");
             echo("<script>window.location = '../shared/login.php'</script>");
+            break;
           }
           //If the sql fail, notify user
           else{
             echo("<script>alert('Error! pls try again')</script>");
+            break;
           }
         }
       }
