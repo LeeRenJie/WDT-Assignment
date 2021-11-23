@@ -21,7 +21,6 @@
     $check_username = strtolower($_POST['username']);
     $check_number = $_POST['phoneNumber'];
     $num_length = strlen($check_number);
-    echo $num_length;
     $check_mail = $_POST['email'];
     $mail_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
 
