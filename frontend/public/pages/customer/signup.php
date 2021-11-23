@@ -28,50 +28,55 @@
     // form validation for mail to prevent same email address to register twice
     if(mysqli_num_rows($validation_query_run) > 0)
     {
+      $register = TRUE;
       foreach($validation_query_run as $row)
       {
         // ("Form Validation in PHP - javatpoint", 2021);
         if($row['user_email'] == $check_mail)
         {
           echo("<script>alert('Email already exists')</script>");
+          $register = FALSE;
+          break;
         }
         else if($row['user_username'] == $check_username)
         {
           echo("<script>alert('Username already exists!')</script>");
+          $register = FALSE;
+          break;
         }
 
         // form validation for phone number and email
         else if(!preg_match("/^[0-9]*$/", $check_number)){
           echo("<script>alert('Only numeric value is allowed for phone number!')</script>");
+          $register = FALSE;
+          break;
         }
 
         // form validation for input length
-        else if($num_length <10 AND $num_length >12){
+        else if($num_length <10 OR $num_length >12){
           echo("<script>alert('Phone number must be 10-12 digits!')</script>");
+          $register = FALSE;
+          break;
         }
-
+      }
+      if($register == TRUE){
         // if user passed all validation, then register user
+        $username = strtolower($_POST['username']);
+        $email = strtolower($_POST['email']);
+        $password = $_POST['password'];
+        $name = $_POST['name'];
+        $phonenumber = $_POST['phoneNumber'];
+        $address = $_POST['address'];
+        $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
+        $result = mysqli_query($con, $sql);
+        //If the sql run successful, notify the user
+        if($result){
+          echo("<script>alert('You have registered successfully!')</script>");
+          echo("<script>window.location = '../shared/login.php'</script>");
+        }
+        //If the sql fail, notify user
         else{
-          $username = strtolower($_POST['username']);
-          $email = strtolower($_POST['email']);
-          $password = $_POST['password'];
-          $name = $_POST['name'];
-          $phonenumber = $_POST['phoneNumber'];
-          $address = $_POST['address'];
-
-
-          $sql = "INSERT INTO user (user_password, user_username, user_name, user_image, user_email, user_address, user_phone_number, privilege) VALUES ('$password', '$username', '$name', '$image', '$email', '$address', '$phonenumber', '$privilege')";
-          $result = mysqli_query($con, $sql);
-
-          //If the sql run successful, notify the user
-          if($result){
-            echo("<script>alert('You have registered successfully!')</script>");
-            echo("<script>window.location = '../shared/login.php'</script>");
-          }
-          //If the sql fail, notify user
-          else{
-            echo("<script>alert('Error! pls try again')</script>");
-          }
+          echo("<script>alert('Error! pls try again')</script>");
         }
       }
     }
