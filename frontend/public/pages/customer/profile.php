@@ -141,7 +141,6 @@
         </div>
       </div>
     </form>
-    <?php include '../shared/footer.php';?>
     <!--js function-->
     <script>
     //this script use to preview image before upload
